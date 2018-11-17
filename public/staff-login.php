@@ -19,12 +19,12 @@ require_once(PROJECT . '/private/initialize.php');
 
         
   <div class="container text-center">
-      <form class="form-signin">
+      <form class="form-signin" action="staff/loggedIn.php" method="post">
         <h1 class="mb-4 upperCase">Staff Login</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" id="inputUsername" class="form-control mb-2" placeholder="Username" required autofocus>
+        <input type="text" name="inputUsername" class="form-control mb-2" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
 
         <button class="mt-3 btn btn-lg btn-dark btn-block" type="submit">Sign in</button>
 
