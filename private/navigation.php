@@ -5,11 +5,11 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="../public/index.php">Home</a>
+            <li class="<?php checkActive("Home")?>">
+            <a class="nav-link" href="index.php">Home</a> 
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
+            <li class="<?php checkActive("About")?>">
+                <a class="nav-link" href="#">About</a>  
             </li>
            <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,8 +34,8 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <ul class="navbar-nav">
-                
-                    <a href="staff-login.php" class="btn btn-light"><i class="fas fa-unlock-alt"></i> Staff Login</a>
+         
+                    <?php checkLoggingIn() ?>
 
                 </ul>
             </li>

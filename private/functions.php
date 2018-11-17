@@ -1,21 +1,23 @@
 <?php
-$active = "home";
-$className = "nav-link";
+
 function checkActive($navItem) {
+    $className = "nav-item";
+    global $active;
   if ($active == $navItem) {
-    $className =. " active";
+    $className = $className . " active";
   }
   echo $className;
 }
 ?>
 
 <?php
-$login = false;
-function checkLogin() {
-    if (login == false) {
-        echo "<a href=\"staff-login.php\" class=\"btn btn-light\"><i class=\"fas fa-unlock-alt\"></i> Staff Login</a>"
+
+function checkLoggingIn() {
+    global $loggingIn;
+    if ($loggingIn) {
+        echo '<a href="index.php" class="btn btn-light"><i class="fas fa-angle-double-left"></i> Main Page</a>';
     } else {
-        echo "<a href=\"index.php\" class=\"btn btn-light\"><i class=\"fas fa-angle-double-left\"></i> Main Page</a>"
+        echo '<a href="staff-login.php" class="btn btn-light"><i class="fas fa-unlock-alt"></i> Staff Login</a>';   
     }
 }
 ?>
