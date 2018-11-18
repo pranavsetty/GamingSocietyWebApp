@@ -1,7 +1,8 @@
-
+create database omega_db;
+use omega_db;
 CREATE TABLE Member
 (
-  memberID    INT           NOT NULL,
+  memberID    INT AUTO_INCREMENT NOT NULL,
   title       VARCHAR(3)    NOT NULL,
   firstname   VARCHAR(20)   NOT NULL,
   surname     VARCHAR(30)   NOT NULL,
@@ -14,9 +15,22 @@ CREATE TABLE Member
   PRIMARY KEY (memberID)
 );
 
+CREATE TABLE Game
+(
+  gameID                INT AUTO_INCREMENT NOT NULL,
+  cost                  INT           NOT NULL,
+  type                  VARCHAR(20),
+  platform              VARCHAR(20)   NOT NULL,
+  ageLimit              INT           NOT NULL,
+  name                  VARCHAR(40)   NOT NULL,
+  isCurrentlyAvailable  BOOLEAN       NOT NULL,
+  releaseYear           INT,
+  PRIMARY KEY (gameID)
+);
+
 CREATE TABLE Rental
 (
-  rentalID    INT NOT NULL,
+  rentalID    INT AUTO_INCREMENT NOT NULL,
   memberID    INT NOT NULL,
   gameID      INT NOT NULL,
   extension   INT,
@@ -28,38 +42,18 @@ CREATE TABLE Rental
   FOREIGN KEY (gameID) REFERENCES Game(gameID)
 );
 
-CREATE TABLE Game
-(
-  gameID                INT           NOT NULL,
-  cost                  INT           NOT NULL,
-  type                  VARCHAR(20),
-  platform              VARCHAR(20)   NOT NULL,
-  ageLimit              INT           NOT NULL,
-  name                  VARCHAR(40)   NOT NULL,
-  isCurrentlyAvailable  BOOLEAN       NOT NULL,
-  releaseYear           INT,
-  PRIMARY KEY (gameID)
-);
-
 CREATE TABLE Ban
 (
   memberID    INT   NOT NULL,
   startDate   DATE  NOT NULL,
   endDate     DATE  NOT NULL,
   period      INT   NOT NULL,
-  FOREIGN KEY (memberID) REFERENCES Member(memberID),
-);
-
-CREATE TABLE Admin
-(
-  staffID INT NOT NULL,
-  isCurrent INT NOT NULL
-  FOREIGN KEY (staffID) REFERENCES Staff(staffID),
+  FOREIGN KEY (memberID) REFERENCES Member(memberID)
 );
 
 CREATE TABLE Staff
 (
-  staffID     INT           NOT NULL,
+  staffID     INT AUTO_INCREMENT NOT NULL,
   password    VARCHAR(20)   NOT NULL,
   title       VARCHAR(3)    NOT NULL,
   firstname   VARCHAR(20)   NOT NULL,
@@ -70,3 +64,14 @@ CREATE TABLE Staff
   homeAdress  VARCHAR(60),
   PRIMARY KEY (staffID)
 );
+
+CREATE TABLE Admin
+(
+  staffID INT NOT NULL,
+  isCurrent INT NOT NULL,
+  FOREIGN KEY (staffID) REFERENCES Staff(staffID)
+);
+
+
+INSERT into Member
+VALUES (DEFAULT, "Mrs", "Jane", "Doe", '1992-01-19', 92648936271, 0, 10, "jane@hotmail.co.uk", "SW1")

@@ -21,13 +21,13 @@
   $dbhost = 'localhost';
   $dbuser = 'root';
   $dbpass = '';
-  $dbname = 'demo_db';
+  $dbname = 'omega_db';
 
   // 1. Create a database connection
   $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
   // 2. Perform database query
-  $query = "SELECT * FROM things";
+  $query = "SELECT * FROM Member";
   $result_set = mysqli_query($connection, $query);
 ?>
 
@@ -44,7 +44,7 @@
       <?php
         // 3. Use returned data (if any)
         while($thing = mysqli_fetch_assoc($result_set)) {
-          echo "<tr><td>" . $thing["name"] . "</td><td>" . $thing["price"] . "</td></tr>";
+          echo "<tr><td>" . $thing["firstname"] . "</td><td>" . $thing["email"] . "</td></tr>";
         }
       ?>
     </table>
