@@ -26,6 +26,7 @@ CREATE TABLE Game
   name                  VARCHAR(40)   NOT NULL,
   isCurrentlyAvailable  BOOLEAN       NOT NULL,
   releaseYear           INT,
+  imageLink             VARCHAR(1000)  NOT NULL,
   PRIMARY KEY (gameID)
 );
 
@@ -48,7 +49,7 @@ CREATE TABLE Ban
   memberID    INT   NOT NULL,
   startDate   DATE  NOT NULL,
   endDate     DATE  NOT NULL,
-  period      INT   NOT NULL,
+  period      INT   NOT NULL DEFAULT 6,
   FOREIGN KEY (memberID) REFERENCES Member(memberID)
 );
 
@@ -80,13 +81,18 @@ VALUES (DEFAULT, "Mrs", "Jane", "Doe", '1992-01-19', 92648936271, 0, 10, "jane@h
        (DEFAULT, "Mrs", "Maria", "Labarias", '1999-05-12', 9257385734, 1, 20, "maria@hotmail.co.uk", "EN2 8AJ");
 
 INSERT into Game
-VALUES (DEFAULT, 13, "CD", "PS4", 18, "Grand Theft Auto", TRUE, 2014);
+VALUES (DEFAULT, 13, "CD", "PS4", 18, "Grand Theft Auto", TRUE, 2014,"https://www.google.co.uk/search?q=gta+5&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj_k9j7_uLeAhUMMewKHbt5AGEQ_AUIESgE#imgrc=SSJk5vZAa-ixbM:"),
+       (DEFAULT, 10, "CD", "Nintendo", 13, "Mario Bros", TRUE, 1985,"https://www.google.co.uk/search?q=mario+bros&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiZ0uqMgOPeAhVKM-wKHcorCAoQ_AUIDigB&biw=1163&bih=526#imgrc=ANzp8ddFhIm74M:"),
+       (DEFAULT, 12, "CD", "PS2", 18, "Grand Theft Auto Vice City", TRUE, 2002,"https://www.google.co.uk/search?tbm=isch&q=grand+theft+auto+vice+city&chips=q:grand+theft+auto+vice+city,g_1:ps2:wTgMP36g-j0%3D&usg=AI4_-kRxCB2c0jE1prl79T510ToWz9ofLg&sa=X&ved=0ahUKEwiHjYSlgOPeAhVmMOwKHXaICEMQ4lYIKCgB&biw=1163&bih=526&dpr=1.65#imgrc=DjdEe1karA--WM:"),
+       (DEFAULT, 9, "CD", "Nintendo", 13, "Mario Kart", TRUE, 1992,"https://www.google.co.uk/search?biw=1163&bih=526&tbm=isch&sa=1&ei=7QL0W9icNcPTsAfJop2YCg&q=mario+kart+&oq=mario+kart+&gs_l=img.3...8957.8957..9156...0.0..0.0.0.......0....1..gws-wiz-img.9qqAZQAzm90#imgrc=iOkbSPaA2dG98M:"),
+       (DEFAULT, 20, "CD", "PS4", 16, "Fifa 19", TRUE, 2018,"https://www.google.co.uk/search?q=fifa+19&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjDz6fZgePeAhWKsqQKHRP3A-oQ_AUIESgE&biw=1163&bih=526#imgrc=E7s1fKt4SQ_FsM:"),
+       (DEFAULT, 13, "CD", "XBOX", 18, "Call of Duty Black Ops 4", TRUE, 2018,"https://www.google.co.uk/search?q=call+of+duty+black+ops+4&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjM-N32gePeAhXFyaQKHdptASkQ_AUIESgE&biw=1163&bih=526#imgrc=hAaSLQo3beZw-M:");
 
 INSERT into Rental
-VALUES(DEFAULT, 1,1,1, '2', '2018-01-23','2018-02-02');
+VALUES(DEFAULT, 1,1,DEFAULT, '2', '2018-01-23','2018-02-02');
 
 INSERT into Ban
-VALUES(1, '2012-02-12','2012-02-20',2);
+VALUES(1, '2012-02-12','2012-02-20',DEFAULT);
 
 INSERT into Staff
 VALUES (DEFAULT, "31gj34", "Sir", "James", "Smith", '1992-01-19', 98765434567, "james@gmail.com", "someRandomAddress"),
