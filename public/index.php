@@ -2,11 +2,7 @@
 $loggingIn = false;
 $active = "Home";
 $styleFileName = "index.css";
-define("PUBLIC_PATH1", dirname(__FILE__));
-define("PROJECT", dirname(PUBLIC_PATH1));
-require_once(PROJECT . '/private/initialize.php');
-//require_once('../private/initialize.php');
-//TODO: Ask TA why it doesnt work???????
+require_once('/projects/teamomega.github.io/private/initialize.php');
  ?>
 
 <!DOCTYPE html>

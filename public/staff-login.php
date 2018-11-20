@@ -2,10 +2,7 @@
 $loggingIn = true;
 $active = "staff login";
 $styleFileName = "login.css";
-define("PUBLIC_PATH1", dirname(__FILE__));
-define("PROJECT", dirname(PUBLIC_PATH1));
-require_once(PROJECT . '/private/initialize.php'); 
-//???? cannot do require_once('../private/initialize.php')
+require_once('/projects/teamomega.github.io/private/initialize.php');
 
 ?>
 
@@ -15,7 +12,7 @@ require_once(PROJECT . '/private/initialize.php');
 <?php include(PRIVATE_PATH . '/head.php'); ?>
 
 <body>
-    <?php include(PRIVATE_PATH . '/navigation.php'); ?>
+<?php include(PRIVATE_PATH . '/navigation.php'); ?>
 
         
   <div class="container text-center">
