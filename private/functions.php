@@ -8,9 +8,14 @@ function checkActive($navItem) {
   }
   echo $className;
 }
-?>
 
-<?php
+function prompt($prompt_msg){
+        echo("<script type='text/javascript'> var answer = prompt('".$prompt_msg."'); </script>");
+
+        $answer = "<script type='text/javascript'> document.write(answer); </script>";
+        return($answer);
+    }
+
 
 function checkLoggingIn() {
     global $loggingIn;
@@ -20,12 +25,31 @@ function checkLoggingIn() {
         echo '<a href="staff-login.php" class="btn btn-light"><i class="fas fa-unlock-alt"></i> Staff Login</a>';   
     }
 }
-?>
-
-<?php 
+ 
 
 function redirect_to($location) {
   header("Location: " . $location);
   exit;
 }
+
+function is_post_request() {
+  return $_SERVER['REQUEST_METHOD'] == 'POST';
+}
+
+function display_errors($errors=array()) {
+  $output = '';
+  if(!empty($errors)) {
+    $output .= "<div class=\"errors\">";
+    $output .= "Please fix the following errors:";
+    $output .= "<ul>";
+    foreach($errors as $error) {
+      $output .= "<li>" . h($error) . "</li>";
+    }
+    $output .= "</ul>";
+    $output .= "</div>";
+  }
+  return $output;
+}
+
+
 ?>

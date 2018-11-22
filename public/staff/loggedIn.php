@@ -14,13 +14,24 @@ require_once(PROJECT . '/private/initialize.php');
 
 $inputUsername = $_POST['inputUsername'] ?? '';
 $inputPassword = $_POST['inputPassword'] ?? '';
+//echo $inputusername;
+//echo $inputPassword;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (find_staff_by_email($inputUsername)["email"] == $inputUsername) {
+    echo "Well done!";
+    }
+    else{
+        redirect_to("../staff-login.php");
+        prompt("FUCK ME");
+   }
     echo "Form parameters<br />";
     echo "Username: " . $inputUsername . "<br />";
     echo "Password: " . $inputPassword . "<br />";
+    
+    
 } else {
-  redirect_to('../staff_login.php');
+  redirect_to('../staff-login.php');
   //redirection doesn't work??
 
 }
