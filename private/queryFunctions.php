@@ -11,7 +11,7 @@ function find_staff_by_email($email){
     return $subject;
 }
 
-function find_game_data($gameDat){
+function find_game_data($gameData){
     global $db; 
     $sql = "SELECT * FROM Game ";
     $sql .= "WHERE game ='" . $gameData . "'";
