@@ -18,22 +18,21 @@ $inputPassword = $_POST['inputPassword'] ?? '';
 //echo $inputPassword;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (find_staff_by_email($inputUsername)["email"] == $inputUsername) {
-    echo "Well done!";
+    if (find_staff_by_email($inputUsername)["email"] == $inputUsername
+        && get_staff_password_by_email($inputUsername)["password"] == $inputPassword) {
+    $_SESSION['username'] = $inputUsername;
+    $_SESSION['password'] = $inputPassword;
+    session_write_close();
+    redirect_to ("dashboard.php");
     }
     else{
-        redirect_to("../staff-login.php");
-        prompt("FUCK ME");
+        echo '<script language = "javascript">';
+        echo 'window.location.href = "../staff-login.php";';
+        echo 'alert ("Incorrect email or password");';
+        echo '</script>';
    }
-    echo "Form parameters<br />";
-    echo "Username: " . $inputUsername . "<br />";
-    echo "Password: " . $inputPassword . "<br />";
-    
-    
 } else {
   redirect_to('../staff-login.php');
-  //redirection doesn't work??
-
 }
 
 
