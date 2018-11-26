@@ -1,6 +1,6 @@
 html,
 body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
@@ -11,25 +11,25 @@ body {
 }
 
 h1 {
-  font-size: 30px;
-  font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
     font-weight: bold !important;
 }
 
 h2 {
-  font-size: 18px;
-  font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
 }
 
 h3 {
-  font-size: 15px;
-  font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
 }
 
 h5 {
     font-size: 11px;
-  font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 li{
@@ -78,11 +78,12 @@ li{
 }
 
 .footer {
-  text-align: center;
-  bottom: 0;
-  width: 100%;
-  height: 100px; /* Set the fixed height of the footer here */
-  line-height: 100px; /* Vertically center the text there */
-  background: rgb(52,58,64);
-  color: white;
+    text-align: center;
+    font-size: 10px;
+    bottom: 0;
+    width: 100%;
+    height: 70px; /* Set the fixed height of the footer here */
+    line-height: 70px; /* Vertically center the text there */
+    background: #ffffff;
+    color: rgba(130, 61, 237, 0.65);
 }

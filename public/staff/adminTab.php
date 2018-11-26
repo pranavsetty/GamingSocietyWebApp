@@ -34,6 +34,7 @@
                         <td>some address</td>
                         <td>3</td>
                         <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
+<!--                        TODO: add a pop up(?) that confirms making an admin-->
                         <td><a href="#">make admin</i></a></td>
                     </tr>
                     <tr>

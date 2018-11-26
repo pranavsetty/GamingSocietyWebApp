@@ -1,9 +1,9 @@
 <?php 
-$loggingIn = true;
 $active = "staff login";
 $styleFileName = "dashboard.css";
-require_once('../../private/initialize.php')
-
+// TODO: add a function to check if logged in person is an admin
+$isAdmin = false;
+require_once('../../private/initialize.php');
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +32,7 @@ require_once('../../private/initialize.php')
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
 
+<!--    TODO: make paths to files work from everywhere-->
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="<?php echo '../style/' . $styleFileName; ?>">
 
@@ -46,6 +47,7 @@ require_once('../../private/initialize.php')
               <div class="headline border-bottom">
                   James<br>Doe<br>
                   <h7><br>admin</h7>
+<!--                  TODO: ensure safe logout/login-->
                   <br><a href="../index.php" class="btn btn-sidebar mb-3"><i class="fas fa-unlock-alt"></i> Logout</a>
               </div>
             <ul class="nav flex-column">
@@ -58,9 +60,10 @@ require_once('../../private/initialize.php')
               <li class="nav-item nav-item-sidebar">
                 <a class="nav-link" href="?tab=members">Members</a>
               </li>
-                <li class="nav-item nav-item-sidebar">
+                <?php if($isAdmin) echo
+                '<li class="nav-item nav-item-sidebar">
                     <a class="nav-link" href="?tab=admin">Admin</a>
-                </li>
+                </li>' ?>
             </ul>
           </div>
         </nav>
