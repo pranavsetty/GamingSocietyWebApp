@@ -2,7 +2,7 @@
 $loggingIn = false;
 $active = "Home";
 $styleFileName = "index.css";
-require_once('/projects/teamomega.github.io/private/initialize.php');
+require_once('../private/initialize.php');
  ?>
 
 <!DOCTYPE html>
