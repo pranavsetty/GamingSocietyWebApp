@@ -41,8 +41,8 @@ require_once('../../private/initialize.php')
 <body>
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-3 d-md-block sidebar col-lg-2">
-          <div class="sidebar-sticky position-fixed">
+        <nav class="col-md-3 d-md-block sidebar col-lg-2 position-fixed">
+          <div class="sidebar-sticky">
               <div class="headline border-bottom">
                   James<br>Doe<br>
                   <h7><br>admin</h7>
