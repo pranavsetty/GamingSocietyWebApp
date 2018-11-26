@@ -6,14 +6,12 @@ li{
 }
 
 .carousel{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 30px;
-
+    margin-bottom: 100px;
 }
+
 .carousel-item{
     /*max-width: 75%;*/
-    max-height:600px;
+    max-height:700px;
     margin: 0 auto;
 }
 
@@ -24,26 +22,11 @@ li{
     justify-content: space-between;
 }
 
-h1{
+.card {
+    margin: 50px;
+    padding: 20px;
     text-align: center;
 }
 
 
-/* Start of Footer CSS */
-.container-fluid{
-    background: rgb(52,58,64);
-}
 
-hr{
-    border: 1px solid #ccc;
-
-}
-
-.footer-page{
-    text-align: center;
-    color: white;
-}
-
-
-
-/* End of Footer CSS */

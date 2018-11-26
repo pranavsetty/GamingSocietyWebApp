@@ -1,0 +1,65 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-size: 13px;
+  font-family: 'Lato', sans-serif;
+  background-color: #e8e8e8;
+
+}
+
+h1 {
+  font-size: 22px;
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+}
+
+h5 {
+    font-size: 11px;
+  font-family: 'Lato', sans-serif;
+}
+
+.upperCase {
+    text-transform: uppercase;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+li{
+    font-size: 1.4em;
+}
+.btn-outline-danger{
+    margin-left: 5px;
+}
+
+.navbar {
+    padding-right: 50px;
+}
+
+.nav-item {
+    margin-right: 10px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 100px;
+  bottom: 0;
+  width: 100%;
+  height: 100px; /* Set the fixed height of the footer here */
+  line-height: 100px; /* Vertically center the text there */
+  background: rgb(52,58,64);
+  color: white;
+}
