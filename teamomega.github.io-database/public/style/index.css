@@ -1,0 +1,32 @@
+li{
+    font-size: 1.4em;
+}
+.btn-outline-danger{
+    margin-left: 5px;
+}
+
+.carousel{
+    margin-bottom: 100px;
+}
+
+.carousel-item{
+    /*max-width: 75%;*/
+    max-height:700px;
+    margin: 0 auto;
+}
+
+.cardcontainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card {
+    margin: 50px;
+    padding: 20px;
+    text-align: center;
+}
+
+
+
