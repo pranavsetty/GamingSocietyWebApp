@@ -18,8 +18,8 @@ require_once('../private/initialize.php');
 
       <form class="form-signin" action="staff/loggedIn.php" method="post">
         <h1 class="mb-4 upperCase">Staff Login</h1>
-        <label for="inputUsername" class="sr-only">Email address</label>
-        <input type="email" name="inputUsername" class="form-control mb-2" placeholder="Username" required autofocus>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" name="inputUsername" class="form-control mb-2" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
 

@@ -19,9 +19,9 @@ function prompt(){
 function checkLoggingIn() {
     global $loggingIn;
     if ($loggingIn) {
-        echo '<a href="index.php" class="btn btn-light"><i class="fas fa-angle-double-left"></i> Main Page</a>';
+        echo '<a href="index.php" class="btn btn-navbar"><i class="fas fa-angle-double-left"></i> Main Page</a>';
     } else {
-        echo '<a href="staff-login.php" class="btn btn-light"><i class="fas fa-unlock-alt"></i> Staff Login</a>';   
+        echo '<a href="staff-login.php" class="btn btn-navbar"><i class="fas fa-unlock-alt"></i> Staff Login</a>';
     }
 }
  
