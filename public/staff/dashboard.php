@@ -46,7 +46,7 @@ require_once('../../private/initialize.php');
           <div class="sidebar-sticky">
               <div class="headline border-bottom">
                   James<br>Doe<br>
-                  <h7><br>admin</h7>
+                  <h7><br><?php if ($isAdmin) echo 'admin'; else echo 'staff'; ?></h7>
 <!--                  TODO: ensure safe logout/login-->
                   <br><a href="../index.php" class="btn btn-sidebar mb-3"><i class="fas fa-unlock-alt"></i> Logout</a>
               </div>
