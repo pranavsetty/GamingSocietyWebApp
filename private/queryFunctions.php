@@ -16,8 +16,8 @@ function find_game_data($gameData){
     $sql = "SELECT * FROM Game ";
     $sql .= "WHERE game ='" . $gameData . "'";
     $result1 = mysqli_query($db, $sql); 
-    confirm_result_set($result);
-    $subject = mysqli_fetch_assoc($result);
+    confirm_result_set($result1);
+    $subject = mysqli_fetch_assoc($result1);
     mysqli_free_result($result1);
     return $subject; 
     

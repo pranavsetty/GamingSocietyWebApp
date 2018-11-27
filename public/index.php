@@ -52,7 +52,7 @@ require_once('../private/initialize.php');
 
 <div class = "container">
 <div class = "cardcontainer">
-
+<!--TODO: add search functionality here-->
 <div class="card border-primary mb-3" style="max-width: 18rem;">
     <div class="card-header">Header</div>
     <div class="card-body text-primary">
