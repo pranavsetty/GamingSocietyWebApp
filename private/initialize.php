@@ -7,6 +7,6 @@ require_once('functions.php');
 require_once('setup/db.php');
 require_once('validationFunctions.php');
 require_once('queryFunctions.php');
- $db = db_connect()
+ $db = db_connect();
 
 ?>

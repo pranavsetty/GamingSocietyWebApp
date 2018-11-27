@@ -1,4 +1,4 @@
-<?php 
+<?php
 define("STAFF_PATH", dirname(__FILE__));
 define("PUBLIC_PATH2", dirname(STAFF_PATH));
 define("PROJECT", dirname(PUBLIC_PATH2));

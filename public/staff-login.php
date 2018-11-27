@@ -1,8 +1,8 @@
-<?php 
+<?php
 $loggingIn = true;
 $active = "staff login";
 $styleFileName = "login.css";
-require_once('/projects/teamomega.github.io/private/initialize.php');
+require_once('../private/initialize.php');
 ?>
 
 <!DOCTYPE html>
@@ -13,9 +13,9 @@ require_once('/projects/teamomega.github.io/private/initialize.php');
 <body>
 <?php include(PRIVATE_PATH . '/navigation.php'); ?>
 
-        
+
   <div class="container text-center">
-  
+
       <form class="form-signin" action="staff/loggedIn.php" method="post">
         <h1 class="mb-4 upperCase">Staff Login</h1>
         <label for="inputUsername" class="sr-only">Email address</label>
@@ -27,7 +27,7 @@ require_once('/projects/teamomega.github.io/private/initialize.php');
 
       </form>
     </div>
-    
+
     <?php include(PRIVATE_PATH . '/footer.php'); ?>
 
 </body>
