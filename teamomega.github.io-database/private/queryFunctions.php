@@ -49,7 +49,7 @@ function insert_game_data($cost, $type, $platform, $age_limit, $name, $is_curren
 function find_game_id($gameID) {
   global $db;
   $sql = "SELECT * FROM Game ";
-  $sql .= "WHERE gameID='" . $id . "'";
+  $sql .= "WHERE gameID='" . $gameID . "'";
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
   $subject = mysqli_fetch_assoc($result);

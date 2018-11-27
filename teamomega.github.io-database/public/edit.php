@@ -1,5 +1,5 @@
 <?php
-require_once('/projects/teamomega.github.io/private/initialize.php');
+require_once('../private/initialize.php');
 
 $gameID = $_GET['gameID'];
 
@@ -53,7 +53,7 @@ if(is_post_request()){
         </dl>
         <dl>
             <dt>Name</dt>
-            <dd><input type="text" name="bame" value="<?php echo h($subject['name']); ?>" /></dd>
+            <dd><input type="text" name="name" value="<?php echo h($subject['name']); ?>" /></dd>
         </dl>
         <dl>
             <dt>Currently Available</dt>
@@ -69,7 +69,7 @@ if(is_post_request()){
         </dl>
 
       <div id="operations">
-        <input type="submit" value="Edit Game" />
+        <input type="submit" value="Edit Game" </input>
       </div>
     </form>
 
