@@ -1,7 +1,7 @@
 <?php
 $connection = mysql_connect("localhost", "root", "");
 $db = mysql_select_db("Game", $connection);
-if(isset($_POST['submit']));
+if(isset($_POST['submit'])){
 $name = $_POST['name'];
 $platform  = $_POST['platform'];
 $ageLimit = $_POST['ageLimit'];
@@ -16,6 +16,5 @@ echo "<br/><br/><span>Data Inserted successfully...!!</span>";
 else{
 echo "<p>Insertion Failed <br/> Some Fields are Blank....!!</p>";
 }
-}
 mysql_close($connection);
-?>
+
