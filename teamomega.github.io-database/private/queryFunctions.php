@@ -11,15 +11,12 @@ function find_staff_by_email($email){
     return $subject;
 }
 
-function find_game_data($gameData){
+function find_game_data(){
     global $db;
     $sql = "SELECT * FROM Game ";
-    $sql .= "WHERE game ='" . $gameData . "'";
+    $sql .= "ORDER BY gameID ASC";
     $result = mysqli_query($db, $sql);
-    confirm_result_set($result);
-    $subject = mysqli_fetch_assoc($result);
-    mysqli_free_result($result);
-    return $subject;
+    return $result;
 
 }
 

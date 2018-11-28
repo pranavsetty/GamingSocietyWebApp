@@ -78,9 +78,7 @@ require_once('../private/initialize.php');
 </div>
 
 <!-- End of review section -->
-<?php
-$subjectSets = find_game_data();
-?>
+
 
     <?php include(PRIVATE_PATH . '/footer.php'); ?>
 
