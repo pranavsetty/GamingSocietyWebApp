@@ -79,6 +79,62 @@ require_once('../private/initialize.php');
 
 <!-- End of review section -->
 
+<?php
+$subjectSets = find_game_data();
+?>
+
+<?php include(PRIVATE_PATH . '/footer.php'); ?>
+
+<div id="content">
+
+
+    <table class="list">
+        <tr>
+            <th>GameID</th>
+            <th>Cost</th>
+            <th>Type</th>
+            <th>AgeLimit</th>
+            <th>Name</th>
+            <th>CurrentlyAvailable</th>
+            <th>ReleaseYear</th>
+            <th>ImageLink</th>
+            <!--        <th>&nbsp;</th>-->
+            <!--        <th>&nbsp;</th>-->
+            <!--        <th>&nbsp;</th>-->
+            <!--        <th>&nbsp;</th>-->
+            <!--        <th>&nbsp;</th>-->
+            <!--        <th>&nbsp;</th>-->
+            <!--        <th>&nbsp;</th>-->
+        </tr>
+
+        <?php
+        $gameSet = find_game_data();
+        ?>
+        <?php
+        while ($subject = mysqli_fetch_assoc($gameSet)) { ?>
+            <tr>
+                <td><?php echo($subject['gameID']); ?></td>
+                <td><?php echo($subject['cost']); ?></td>
+                <td><?php echo($subject['type']); ?></td>
+                <td><?php echo($subject['ageLimit']); ?></td>
+                <td><?php echo($subject['name']); ?></td>
+                <td><?php echo($subject['isCurrentlyAvailable']); ?></td>
+                <td><?php echo($subject['releaseYear']); ?></td>
+                <td><?php echo($subject['imageLink']); ?></td>
+
+
+            </tr>
+        <?php } ?>
+    </table>
+
+    <?php
+    mysqli_free_result($gameSet);
+    ?>
+
+</div>
+
+
+
 
     <?php include(PRIVATE_PATH . '/footer.php'); ?>
 

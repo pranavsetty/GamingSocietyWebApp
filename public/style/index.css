@@ -33,4 +33,14 @@ li{
 }
 
 
+#content {
+    width: 920px;
+    min-height: 500px;
+    padding: 0 30px;
+}
+
+
+
+* {border:1px solid red}
+
 
