@@ -1,9 +1,11 @@
-<?php 
+<?php
 $active = "staff login";
 $styleFileName = "dashboard.css";
 // TODO: add a function to check if logged in person is an admin
 $isAdmin = false;
 require_once('../../private/initialize.php');
+//require_once('loggedIn.php');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +47,7 @@ require_once('../../private/initialize.php');
         <nav class="col-md-3 d-md-block sidebar col-lg-2 position-fixed">
           <div class="sidebar-sticky">
               <div class="headline border-bottom">
-                  James<br>Doe<br>
+                  <?php echo $_SESSION['username']?><br>
                   <h7><br><?php if ($isAdmin) echo 'admin'; else echo 'staff'; ?></h7>
 <!--                  TODO: ensure safe logout/login-->
                   <br><a href="../index.php" class="btn btn-sidebar mb-3"><i class="fas fa-unlock-alt"></i> Logout</a>
@@ -83,7 +85,7 @@ require_once('../../private/initialize.php');
       </div>
     </div>
 
-    
+
     <?php include(PRIVATE_PATH . '/footer.php'); ?>
 
 </body>

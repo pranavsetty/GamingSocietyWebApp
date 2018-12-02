@@ -9,10 +9,10 @@ CREATE TABLE Member
   surname     VARCHAR(30)   NOT NULL,
   DoB         DATE,
   phoneNo     CHAR(11),
-  violations  INT,
-  debt        INT,
+  violations  INT DEFAULT 0,
+  debt        INT DEFAULT 0,
   email       VARCHAR(30),
-  homeAdress  VARCHAR(60),
+  homeAddress  VARCHAR(60),
   PRIMARY KEY (memberID)
 );
 
@@ -35,10 +35,9 @@ CREATE TABLE Rental
   rentalID    INT AUTO_INCREMENT NOT NULL,
   memberID    INT NOT NULL,
   gameID      INT NOT NULL,
-  extension   INT DEFAULT 1,
-  period      INT NOT NULL,
+  extension   INT DEFAULT 0,
+  period      INT NOT NULL DEFAULT 3,
   startDate   DATE NOT NULL,
-  endDate     DATE NOT NULL,
   PRIMARY KEY (rentalID),
   FOREIGN KEY (memberID) REFERENCES Member(memberID),
   FOREIGN KEY (gameID) REFERENCES Game(gameID)
@@ -63,7 +62,7 @@ CREATE TABLE Staff
   DoB         DATE,
   phoneNo     CHAR(11),
   email       VARCHAR(30),
-  homeAdress  VARCHAR(60),
+  homeAddress  VARCHAR(60),
   PRIMARY KEY (staffID)
 );
 
@@ -88,7 +87,9 @@ VALUES (DEFAULT, 13, "CD", "PS4", 18, "Grand Theft Auto", TRUE, 2014,"https://ww
        (DEFAULT, 13, "CD", "XBOX", 18, "Call of Duty Black Ops 4", TRUE, 2018,"https://www.google.co.uk/search?q=call+of+duty+black+ops+4&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjM-N32gePeAhXFyaQKHdptASkQ_AUIESgE&biw=1163&bih=526#imgrc=hAaSLQo3beZw-M:");
 
 INSERT into Rental
-VALUES(DEFAULT, 1,1,DEFAULT, '2', '2018-01-23','2018-02-02');
+VALUES(DEFAULT, 1,1,DEFAULT, DEFAULT, '2018-12-01'),
+      (DEFAULT, 2,2,DEFAULT, DEFAULT, '2018-11-29'),
+      (DEFAULT, 3,3,DEFAULT, DEFAULT, '2018-05-22');
 
 INSERT into Ban
 VALUES(1, '2012-02-12','2012-02-20',DEFAULT);

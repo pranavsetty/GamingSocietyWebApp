@@ -83,5 +83,37 @@
     $email_regex = '/\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\Z/i';
     return preg_match($email_regex, $value) === 1;
   }
-    
+
+ //Don't really need it as boostrap already checks all this.
+  function validate_member($member) {
+    $errors = [];
+
+    // menu_name
+    if(is_blank($member['Fname'])) {
+      $errors[] = "Name cannot be blank.";
+    } elseif(!has_length($member['FName'], ['min' => 2, 'max' => 255])) {
+      $errors[] = "Name must be between 2 and 255 characters.";
+    }
+
+    // position
+    // Make sure we are working with an integer
+    $postion_int = (int) $member['position'];
+    if($postion_int <= 0) {
+      $errors[] = "Position must be greater than zero.";
+    }
+    if($postion_int > 999) {
+      $errors[] = "Position must be less than 999.";
+    }
+
+    // visible
+    // Make sure we are working with a string
+    $visible_str = (string) $member['visible'];
+    if(!has_inclusion_of($visible_str, ["0","1"])) {
+      $errors[] = "Visible must be true or false.";
+    }
+
+    return $errors;
+  }
+
+
 ?>

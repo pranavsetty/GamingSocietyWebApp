@@ -1,3 +1,5 @@
+//TODO: Maybe we can add in the admin page buttons to update stuff for example
+//      the maximum amount of extensions.
 <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
     <h1 class="align-left">Staff</h1>
     <a class="btn btn-add align-right" href="#" title="Add member of staff"><i class="fas fa-plus"></i></a>

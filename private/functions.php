@@ -24,7 +24,7 @@ function checkLoggingIn() {
         echo '<a href="staff-login.php" class="btn btn-navbar"><i class="fas fa-unlock-alt"></i> Staff Login</a>';
     }
 }
- 
+
 
 function redirect_to($location) {
   header("Location: " . $location);
@@ -50,5 +50,16 @@ function display_errors($errors=array()) {
   return $output;
 }
 
+//Might need this function but not yet
+function calculateEndDate($startDate,$weeks){
+  $period = (int) $weeks;
+  return date("Y-m-d", strtotime('+' . $period . " week", strtotime($startDate)));
+}
+
+function isCurrentRental($rental){
+    $currentDate = date('Y-m-d');
+    $endDate = calculateEndDate($rental['startDate'], $rental['period']);
+    return $currentDate < $endDate;
+}
 
 ?>

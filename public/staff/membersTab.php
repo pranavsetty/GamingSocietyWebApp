@@ -1,6 +1,6 @@
 <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
     <h1 class="align-left">Members</h1>
-    <a class="btn btn-add align-right" href="#" title="Add member"><i class="fas fa-plus"></i></a>
+    <a class="btn btn-add align-right" href="pages/addMember.php" title="Add member"><i class="fas fa-plus"></i></a>
     <div class="clear-float"></div>
 </div>
 <div class="row mt-3">
@@ -25,16 +25,20 @@
                     </tr>
                     </thead>
                     <tbody>
+                      <?php $members =  get_simple_member_data();
+                            while($member = mysqli_fetch_assoc($members)) {
+                            if(!isBanned($member['memberID'])){ ?>
                     <tr>
-                        <td>Mark Otto</td>
-                        <td>06/07/1990</td>
-                        <td>07951938363</td>
-                        <td>mark.otto@gmail.com</td>
-                        <td>some address</td>
-                        <td>0</td>
+                        <td><?php echo $member['firstname']; ?></td>
+                        <td><?php echo $member['DoB']; ?></td>
+                        <td><?php echo $member['phoneNo']; ?></td>
+                        <td><?php echo $member['email']; ?></td>
+                        <td><?php echo $member['homeAddress']; ?></td>
+                        <td><?php echo $member['violations']; ?></td>
                         <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
                     </tr>
-                    <tr>
+                    <?php }} ?>
+                    <!-- <tr>
                         <td>Jacob Thornton</td>
                         <td>01/12/1995</td>
                         <td>07951938363</td>
@@ -78,7 +82,7 @@
                         <td>some address</td>
                         <td>0</td>
                         <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -109,17 +113,20 @@
                     </tr>
                     </thead>
                     <tbody>
+                      <?php $members =  get_simple_member_data();
+                            while($member = mysqli_fetch_assoc($members)) {
+                            if(isBanned($member['memberID'])){ ?>
                     <tr>
-                        <td>Doug Judy</td>
-                        <td>02/07/1982</td>
-                        <td>07951938363</td>
-                        <td>pontiacb@gmail.com</td>
-                        <td>some address</td>
-                        <td>3</td>
+                        <td><?php echo $member['firstname']; ?></td>
+                        <td><?php echo $member['DoB']; ?></td>
+                        <td><?php echo $member['phoneNo']; ?></td>
+                        <td><?php echo $member['email']; ?></td>
+                        <td><?php echo $member['homeAddress']; ?></td>
+                        <td><?php echo $member['violations']; ?></td>
                         <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                        <td><a href="#">remove ban</i></a></td>
                     </tr>
-                    <tr>
+                    <?php }} ?>
+                    <!-- <tr>
                         <td>Adrian Pimento</td>
                         <td>22/02/1980</td>
                         <td>07951938363</td>
@@ -138,7 +145,7 @@
                         <td>2</td>
                         <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
                         <td><a href="#">remove ban</i></a></td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                 </table>
             </div>
