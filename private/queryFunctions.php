@@ -215,4 +215,26 @@ function insert_member($member) {
     confirm_result_set($result);
     return $result;
     }
+
+    function isAdmin($username) {
+    global $db;
+    $sql = "SELECT Staff.email as adminEmail FROM Admin, Staff WHERE Admin.isCurrent = TRUE AND Admin.staffID = Staff.staffID";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $emails = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    if ($emails['adminEmail'] == $username) return true;
+    else return false;
+    }
+
+    function getStaffData($staffUsername) {
+        global $db;
+        $sql = "SELECT firstname, surname FROM Staff WHERE Staff.email = '$staffUsername'";
+        $result = mysqli_query($db, $sql);
+        confirm_result_set($result);
+        $data = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        return $data;
+
+    }
 ?>
