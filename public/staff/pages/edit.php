@@ -1,26 +1,30 @@
 <?php
 require_once('../../../private/initialize.php');
 
+
+
+
+
 if(!isset($_GET['id'])) {
-    redirect_to(url_for('/staff/subjects/index.php'));
+    redirect_to(url_for('../gameTab.php'));
 }
 $gameID = $_GET['id'];
-
-
 if(is_post_request()){
   $subject = [];
   $subject['gameID'] = $gameID;
-  $subject['cost'] = $_POST['cost'] ?? '';
-  $subject['type'] = $_POST['type'] ?? '';
-  $subject['platform'] = $_POST['platform'] ?? '';
-  $subject['ageLimit'] = $_POST['age_Limit'] ?? '';
-  $subject['name'] = $_POST['name'] ?? '';
-  $subject['isCurrentlyAvailable'] = $_POST['is_currently_available'] ?? '';
-  $subject['releaseYear'] = $_POST['release_year'] ?? '';
-  $subject['imageLink'] = $_POST['image_link'] ?? '';
 
+  $subject['cost'] = $_POST['cost'] ;
+  $subject['type'] = $_POST['type'] ;
+  $subject['platform'] = $_POST['platform'] ;
+  $subject['ageLimit'] = $_POST['age_limit'] ;
+  $subject['name'] = $_POST['name'] ;
+  $subject['isCurrentlyAvailable'] = $_POST['is_currently_available'] ;
+  $subject['releaseYear'] = $_POST['releaseYear'] ;
+  $subject['imageLink'] = $_POST['image_link'] ;
   $result = update_game_data($subject);
-    redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
+
+  redirect_to(url_for('../public/staff/dashboard.php?tab=game'));
+
 
 } else{
   $subject = find_game_id($gameID);
@@ -33,10 +37,12 @@ if(is_post_request()){
 
 <div id="content">
 
-  <a class="back-link" href="<?php echo url_for('/public/staff/dashboard.php?tab=game'); ?>">&laquo; Back to List</a>
+
+  <a class="back-link" href="<?php echo url_for('../public/staff/dashboard.php?tab=game'); ?>">&laquo; Back to List</a>
+
 
   <div class="subject edit">
-    <h1>Edit Subject</h1>
+    <h1>Edit Game</h1>
 
     <form action="<?php echo url_for('/staff/pages/edit.php?id=' . h(u($gameID))); ?>" method="post">
       <dl>
@@ -65,7 +71,9 @@ if(is_post_request()){
         </dl>
         <dl>
             <dt>Release Year</dt>
-            <dd><input type="text" name="release_year" value="<?php echo h($subject['releaseYear']); ?>" /></dd>
+
+            <dd><input type="text" name="releaseYear" value="<?php echo h($subject['releaseYear']); ?>" /></dd>
+
         </dl>
         <dl>
             <dt>Image Link</dt>
@@ -80,4 +88,4 @@ if(is_post_request()){
   </div>
 
 </div>
-?>
+

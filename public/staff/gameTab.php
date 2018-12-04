@@ -1,8 +1,10 @@
 <?php require_once('../../private/initialize.php');
 
 $subjectSets = find_game_data();
+
 $numberOfGames = getGameRows();
 ?>
+
 
 
 
@@ -18,7 +20,10 @@ $numberOfGames = getGameRows();
         <div class="card card-purple card-big">
             <div class="card-title title-purple">
                 <div class="align-left label">Current Games: </div>
-                <div class="align-right"><?php echo $numberOfGames ?> </div>
+
+
+                <div class="align-right"><?php echo $numberOfGames ?></div>
+
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
@@ -29,6 +34,7 @@ $numberOfGames = getGameRows();
                             <th>GameID</th>
                             <th>Cost</th>
                             <th>Type</th>
+                            <th>Platform</th>
                             <th>AgeLimit</th>
                             <th>Name</th>
                             <th>CurrentlyAvailable</th>
@@ -46,12 +52,15 @@ $numberOfGames = getGameRows();
                                 <td><?php echo($subject['gameID']); ?></td>
                                 <td><?php echo($subject['cost']); ?></td>
                                 <td><?php echo($subject['type']); ?></td>
+                                <td><?php echo($subject['platform']); ?></td>
                                 <td><?php echo($subject['ageLimit']); ?></td>
                                 <td><?php echo($subject['name']); ?></td>
                                 <td><?php echo($subject['isCurrentlyAvailable']); ?></td>
                                 <td><?php echo($subject['releaseYear']); ?></td>
                                 <td><?php echo($subject['imageLink']); ?></td>
-                                <td><a class="action" href="<?php echo ('/pages/edit.php?id=' . ($subject['gameID'])); ?>">Edit</a></td>
+
+                                <td><a class="action" href="<?php echo ('pages/edit.php?id=' . ($subject['gameID'])); ?>">Edit</a></td>
+
                             </tr>
                         <?php } ?>
                     </table>

@@ -8,7 +8,7 @@
     return !is_blank($value);
   }
 
-  // has_length_greater_than('abcd', 3)
+  // has_length_greater_thanhttps://www.quora.com/What-is-laquo-in-HTML-I-know-there-are-many-of-those-things-that-start-with-What-are-they('abcd', 3)
   // * validate string length
   // * spaces count towards length
   // * use trim() if spaces should not count
