@@ -23,8 +23,7 @@ li{
 }
 
 .card {
-    margin: 50px;
-    padding: 20px;
+    margin:5%;
     text-align: center;
 }
 
@@ -39,4 +38,9 @@ li{
     padding: 0 30px;
 }
 
+/** {border:1px solid red}*/
 
+
+th{
+    padding: 20px;
+}

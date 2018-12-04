@@ -208,4 +208,11 @@ function insert_member($member) {
     else return true;
   }
 
+  function findGame(){
+    global $db;
+    $sql = "SELECT * FROM Game WHERE name LIKE '%query%'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    return $result;
+    }
 ?>

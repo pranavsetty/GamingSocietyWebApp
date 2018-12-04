@@ -3,7 +3,7 @@ $loggingIn = false;
 $active = "Home";
 $styleFileName = "index.css";
 require_once('../private/initialize.php');
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,36 +48,47 @@ require_once('../private/initialize.php');
 
 <!-- Start of review section -->
 
-<div class="text-center"><h1> Reviews</h1></div>
+<div class="text-center"><h1> Top Selling Games</h1></div>
 
-<div class = "container">
-<div class = "cardcontainer">
-<!--TODO: add search functionality here-->
-<div class="card border-primary mb-3" style="max-width: 18rem;">
-    <div class="card-header">Header</div>
-    <div class="card-body text-primary">
-        <h5 class="card-title">Primary card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div class="container">
+    <div class="cardcontainer">
+        <!--TODO: add search functionality here-->
+        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+            <div class="card-header">GTA 5</div>
+            <div class="card-body">
+                <h5 class="card-title"> USER ABC <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h5>
+                <p class="card-text">If you hadn’t had a chance to play it yet at all though, and your computer can handle it, the PC version does definitely feel like the definitive version.</p>
+            </div>
+        </div>
+        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+            <div class="card-header">GTA 5</div>
+            <div class="card-body">
+                <h5 class="card-title"> USER DEF <i class="fas fa-star"></i></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h5>
+                <p class="card-text">If you hadn’t had a chance to play it yet at all though, and your computer can handle it, the PC version does definitely feel like the definitive version.</p>
+            </div>
+        </div>
+        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+            <div class="card-header">GTA 5</div>
+            <div class="card-body">
+                <h5 class="card-title"> USER GHI </i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h5>
+                <p class="card-text">If you hadn’t had a chance to play it yet at all though, and your computer can handle it, the PC version does definitely feel like the definitive version.</p>
+            </div>
+        </div>
     </div>
-</div>
-<div class="card border-secondary mb-3" style="max-width: 18rem;">
-    <div class="card-header">Header</div>
-    <div class="card-body text-secondary">
-        <h5 class="card-title">Secondary card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-</div>
-<div class="card border-success mb-3" style="max-width: 18rem;">
-    <div class="card-header">Header</div>
-    <div class="card-body text-success">
-        <h5 class="card-title">Success card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-</div>
-</div>
 </div>
 
 <!-- End of review section -->
+<head>
+    <title>Search</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+</head>
+<body>
+<form action="search.php" method="GET">
+    <input type="text" name="query" />
+    <input type="submit" value="Search" />
+</form>
+</body>
 
 <?php
 $subjectSets = find_game_data();
@@ -120,7 +131,7 @@ $subjectSets = find_game_data();
                 <td><?php echo($subject['name']); ?></td>
                 <td><?php echo($subject['isCurrentlyAvailable']); ?></td>
                 <td><?php echo($subject['releaseYear']); ?></td>
-                <td><?php echo($subject['imageLink']); ?></td>
+                <td><img src="<?php echo($subject['imageLink']); ?>"></td>
 
 
             </tr>
@@ -134,9 +145,40 @@ $subjectSets = find_game_data();
 </div>
 
 
+<!-- Start of Cards section - Games -->
+<div class = "row">
+        <?php
+        $gameSet = find_game_data();
+        ?>
+
+        <?php
+        while ($subject = mysqli_fetch_assoc($gameSet)) { ?>
 
 
-    <?php include(PRIVATE_PATH . '/footer.php'); ?>
+            <div class="card  text-white bg-dark mb-3" style="width: 18rem;">
+                <img class="card-img-top" src="<?php echo($subject['imageLink']); ?>" alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title"><?php echo($subject['name']); ?></h2>
+                    <p class="card-text">Released on <?php echo($subject['releaseYear']); ?>.
+                        </p>
+                    <p> Current Availability : <?php echo($subject['isCurrentlyAvailable']); ?></p>
+                    <a href="#" class="btn btn-primary">More info</a>
+                </div>
+            </div>
+
+        <?php } ?>
+
+        <?php
+        mysqli_free_result($gameSet);
+        ?>
+
+    </div>
+
+<!-- End of Cards section - Games -->
+
+
+
+<?php include(PRIVATE_PATH . '/footer.php'); ?>
 
 
 </body>

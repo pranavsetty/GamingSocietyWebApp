@@ -65,6 +65,9 @@ require_once('../../private/initialize.php');
                 '<li class="nav-item nav-item-sidebar">
                     <a class="nav-link" href="?tab=admin">Admin</a>
                 </li>' ?>
+                <li class="nav-item nav-item-sidebar">
+                    <a class="nav-link" href="?tab=game">Games</a>
+                </li>
             </ul>
           </div>
         </nav>
