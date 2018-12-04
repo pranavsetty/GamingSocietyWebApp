@@ -237,4 +237,12 @@ function insert_member($member) {
         return $data;
 
     }
+
+    function getGameRows(){
+    global $db;
+    $sql = "SELECT * FROM Game ";
+    $result = mysqli_query($db, $sql);
+    $numRows = mysqli_num_rows($result);
+    return $numRows;
+    }
 ?>
