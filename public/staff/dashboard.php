@@ -19,18 +19,15 @@ $inputPassword = $_POST['inputPassword'] ?? '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (find_staff_by_email($inputUsername)["email"] == $inputUsername
         && get_staff_password_by_email($inputUsername)["password"] == $inputPassword) {
-    $_SESSION['username'] = $inputUsername;
-    $_SESSION['password'] = $inputPassword;
-    session_write_close();
-    }
-    else{
+        $_SESSION['username'] = $inputUsername;
+        $_SESSION['password'] = $inputPassword;
+        session_write_close();
+    } else {
         echo '<script language = "javascript">';
         echo 'window.location.href = "../staff-login.php";';
         echo 'alert ("Incorrect email or password");';
         echo '</script>';
-   }
-} else {
-  redirect_to('../staff-login.php');
+    }
 }
 ?>
 
