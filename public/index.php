@@ -52,7 +52,6 @@ require_once('../private/initialize.php');
 
 <div class="container">
     <div class="cardcontainer">
-        <!--TODO: add search functionality here-->
         <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
             <div class="card-header">GTA 5</div>
             <div class="card-body">
@@ -75,74 +74,14 @@ require_once('../private/initialize.php');
             </div>
         </div>
     </div>
-</div>
+
 
 <!-- End of review section -->
-<head>
-    <title>Search</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="index.css"/>
-</head>
-<body>
+
 <form action="search.php" method="GET">
     <input type="text" name="query" />
     <input type="submit" value="Search" />
 </form>
-</body>
-
-<?php
-$subjectSets = find_game_data();
-?>
-
-<?php include(PRIVATE_PATH . '/footer.php'); ?>
-
-<div id="content">
-
-
-    <table class="list">
-        <tr>
-            <th>GameID</th>
-            <th>Cost</th>
-            <th>Type</th>
-            <th>AgeLimit</th>
-            <th>Name</th>
-            <th>CurrentlyAvailable</th>
-            <th>ReleaseYear</th>
-            <th>ImageLink</th>
-            <!--        <th>&nbsp;</th>-->
-            <!--        <th>&nbsp;</th>-->
-            <!--        <th>&nbsp;</th>-->
-            <!--        <th>&nbsp;</th>-->
-            <!--        <th>&nbsp;</th>-->
-            <!--        <th>&nbsp;</th>-->
-            <!--        <th>&nbsp;</th>-->
-        </tr>
-
-        <?php
-        $gameSet = find_game_data();
-        ?>
-        <?php
-        while ($subject = mysqli_fetch_assoc($gameSet)) { ?>
-            <tr>
-                <td><?php echo($subject['gameID']); ?></td>
-                <td><?php echo($subject['cost']); ?></td>
-                <td><?php echo($subject['type']); ?></td>
-                <td><?php echo($subject['ageLimit']); ?></td>
-                <td><?php echo($subject['name']); ?></td>
-                <td><?php echo($subject['isCurrentlyAvailable']); ?></td>
-                <td><?php echo($subject['releaseYear']); ?></td>
-                <td><img src="<?php echo($subject['imageLink']); ?>"></td>
-
-
-            </tr>
-        <?php } ?>
-    </table>
-
-    <?php
-    mysqli_free_result($gameSet);
-    ?>
-
-</div>
 
 
 <!-- Start of Cards section - Games -->
@@ -176,7 +115,7 @@ $subjectSets = find_game_data();
 
 <!-- End of Cards section - Games -->
 
-
+</div>
 
 <?php include(PRIVATE_PATH . '/footer.php'); ?>
 
