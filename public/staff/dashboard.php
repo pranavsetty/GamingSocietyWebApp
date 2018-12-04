@@ -1,11 +1,10 @@
 <?php
+session_start();
 $active = "staff login";
 $styleFileName = "dashboard.css";
 // TODO: add a function to check if logged in person is an admin
-$isAdmin = false;
+$isAdmin = true;
 require_once('../../private/initialize.php');
-//require_once('loggedIn.php');
-session_start();
 ?>
 
 <!DOCTYPE html>

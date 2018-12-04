@@ -16,7 +16,7 @@ require_once('../private/initialize.php');
 
   <div class="container text-center">
 
-      <form class="form-signin" action="staff/loggedIn.php" method="post">
+      <form class="form-signin" action="staff/dashboard.php" method="post">
         <h1 class="mb-4 mt-3 text-uppercase">Staff Login</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" name="inputUsername" class="form-control mb-2" placeholder="Username" required autofocus>
