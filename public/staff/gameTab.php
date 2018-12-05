@@ -1,18 +1,29 @@
 <?php require_once('../../private/initialize.php');
 
 $subjectSets = find_game_data();
+
+$numberOfGames = getGameRows();
 ?>
 
 
 
+
 <!DOCTYPE html>
-<body>
+<div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
+    <h1 class="align-left">Games</h1>
+    <a class="btn btn-add align-right" href="pages/addGame.php" title="Add Game"><i class="fas fa-plus"></i></a>
+    <div class="clear-float"></div>
+</div>
+
 <div class="row mt-3">
     <div class="col">
         <div class="card card-purple card-big">
             <div class="card-title title-purple">
-                <div class="align-left label">Current rentals: </div>
-                <div class="align-right">4</div>
+                <div class="align-left label">Current Games: </div>
+
+
+                <div class="align-right"><?php echo $numberOfGames ?></div>
+
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
@@ -23,6 +34,7 @@ $subjectSets = find_game_data();
                             <th>GameID</th>
                             <th>Cost</th>
                             <th>Type</th>
+                            <th>Platform</th>
                             <th>AgeLimit</th>
                             <th>Name</th>
                             <th>CurrentlyAvailable</th>
@@ -40,12 +52,15 @@ $subjectSets = find_game_data();
                                 <td><?php echo($subject['gameID']); ?></td>
                                 <td><?php echo($subject['cost']); ?></td>
                                 <td><?php echo($subject['type']); ?></td>
+                                <td><?php echo($subject['platform']); ?></td>
                                 <td><?php echo($subject['ageLimit']); ?></td>
                                 <td><?php echo($subject['name']); ?></td>
                                 <td><?php echo($subject['isCurrentlyAvailable']); ?></td>
                                 <td><?php echo($subject['releaseYear']); ?></td>
                                 <td><?php echo($subject['imageLink']); ?></td>
-                                <td><a class="action" href="<?php echo ('/pages/edit.php?id=' . ($subject['id'])); ?>">Edit</a></td>
+
+                                <td><a class="action" href="<?php echo ('pages/edit.php?id=' . ($subject['gameID'])); ?>">Edit</a></td>
+
                             </tr>
                         <?php } ?>
                     </table>
@@ -58,5 +73,5 @@ $subjectSets = find_game_data();
     mysqli_free_result($gameSet);
     ?>
 </div>
-</body>
+
 </html>

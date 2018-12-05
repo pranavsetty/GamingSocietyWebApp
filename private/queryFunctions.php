@@ -29,19 +29,19 @@ function find_game_data(){
 //   return $result;
 // }
 
-function insert_game_data($cost, $type, $platform, $age_limit, $name, $is_currently_available, $release_year, $image_link){
+function insert_game_data($game){
     global $db;
     $sql = "INSERT INTO Game ";
     $sql .= "(cost, type, platform, ageLimit, name, isCurrentlyAvailable, releaseYear, imageLink) ";
     $sql .= "VALUES (";
-    $sql .= "'" . $cost . "',";
-    $sql .= "'" . $type . "',";
-    $sql .= "'" . $platform . "',";
-    $sql .= "'" . $age_limit . "',";
-    $sql .= "'" . $name . "',";
-    $sql .= "'" . $is_currently_available . "',";
-    $sql .= "'" . $release_year . "',";
-    $sql .= "'" . $image_link . "'";
+    $sql .= "'" . $game['cost'] . "',";
+    $sql .= "'" . $game['type'] . "',";
+    $sql .= "'" . $game['platform'] . "',";
+    $sql .= "'" . $game['ageLimit'] . "',";
+    $sql .= "'" . $game['name'] . "',";
+    $sql .= "'" . $game['isCurrentlyAvailable'] . "',";
+    $sql .= "'" . $game['releaseYear'] . "',";
+    $sql .= "'" . $game['imageLink'] . "'";
     $sql .= ");";
     $result = mysqli_query($db, $sql);
     if($result){
@@ -214,7 +214,31 @@ function insert_member($member) {
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     return $result;
+
     }
+
+    function isAdmin($username) {
+    global $db;
+    $sql = "SELECT Staff.email as adminEmail FROM Admin, Staff WHERE Admin.isCurrent = TRUE AND Admin.staffID = Staff.staffID";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $emails = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    if ($emails['adminEmail'] == $username) return true;
+    else return false;
+    }
+
+    function getStaffData($staffUsername) {
+        global $db;
+        $sql = "SELECT firstname, surname FROM Staff WHERE Staff.email = '$staffUsername'";
+        $result = mysqli_query($db, $sql);
+        confirm_result_set($result);
+        $data = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        return $data;
+
+    }
+
 
 
     function returnRental($rentalID){
@@ -234,5 +258,15 @@ function insert_member($member) {
         exit;
       }
     }
+    function getGameRows(){
+    global $db;
+    $sql = "SELECT * FROM Game ";
+    $result = mysqli_query($db, $sql);
+    $numRows = mysqli_num_rows($result);
+    return $numRows;
+    }
+
+
+
 
 ?>

@@ -2,13 +2,8 @@
 session_start();
 $active = "staff login";
 $styleFileName = "dashboard.css";
-// TODO: add a function to check if logged in person is an admin
-$isAdmin = true;
 require_once('../../private/initialize.php');
-?>
 
-
-<?php
 // Handle form values sent by new.php
 
 $inputUsername = $_POST['inputUsername'] ?? '';
@@ -19,17 +14,18 @@ $inputPassword = $_POST['inputPassword'] ?? '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (find_staff_by_email($inputUsername)["email"] == $inputUsername
         && get_staff_password_by_email($inputUsername)["password"] == $inputPassword) {
-    $_SESSION['username'] = $inputUsername;
-    $_SESSION['password'] = $inputPassword;
-    session_write_close();
-    }
-    else{
+        $_SESSION['username'] = $inputUsername;
+        $_SESSION['password'] = $inputPassword;
+        session_write_close();
+    } else {
         echo '<script language = "javascript">';
         echo 'window.location.href = "../staff-login.php";';
         echo 'alert ("Incorrect email or password");';
         echo '</script>';
-   }
-} 
+    }
+}
+$staffName = getStaffData($_SESSION['username']);
+$isAdmin = isAdmin($_SESSION['username']);
 ?>
 
 <!DOCTYPE html>
@@ -71,9 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <nav class="col-md-3 d-md-block sidebar col-lg-2 position-fixed">
           <div class="sidebar-sticky">
               <div class="headline border-bottom">
-                  <?php echo $_SESSION['username']?><br>
+                  <?php echo $staffName['firstname']?><br><?php echo $staffName['surname']?>
                   <h7><br><?php if ($isAdmin) echo 'admin'; else echo 'staff'; ?></h7>
-<!--                  TODO: ensure safe logout/login-->
                   <br><a href="../index.php" class="btn btn-sidebar mb-3"><i class="fas fa-unlock-alt"></i> Logout</a>
               </div>
             <ul class="nav flex-column">
@@ -86,13 +81,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <li class="nav-item nav-item-sidebar">
                 <a class="nav-link" href="?tab=members">Members</a>
               </li>
+                <li class="nav-item nav-item-sidebar">
+                    <a class="nav-link" href="?tab=game">Games</a>
+                </li>
                 <?php if($isAdmin) echo
                 '<li class="nav-item nav-item-sidebar">
                     <a class="nav-link" href="?tab=admin">Admin</a>
                 </li>' ?>
-                <li class="nav-item nav-item-sidebar">
-                    <a class="nav-link" href="?tab=game">Games</a>
-                </li>
+
             </ul>
           </div>
         </nav>
