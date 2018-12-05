@@ -29,9 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo 'alert ("Incorrect email or password");';
         echo '</script>';
    }
-} else {
-  redirect_to('../staff-login.php');
-}
+} 
 ?>
 
 <!DOCTYPE html>

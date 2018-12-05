@@ -183,7 +183,7 @@ function insert_member($member) {
 
   function findRentals(){
     global $db;
-    $sql = "SELECT name, firstname, startDate,period,extension ";
+    $sql = "SELECT name, firstname, startDate,period,extension, returnDate, rentalID ";
     $sql .= "FROM Game, Rental, Member ";
     $sql .= "WHERE Game.gameID = Rental.gameID AND Rental.memberID = Member.memberID";
     $result = mysqli_query($db, $sql);
@@ -215,4 +215,24 @@ function insert_member($member) {
     confirm_result_set($result);
     return $result;
     }
+
+
+    function returnRental($rentalID){
+      global $db;
+      $currentDate = date('Y-m-d');
+      $sql = "UPDATE Rental set returnDate = ";
+      $sql .= "'" . $currentDate . "'";
+      $sql .= " WHERE " . $rentalID . "= rentalID;";
+      $result = mysqli_query($db, $sql);
+    // For UPDATE statements, $result is true/false
+      if($result) {
+        return true;
+      } else {
+      // UPDATE failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+      }
+    }
+
 ?>
