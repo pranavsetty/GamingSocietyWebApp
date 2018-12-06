@@ -1,6 +1,5 @@
 <?php
-$loggingIn = true;
-$active = "staff login";
+$stylePath = "../../style/";
 $styleFileName = "login.css";
 require_once('../../../private/initialize.php');
 
@@ -40,7 +39,6 @@ if(is_post_request()) {
 <?php include(PRIVATE_PATH . '/head.php'); ?>
 
 <body>
-<?php include(PRIVATE_PATH . '/navigation.php'); ?>
 
 
   <div class="container">

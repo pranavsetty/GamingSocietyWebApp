@@ -1,6 +1,5 @@
 <?php
-$loggingIn = true;
-$active = "staff login";
+$stylePath = "../../style/";
 $styleFileName = "login.css";
 require_once('../../../private/initialize.php');
 
@@ -39,7 +38,6 @@ if(is_post_request()) {
 <?php include(PRIVATE_PATH . '/head.php'); ?>
 
 <body>
-<?php include(PRIVATE_PATH . '/navigation.php'); ?>
 
 
 <div class="container">
@@ -54,7 +52,7 @@ if(is_post_request()) {
 
         <div class = 'form-group'>
             <label for="type">Type</label>
-            <input type="text" name="type" id = "type"class="form-control mb-2" placeholder="Type" required autofocus>
+            <input type="text" name="type" id = "type" class="form-control mb-2" placeholder="Type" required autofocus>
         </div>
 
         <div class = 'form-group'>
@@ -64,7 +62,7 @@ if(is_post_request()) {
 
         <div class = 'form-group'>
             <label for="name">Name</label>
-            <input type="name" name="name" id = "DoB" class="form-control mb-2" placeholder="Name" required>
+            <input type="text" name="name" id = "DoB" class="form-control mb-2" placeholder="Name" required>
         </div>
 
         <div class = 'form-group'>
@@ -74,7 +72,7 @@ if(is_post_request()) {
 
         <div class = 'form-group'>
             <label for="releaseYear">Release Year</label>
-            <input type="releaseYear" name="releaseYear" id = "releaseYear" class="form-control mb-2" placeholder="Release Year" required>
+            <input type="number" min="1900" max="<?php echo date("Y");?>" name="releaseYear" id = "releaseYear" class="form-control mb-2" placeholder="Release Year" required>
         </div>
 
         <div class = 'form-group'>
