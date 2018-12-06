@@ -38,51 +38,6 @@
                         <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
                     </tr>
                     <?php }} ?>
-                    <!-- <tr>
-                        <td>Jacob Thornton</td>
-                        <td>01/12/1995</td>
-                        <td>07951938363</td>
-                        <td>jacob@gmail.com</td>
-                        <td>some address</td>
-                        <td>0</td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Larry Birdman</td>
-                        <td>18/01/1996</td>
-                        <td>07951938363</td>
-                        <td>birdman@gmail.com</td>
-                        <td>some address</td>
-                        <td>0</td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Jane Brown</td>
-                        <td>03/05/1995</td>
-                        <td>07951938363</td>
-                        <td>jane.brown@gmail.com</td>
-                        <td>some address</td>
-                        <td>0</td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Jake Peralta</td>
-                        <td>07/07/1985</td>
-                        <td>07951938363</td>
-                        <td>jakejacobb@gmail.com</td>
-                        <td>some address</td>
-                        <td>1</td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Rosa Diaz</td>
-                        <td>-</td>
-                        <td>07951938363</td>
-                        <td>rd@gmail.com</td>
-                        <td>some address</td>
-                        <td>0</td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                    </tr> -->
                     </tbody>
                 </table>
             </div>

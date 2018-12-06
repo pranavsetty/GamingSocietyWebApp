@@ -1,7 +1,7 @@
 <?php
+$stylePath = "../../style/";
+$styleFileName = "login.css";
 require_once('../../../private/initialize.php');
-
-
 
 
 
@@ -32,7 +32,6 @@ if(is_post_request()){
 ?>
 
 
-<?php $page_title = 'Edit Game'; ?>
 
 
 <div id="content">

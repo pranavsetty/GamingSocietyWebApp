@@ -27,45 +27,33 @@ $numberOfGames = getGameRows();
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
-                <div id="content">
-                    <table class="list">
-                        <thead>
-                        <tr>
-                            <th>GameID</th>
-                            <th>Cost</th>
-                            <th>Type</th>
-                            <th>Platform</th>
-                            <th>AgeLimit</th>
-                            <th>Name</th>
-                            <th>CurrentlyAvailable</th>
-                            <th>ReleaseYear</th>
-                            <th>ImageLink</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        </thead>
-                        <?php
-                        $gameSet = find_game_data();
-                        ?>
-                        <?php
-                        while ($subject = mysqli_fetch_assoc($gameSet)) { ?>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="no-border" scope="col">Game Title</th>
+                        <th class="no-border" scope="col">Type</th>
+                        <th class="no-border" scope="col">Platform</th>
+                        <th class="no-border" scope="col">Age restriction</th>
+                        <th class="no-border" scope="col">Released</th>
+                        <th class="no-border" scope="col">Value</th>
+                        <th class="no-border" scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php $gameSet = find_game_data();
+                    while ($game = mysqli_fetch_assoc($gameSet)) { ?>
                             <tr>
-                                <td><?php echo($subject['gameID']); ?></td>
-                                <td><?php echo($subject['cost']); ?></td>
-                                <td><?php echo($subject['type']); ?></td>
-                                <td><?php echo($subject['platform']); ?></td>
-                                <td><?php echo($subject['ageLimit']); ?></td>
-                                <td><?php echo($subject['name']); ?></td>
-                                <td><?php echo($subject['isCurrentlyAvailable']); ?></td>
-                                <td><?php echo($subject['releaseYear']); ?></td>
-                                <td><?php echo($subject['imageLink']); ?></td>
-
-                                <td><a class="action" href="<?php echo ('pages/edit.php?id=' . ($subject['gameID'])); ?>">Edit</a></td>
-
+                                <td><?php echo($game['name']); ?></td>
+                                <td><?php echo($game['type']); ?></td>
+                                <td><?php echo($game['platform']); ?></td>
+                                <td><?php echo($game['ageLimit']); ?></td>
+                                <td><?php echo($game['releaseYear']); ?></td>
+                                <td><?php echo($game['cost'] . "£"); ?></td>
+                                <td><a href="#"><i class="fas fa-edit"></i></a></td>
                             </tr>
                         <?php } ?>
-                    </table>
-                </div>
-                <div class="card-footer"></div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
