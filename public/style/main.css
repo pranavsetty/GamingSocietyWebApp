@@ -20,6 +20,8 @@ h1 {
 h2 {
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+    font-weight: bold !important;
 }
 
 h3 {
@@ -36,6 +38,24 @@ li{
     font-size: 1.4em;
 }
 
+a {
+    color: #823ded;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #542799;
+}
+
+input:focus {
+    outline:0 !important;
+    -webkit-focus-ring-color: none !important;
+}
+
+.mt-7 {
+    margin-top: 5rem !important;
+}
+
 .align-left {
     float: left;
 }
@@ -50,12 +70,14 @@ li{
 .btn-navbar{
     margin-left: 5px;
     background-color: rgba(130,61,237,1);
-    color: white !important;
+    color: #ffffff !important;
 }
 
 .btn-navbar:hover {
+    color: #ffffff !important;
     background-color: #542799 !important;
 }
+
 
 .navbar {
     padding-right: 50px;
@@ -68,13 +90,17 @@ li{
     margin-right: 10px;
 }
 
-.nav-item:hover a {
-    color: #823ded !important;
+.active.nav-link {
+    color: #371f77;
 }
 
 .nav-link {
     font-size: 17px;
     color: #1d252b !important;
+}
+
+.active {
+    color: #371f77 !important;
 }
 
 .footer {

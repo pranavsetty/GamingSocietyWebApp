@@ -1,7 +1,7 @@
 <?php
 
 function checkActive($navItem) {
-    $className = "nav-item";
+    $className = "nav-link";
     global $active;
   if ($active == $navItem) {
     $className = $className . " active";
