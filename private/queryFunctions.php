@@ -1,6 +1,7 @@
 <?php
 require_once('setup/db.php');
 require_once('validationFunctions.php');
+require_once('functions.php');
 function find_staff_by_email($email){
     global $db;
     $sql = "SELECT email FROM Staff ";
@@ -183,7 +184,7 @@ function insert_member($member) {
 
   function findRentals(){
     global $db;
-    $sql = "SELECT name, firstname, startDate,period,extension, returnDate, rentalID ";
+    $sql = "SELECT name, firstname, startDate,period,extension, returnDate, rentalID, Rental.memberID as memberID ";
     $sql .= "FROM Game, Rental, Member ";
     $sql .= "WHERE Game.gameID = Rental.gameID AND Rental.memberID = Member.memberID";
     $result = mysqli_query($db, $sql);
@@ -239,14 +240,25 @@ function insert_member($member) {
 
     }
 
+    function addMemberToBan($memberID){
+      echo '<script language = "javascript">';
+      echo 'alert ("YIKES");';
+      echo '</script>';
+    }
 
-
-    function returnRental($rentalID){
+    function returnRental($rental,$isDamaged){
       global $db;
       $currentDate = date('Y-m-d');
+      //$rental['returnDate'] = $currentDate;
+      $overdue = [];
+      $overdue['startDate'] = $rental['startDate'];
+      $overdue['period'] = $rental['period'];
+      $overdue['returnDate'] = $currentDate;
+      if (isOverdueReturned($overdue) && !$isDamaged) increaseViolation($rental);
+      if ($isDamaged) addMemberToBan($rental['memberID']);
       $sql = "UPDATE Rental set returnDate = ";
       $sql .= "'" . $currentDate . "'";
-      $sql .= " WHERE " . $rentalID . "= rentalID;";
+      $sql .= " WHERE " . $rental['rentalID'] . "= rentalID;";
       $result = mysqli_query($db, $sql);
     // For UPDATE statements, $result is true/false
       if($result) {
@@ -266,7 +278,21 @@ function insert_member($member) {
     return $numRows;
     }
 
-
+    function increaseViolation($rental){
+      global $db;
+      $sql = "UPDATE Member set violations = violations+1";
+      $sql .= " WHERE " . $rental['memberID'] . "= memberID;";
+      $result = mysqli_query($db, $sql);
+    // For UPDATE statements, $result is true/false
+      if($result) {
+        return true;
+      } else {
+      // UPDATE failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+      }
+    }
 
 
 ?>

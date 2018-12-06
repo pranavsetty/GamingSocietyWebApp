@@ -4,9 +4,17 @@
  $rentals =  findRentals();
  $rental = mysqli_fetch_assoc($rentals);
 
- if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['rentalID'])) {
-     $rentalID = $_POST['rentalID'];
-     $result = returnRental($rentalID);
+ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+     $rent = [];
+     $rent['rentalID'] = $_POST['rentalID'] ?? '';
+     $rent['memberID'] = $_POST['memberID'] ?? '';
+     $rent['startDate'] = $_POST['startDate'] ?? '';
+     $rent['period'] = $_POST['period'] ?? '';
+     $isDamaged;
+     if (isset($_POST['isDamaged'])) $isDamaged = true;
+     else $isDamaged = false;
+     if ($isDamaged) echo "It's damaged";
+     $result = returnRental($rent, $isDamaged);
      if($result !== true) {
        echo '<script language = "javascript">';
        echo 'window.location.href = "addRental.php";';
@@ -53,7 +61,11 @@
                         <td><a href="#"><i class="fas fa-plus-circle"></i> extend</a></td>
 
                         <form action="" method="post">
-                        <input type = "hidden"name = "rentalID" value = <?php echo $rental['rentalID']?> >
+                        <td><input type="checkbox" name="isDamaged" >Damaged</td>
+                        <input type = "hidden" name = "rentalID" value = <?php echo $rental['rentalID']?> >
+                        <input type = "hidden" name = "memberID" value = <?php echo $rental['memberID']?> >
+                        <input type = "hidden" name = "startDate" value = <?php echo $rental['startDate']?> >
+                        <input type = "hidden" name = "period" value = <?php echo $rental['period']?> >
                         <td><input type="submit" value ="Return" class="btn btn-outline-primary btn-sm"></td>
                         </form>
                     </tr>
@@ -125,7 +137,6 @@
                         <th class="no-border" scope="col">Member Name</th>
                         <th class="no-border" scope="col">Until</th>
                         <th class="no-border" scope="col">Extensions</th>
-                        <th class="no-border" scope="col">Return Date</th>
                         <th class="no-border" scope="col"></th>
                     </tr>
                     </thead>
@@ -139,9 +150,16 @@
                         <td><?php echo $rental['firstname']; ?></td>
                         <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
                         <td><?php echo $rental['extension']; ?></td>
-                        <td><?php echo $rental['returnDate']; ?></td>
                         <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
                         <td><a href="#"><i class="fas fa-plus-circle"></i> extend</a></td>
+                        <form action="" method="post">
+                        <td><input type="checkbox" name="isDamaged" >Damaged</td>
+                        <input type = "hidden" name = "rentalID" value = <?php echo $rental['rentalID']?> >
+                        <input type = "hidden" name = "memberID" value = <?php echo $rental['memberID']?> >
+                        <input type = "hidden" name = "startDate" value = <?php echo $rental['startDate']?> >
+                        <input type = "hidden" name = "period" value = <?php echo $rental['period']?> >
+                        <td><input type="submit" value ="Return" class="btn btn-outline-primary btn-sm"></td>
+                        </form>
                     </tr>
                     <?php }} ?>
                     </tbody>
