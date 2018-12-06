@@ -66,9 +66,23 @@ function isCurrentRental($rental){
 function isOverdue($rental){
     $currentDate = date('Y-m-d');
     $endDate = calculateEndDate($rental['startDate'], $rental['period']);
-    return $currentDate > $endDate && $rental['returnDate'] === NULL;
+    if ($currentDate > $endDate && ($rental['returnDate'] === NULL)){
+      return true;
+    }
+    return false;
+}
+
+function isOverdueReturned($rental){
+    $currentDate = date('Y-m-d');
+    $endDate = calculateEndDate($rental['startDate'], $rental['period']);
+    if ($currentDate > $endDate && ($rental['returnDate'] > $endDate)){
+      return true;
+    }
+    return false;
 
 }
+
+
 function h($string="") {
     return htmlspecialchars($string);
 }
@@ -82,6 +96,12 @@ function url_for($script_path) {
         $script_path = "/" . $script_path;
     }
     return WWW_ROOT . $script_path;
+}
+
+
+function isCurrentlyAvailable($gameID){
+    $rental = getGameRental($gameID);
+    return !(isOverdue($rental) || isCurrentRental($rental));
 }
 
 
