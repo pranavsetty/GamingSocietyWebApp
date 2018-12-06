@@ -70,7 +70,6 @@ function isOverdue($rental){
       return true;
     }
     return false;
-
 }
 
 function isOverdueReturned($rental){
@@ -97,6 +96,12 @@ function url_for($script_path) {
         $script_path = "/" . $script_path;
     }
     return WWW_ROOT . $script_path;
+}
+
+
+function isCurrentlyAvailable($gameID){
+    $rental = getGameRental($gameID);
+    return !(isOverdue($rental) || isCurrentRental($rental));
 }
 
 

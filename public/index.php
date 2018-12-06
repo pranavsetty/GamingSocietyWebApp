@@ -122,7 +122,7 @@ require_once('../private/initialize.php');
                     </div>
                     <?php
                         $status = 'available';
-                        if (!$game['isCurrentlyAvailable']) $status = 'unavailable';
+                        if (!isCurrentlyAvailable($game['gameID'])) $status = 'unavailable';
                         echo '<div class="card-footer ' . $status . '">' . $status . '</div>'; ?>
                 </a>
             </div>

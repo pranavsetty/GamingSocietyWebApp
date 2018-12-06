@@ -30,6 +30,20 @@ function find_game_data(){
 //   return $result;
 // }
 
+
+
+function getGameRental($gameID){
+  global $db;
+  $sql = "SELECT returnDate, startDate, period FROM Rental, Game ";
+  $sql .= "WHERE Rental.gameID= '" . $gameID . "'";
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  $subject = mysqli_fetch_assoc($result);
+  mysqli_free_result($result);
+  return $subject; // returns an assoc. array
+}
+
+
 function insert_game_data($game){
     global $db;
     $sql = "INSERT INTO Game ";
