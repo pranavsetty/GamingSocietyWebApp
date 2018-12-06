@@ -1,6 +1,6 @@
 <?php
 $stylePath = "../../style/";
-$styleFileName = "login.css";
+$styleFileName = ".css";
 require_once('../../../private/initialize.php');
 
 

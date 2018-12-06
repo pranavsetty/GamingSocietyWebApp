@@ -103,6 +103,19 @@ input:focus {
     color: #371f77 !important;
 }
 
+.btn-login {
+    margin-top: 30px !important;
+    background-color: #823ded !important;
+    color: #ffffff !important;
+    -webkit-box-shadow: 0 0 20px 3px rgba(130, 61, 237, 0.4);
+    -moz-box-shadow: 0 0 20px 3px rgba(130, 61, 237, 0.4);
+    box-shadow: 0 0 20px 3px rgba(130, 61, 237, 0.4);
+}
+
+.btn-login:hover {
+    background-color: #542799 !important;
+}
+
 .footer {
     text-align: center;
     font-size: 10px;

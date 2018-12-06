@@ -21,7 +21,7 @@
                         <th class="no-border" scope="col">Email</th>
                         <th class="no-border" scope="col">Home address</th>
                         <th class="no-border" scope="col">Violations</th>
-                        <th class="no-border" scope="col"></th>
+<!--                        <th class="no-border" scope="col"></th>-->
                     </tr>
                     </thead>
                     <tbody>
@@ -35,7 +35,7 @@
                         <td><?php echo $member['email']; ?></td>
                         <td><?php echo $member['homeAddress']; ?></td>
                         <td><?php echo $member['violations']; ?></td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
+<!--                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>-->
                     </tr>
                     <?php }} ?>
                     </tbody>
