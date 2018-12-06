@@ -52,6 +52,10 @@ input:focus {
     -webkit-focus-ring-color: none !important;
 }
 
+.mt-7 {
+    margin-top: 5rem !important;
+}
+
 .align-left {
     float: left;
 }
@@ -86,9 +90,17 @@ input:focus {
     margin-right: 10px;
 }
 
+.active.nav-link {
+    color: #371f77;
+}
+
 .nav-link {
     font-size: 17px;
     color: #1d252b !important;
+}
+
+.active {
+    color: #371f77 !important;
 }
 
 .footer {
