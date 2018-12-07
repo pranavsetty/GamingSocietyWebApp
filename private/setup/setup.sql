@@ -38,6 +38,7 @@ CREATE TABLE Rental
   extension   INT DEFAULT 0,
   period      INT NOT NULL DEFAULT 3,
   startDate   DATE NOT NULL,
+  returnDate  DATE DEFAULT NULL,
   PRIMARY KEY (rentalID),
   FOREIGN KEY (memberID) REFERENCES Member(memberID),
   FOREIGN KEY (gameID) REFERENCES Game(gameID)
@@ -86,9 +87,9 @@ VALUES (DEFAULT, 13, "CD", "PS4", 18, "Grand Theft Auto", TRUE, 2014,"https://vi
        (DEFAULT, 13, "CD", "XBOX", 18, "Call of Duty Black Ops 4", TRUE, 2018,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723");
 
 INSERT into Rental
-VALUES(DEFAULT, 1,1,DEFAULT, DEFAULT, '2018-12-01'),
-      (DEFAULT, 2,2,DEFAULT, DEFAULT, '2018-11-29'),
-      (DEFAULT, 3,3,DEFAULT, DEFAULT, '2018-05-22');
+VALUES(DEFAULT, 1,1,DEFAULT, DEFAULT, '2018-12-01',DEFAULT),
+      (DEFAULT, 2,2,DEFAULT, DEFAULT, '2018-11-29',DEFAULT),
+      (DEFAULT, 3,3,DEFAULT, DEFAULT,'2018-05-22',DEFAULT);
 
 INSERT into Ban
 VALUES(1, '2012-02-12','2012-02-20',DEFAULT);

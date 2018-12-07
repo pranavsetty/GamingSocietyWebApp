@@ -5,11 +5,11 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="<?php checkActive("Home")?>">
-            <a class="nav-link" href="index.php">Home</a> 
+            <li class="nav-item">
+            <a class="<?php checkActive("Home")?>" href="index.php">Home</a>
             </li>
-            <li class="<?php checkActive("About")?>">
-                <a class="nav-link" href="about.php">About</a>
+            <li class="nav-item">
+                <a class="<?php checkActive("About")?>" href="about.php">About</a>
             </li>
             <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

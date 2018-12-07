@@ -1,3 +1,6 @@
+<?php
+    if (!isset($stylePath)) $stylePath = "style/";
+?>
 <head>
     <meta charset="UTF-8">
     <title>Team Omega</title>
@@ -20,8 +23,8 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
 
-    <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="<?php echo 'style/' . $styleFileName; ?>">
+    <link rel="stylesheet" href="<?php echo $stylePath . "main.css"; ?>">
+    <link rel="stylesheet" href="<?php echo $stylePath . $styleFileName; ?>">
 
 
 </head>
