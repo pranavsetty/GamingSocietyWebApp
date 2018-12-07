@@ -89,7 +89,7 @@ require_once('../private/initialize.php');
     <div class="row mb-5">
         <div class="col">
             <div class="search">
-                <form class="search-bar" action="search.php" method="GET">
+                <form class="search-bar" method="GET">
                     <input class="search_input" type="text" name="query" placeholder="Search..."/>
                 <button class="search-button" type="submit">
                     <i class="fas fa-search"></i>
@@ -105,10 +105,6 @@ require_once('../private/initialize.php');
 <!-- End of review section -->
 
 
-<form  method="GET">
-    <input type="text" name="query" />
-    <input type="submit" value="Search" />
-</form>
     <?php
     if(isset($_GET['query']) && $_GET['query'] != ""){
         $gameSet = search_games($_GET['query']);?>

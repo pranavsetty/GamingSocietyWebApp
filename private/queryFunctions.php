@@ -300,6 +300,14 @@ function search_games($search)
     // if (mysqli_num_rows($result)==0) return false;
     // }
 
+    function getNumRows(){
+    global $db;
+    $sql = "SELECT * FROM Game";
+    $result = mysqli_query($db, $sql);
+    $numRows = mysqli_num_rows($result);
+    return $numRows;
+    }
+
     function increaseViolation($rental){
       global $db;
       $sql = "UPDATE Member set violations = violations+1";

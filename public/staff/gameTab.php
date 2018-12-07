@@ -2,7 +2,7 @@
 
 $subjectSets = find_game_data();
 
-$numberOfGames = getGameRows();
+$numberOfGames = getNumRows();
 ?>
 
 
@@ -49,7 +49,7 @@ $numberOfGames = getGameRows();
                                 <td><?php echo($game['ageLimit']); ?></td>
                                 <td><?php echo($game['releaseYear']); ?></td>
                                 <td><?php echo($game['cost'] . "£"); ?></td>
-                                <td><a href="#"><i class="fas fa-edit"></i></a></td>
+                                <td><a href="<?php echo ('pages/edit.php?id=' . ($game['gameID'])); ?>"><i class="fas fa-edit"></i></a></td>
                             </tr>
                         <?php } ?>
                     </tbody>
