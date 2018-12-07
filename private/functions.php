@@ -100,8 +100,7 @@ function url_for($script_path) {
 
 
 function isCurrentlyAvailable($gameID){
-    $rental = getGameRental($gameID);
-    return !(isOverdue($rental) || isCurrentRental($rental));
+    return !is_game_being_rented($gameID) ;
 }
 
 

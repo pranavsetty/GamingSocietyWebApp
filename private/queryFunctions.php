@@ -34,8 +34,8 @@ function find_game_data(){
 
 function getGameRental($gameID){
   global $db;
-  $sql = "SELECT returnDate, startDate, period FROM Rental, Game ";
-  $sql .= "WHERE Rental.gameID= '" . $gameID . "'";
+  $sql = "SELECT returnDate, startDate, period FROM Rental ";
+  $sql .= "WHERE gameID= '" . $gameID . "'";
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
   $subject = mysqli_fetch_assoc($result);
@@ -154,7 +154,7 @@ function insert_member($member) {
 
   function is_game_being_rented($gameID){
     global $db;
-    $sql = "SELECT COUNT(1) FROM Rental WHERE gameID = $gameID;";
+    $sql = "SELECT gameID FROM Rental WHERE gameID = $gameID;";
     $result = mysqli_query($db, $sql);
     if (mysqli_num_rows($result)==0) return false;
     else return true;
@@ -163,7 +163,7 @@ function insert_member($member) {
   function insert_rental($rental){
     global $db;
     $start_date = date('Y-m-d');
-    if (is_game_being_rented($rental['MemberID'])) return false;
+    if (is_game_being_rented($rental['GameID'])) return false;
     $sql = "INSERT INTO Rental ";
     $sql .= "(memberID, gameID, startDate) ";
     $sql .= "VALUES (";
@@ -284,13 +284,13 @@ function insert_member($member) {
         exit;
       }
     }
-    function getGameRows(){
-    global $db;
-    $sql = "SELECT * FROM Game ";
-    $result = mysqli_query($db, $sql);
-    $numRows = mysqli_num_rows($result);
-    return $numRows;
-    }
+    // function getGameRows($gameID){
+    // global $db;
+    // $sql = "SELECT COUNT(1) gameID FROM Game,Rental ";
+    // $sql .= "WHERE Rental.gameID = " . $gameID . "'";
+    // $result = mysqli_query($db, $sql);
+    // if (mysqli_num_rows($result)==0) return false;
+    // }
 
     function increaseViolation($rental){
       global $db;
