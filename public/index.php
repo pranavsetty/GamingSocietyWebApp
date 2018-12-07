@@ -89,7 +89,7 @@ require_once('../private/initialize.php');
     <div class="row mb-5">
         <div class="col">
             <div class="search">
-                <form class="search-bar" action="search.php" method="GET">
+                <form class="search-bar" method="GET">
                     <input class="search_input" type="text" name="query" placeholder="Search..."/>
                 <button class="search-button" type="submit">
                     <i class="fas fa-search"></i>
@@ -102,40 +102,48 @@ require_once('../private/initialize.php');
 
 
 
+<!-- End of review section -->
 
-<!-- Start of Cards section - Games -->
-    <div class = "row">
-        <?php
-        $gameSet = find_game_data();
-        ?>
 
-        <?php
-        while ($game = mysqli_fetch_assoc($gameSet)) { ?>
+    <?php
+    if(isset($_GET['query']) && $_GET['query'] != ""){
+        $gameSet = search_games($_GET['query']);?>
+        <div class = "row">
 
-            <div class="col-lg-3 col-md-3 col-sm-4 mb-5">
-                <a class="card" href="about.php">
-                    <img class="card-img-top" src="<?php echo($game['imageLink']); ?>" alt="Card image">
+            <?php
+
+            while ($result = mysqli_fetch_array($gameSet)) {?>
+                <?php $gameID = $result['gameID']?>
+                <div class="card  text-white bg-dark mb-3" style="width: 18rem;">
+                    <img class="card-img-top" src="<?php echo($result['imageLink']); ?>" alt="Card image cap">
                     <div class="card-body">
-                        <h2 class="card-title"><?php echo($game['name']); ?></h2>
-                        Released: <?php echo($game['releaseYear']); ?><br>
-                        Age restriction: <?php echo($game['ageLimit']); ?><br>
+                        <h2 class="card-title"><?php echo($result['name']); ?></h2>
+                        <p class="card-text">Released on <?php echo($result['releaseYear']); ?>.
+                        </p>
+                        <p> Current Availability : <?php echo($result['isCurrentlyAvailable']); ?></p>
+
+
+                        <a href = "<?php echo url_for('gameInfo.php?id=' . h(u($result['gameID'])));?>"
+                           class = "btn btn-primary" > More Info</a>
                     </div>
-                    <?php
-                        $status = 'available';
-                        if (!isCurrentlyAvailable($game['gameID'])) $status = 'unavailable';
-                        echo '<div class="card-footer ' . $status . '">' . $status . '</div>'; ?>
-                </a>
-            </div>
+                </div>
 
-        <?php } ?>
+                <?php
+            }
 
-        <?php
-        mysqli_free_result($gameSet);
-        ?>
 
-    </div>
 
-<!-- End of Cards section - Games -->
+            ?>
+
+        </div>
+
+
+    <?php } ?>
+
+
+
+
+
 
 </div>
 
