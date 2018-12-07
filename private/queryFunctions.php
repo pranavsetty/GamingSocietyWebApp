@@ -246,6 +246,14 @@ function insert_member($member) {
     $numRows = mysqli_num_rows($result);
     return $numRows;
     }
+function search_games($search)
+{
+    global $db;
+    $sql = "SELECT * FROM Game WHERE name LIKE '%" . $search . "%'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    return $result;
+}
 
 
 

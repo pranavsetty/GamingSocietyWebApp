@@ -78,13 +78,52 @@ require_once('../private/initialize.php');
 
 <!-- End of review section -->
 
-<form action="search.php" method="GET">
+
+<form  method="GET">
     <input type="text" name="query" />
     <input type="submit" value="Search" />
 </form>
+    <?php
+    if(isset($_GET['query']) && $_GET['query'] != ""){
+        $gameSet = search_games($_GET['query']);?>
+        <div class = "row">
+
+            <?php
+
+            while ($result = mysqli_fetch_array($gameSet)) {?>
+                <?php $gameID = $result['gameID']?>
+                <div class="card  text-white bg-dark mb-3" style="width: 18rem;">
+                    <img class="card-img-top" src="<?php echo($result['imageLink']); ?>" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title"><?php echo($result['name']); ?></h2>
+                        <p class="card-text">Released on <?php echo($result['releaseYear']); ?>.
+                        </p>
+                        <p> Current Availability : <?php echo($result['isCurrentlyAvailable']); ?></p>
+
+
+                        <a href = "<?php echo url_for('gameInfo.php?id=' . h(u($result['gameID'])));?>"
+                           class = "btn btn-primary" > More Info</a>
+                    </div>
+                </div>
+
+                <?php
+            }
+
+
+
+            ?>
+
+        </div>
+
+
+    <?php } ?>
+
+
+
 
 
 <!-- Start of Cards section - Games -->
+    <!--
 <div class = "row">
         <?php
         $gameSet = find_game_data();
@@ -112,6 +151,7 @@ require_once('../private/initialize.php');
         ?>
 
     </div>
+    -->
 
 <!-- End of Cards section - Games -->
 
