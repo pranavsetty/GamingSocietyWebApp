@@ -14,6 +14,7 @@ if(is_post_request()) {
     $game['isCurrentlyAvailable'] = $_POST['isCurrentlyAvailable'] ?? '';
     $game['releaseYear'] = $_POST['releaseYear'] ?? '';
     $game['imageLink'] = $_POST['imageLink'] ?? '';
+    $game['gameDescription'] = $_POST['gameDescription'] ?? '';
     $result = insert_game_data($game);
     if($result === true) {
         //$new_id = mysqli_insert_id($db); Not sure what this is for
@@ -78,6 +79,11 @@ if(is_post_request()) {
         <div class = 'form-group'>
             <label for="imageLink">Image Link</label>
             <input type="text" name="imageLink" id = "imageLink" class="form-control mb-2" placeholder="Image Link" required>
+        </div>
+
+        <div class = 'form-group'>
+            <label for="gameDescription">Game Description</label>
+            <input type="text" name="gameDescription" id = "gameDescription" class="form-control mb-2" placeholder="Game Description" required>
         </div>
 
         <button class="mt-3 btn btn-lg btn-login btn-block" type="submit" name ="Add Game">Add Game</button>

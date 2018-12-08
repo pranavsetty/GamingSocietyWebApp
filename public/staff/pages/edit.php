@@ -21,6 +21,7 @@ if(is_post_request()){
   $subject['isCurrentlyAvailable'] = $_POST['is_currently_available'] ;
   $subject['releaseYear'] = $_POST['releaseYear'] ;
   $subject['imageLink'] = $_POST['image_link'] ;
+  $subject['gameDescription'] = $_POST['game_description'];
   $result = update_game_data($subject);
 
   redirect_to(url_for('../public/staff/dashboard.php?tab=game'));
@@ -77,6 +78,10 @@ if(is_post_request()){
         <dl>
             <dt>Image Link</dt>
             <dd><input type="text" name="image_link" value="<?php echo h($subject['imageLink']); ?>" /></dd>
+        </dl>
+        <dl>
+            <dt>Game Description</dt>
+            <dd><input type="text" name="game_description" value="<?php echo h($subject['gameDescription']); ?>" /></dd>
         </dl>
 
       <div id="operations">

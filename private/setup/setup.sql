@@ -27,6 +27,7 @@ CREATE TABLE Game
   isCurrentlyAvailable  BOOLEAN       NOT NULL,
   releaseYear           INT,
   imageLink             VARCHAR(5000)  NOT NULL,
+  gameDescription       VARCHAR(5000),
   PRIMARY KEY (gameID)
 );
 
@@ -80,11 +81,11 @@ VALUES (DEFAULT, "Mrs", "Jane", "Doe", '1992-01-19', 92648936271, 0, 10, "jane@h
        (DEFAULT, "Mrs", "Maria", "Labarias", '1999-05-12', 9257385734, 1, 20, "maria@hotmail.co.uk", "EN2 8AJ");
 
 INSERT into Game
-VALUES (DEFAULT, 13, "CD", "PS4", 18, "Grand Theft Auto", TRUE, 2014,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723"),
-       (DEFAULT, 10, "CD", "Nintendo", 13, "Mario Bros", TRUE, 1985,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723"),
-       (DEFAULT, 9, "CD", "Nintendo", 13, "Mario Kart", TRUE, 1992,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723"),
-       (DEFAULT, 20, "CD", "PS4", 16, "Fifa 19", TRUE, 2018,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723"),
-       (DEFAULT, 13, "CD", "XBOX", 18, "Call of Duty Black Ops 4", TRUE, 2018,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723");
+VALUES (DEFAULT, 13, "CD", "PS4", 18, "Grand Theft Auto", TRUE, 2014,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723", " djkfbsdjf"),
+       (DEFAULT, 10, "CD", "Nintendo", 13, "Mario Bros", TRUE, 1985,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723", "fdjfnlvdf"),
+       (DEFAULT, 9, "CD", "Nintendo", 13, "Mario Kart", TRUE, 1992,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723", " fgfdgdf "),
+       (DEFAULT, 20, "CD", "PS4", 16, "Fifa 19", TRUE, 2018,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723", " dfkmgfdg "),
+       (DEFAULT, 13, "CD", "XBOX", 18, "Call of Duty Black Ops 4", TRUE, 2018,"https://vignette.wikia.nocookie.net/grand-theft-auto/images/9/9e/Gta_vcs_wallpaper_soldiers.jpg/revision/latest?cb=20110126215723", "xvcmk");
 
 INSERT into Rental
 VALUES(DEFAULT, 1,1,DEFAULT, DEFAULT, '2018-12-01',DEFAULT),

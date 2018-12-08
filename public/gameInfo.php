@@ -34,6 +34,9 @@ $gameEntry = find_game_id($gameID)
                         <?php echo h($gameEntry['releaseYear']); ?>
                     </li>
                 </ul>
+                <p class="card-text">
+                    <?php echo h($gameEntry['gameDescription']); ?>
+                </p>
             </div>
         </div>
     </div>

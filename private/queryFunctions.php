@@ -47,7 +47,7 @@ function getGameRental($gameID){
 function insert_game_data($game){
     global $db;
     $sql = "INSERT INTO Game ";
-    $sql .= "(cost, type, platform, ageLimit, name, isCurrentlyAvailable, releaseYear, imageLink) ";
+    $sql .= "(cost, type, platform, ageLimit, name, isCurrentlyAvailable, releaseYear, imageLink, gameDescription) ";
     $sql .= "VALUES (";
     $sql .= "'" . $game['cost'] . "',";
     $sql .= "'" . $game['type'] . "',";
@@ -56,7 +56,8 @@ function insert_game_data($game){
     $sql .= "'" . $game['name'] . "',";
     $sql .= "'" . $game['isCurrentlyAvailable'] . "',";
     $sql .= "'" . $game['releaseYear'] . "',";
-    $sql .= "'" . $game['imageLink'] . "'";
+    $sql .= "'" . $game['imageLink'] . "',";
+    $sql .= "'" . $game['gameDescription'] . "' ";
     $sql .= ");";
     $result = mysqli_query($db, $sql);
     if($result){
@@ -87,7 +88,8 @@ function update_game_data($subject){
     $sql .= "name='" . $subject['name'] . "', ";
     $sql .= "isCurrentlyAvailable='" . $subject['isCurrentlyAvailable'] . "', ";
     $sql .= "releaseYear='" . $subject['releaseYear'] . "', ";
-    $sql .= "imageLink='" . $subject['imageLink'] . "' ";
+    $sql .= "imageLink='" . $subject['imageLink'] . "', ";
+    $sql .= "gameDescription='" . $subject['gameDescription'] . "' ";
     $sql .= "WHERE gameID='" . $subject['gameID'] . "' ";
     $sql .= "LIMIT 1;";
 
