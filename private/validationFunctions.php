@@ -120,39 +120,39 @@
 
     //name
     if(is_blank($game['name'])){
-      $errors[] = "Name cannot be blank.";
+      $errors['name'] = "Name cannot be blank.";
     }  elseif(!has_length($game['name'], ['min' => 2, 'max' => 255])){
-      $errors[] = "Name must be between 2 and 255 characters.";
+      $errors['name'] = "Name must be between 2 and 255 characters.";
     }
     $cost_int = (int) $game['cost'];
     if(is_blank($game['cost'])) {
-        $errors[] = "Cost cannot be blank.";
+        $errors['cost'] = "Cost cannot be blank.";
     }
       elseif ($cost_int <= 0) {
-            $errors[] = "Cost must be a number and greater than zero.";
+            $errors['cost'] = "Cost must be a number and greater than zero.";
         }
 
     $age_limit = (int) $game['ageLimit'];
     if(is_blank($game['ageLimit'])){
-      $errors[] ="Age Limit cannot be blank";
+      $errors['ageLimit'] ="Age Limit cannot be blank";
     }elseif($age_limit <= 0){
-      $errors[] = "Age must be a positive number";
+      $errors['ageLimit'] = "Age must be a positive number";
     }
     $currently_available = (string) $game['isCurrentlyAvailable'];
     if(!has_inclusion_of($currently_available, ["0" , "1"])){
-      $errors[] = "Currently Available either be 0 or 1";
+      $errors['isCurrentlyAvailable'] = "Currently Available either be 0 or 1";
     }
     $release_year = (int) $game['releaseYear'];
     if($release_year <= 1950){
-      $errors[] = "Must be a valid year";
+      $errors['releaseYear'] = "Must be a valid year";
     }
     if(is_blank($game['imageLink'])){
-      $errors[] = "There must be an image link";
+      $errors['imageLink'] = "There must be an image link";
     } elseif(!has_length($game['imageLink'], ['max' => 5000])){
-      $errors[] = "Image Link must be below 5000 characters";
+      $errors['imageLink'] = "Image Link must be below 5000 characters";
     }
     if(!has_length($game['gameDescription'], ['max' => 5000])){
-      $errors[] = "Game Description must be below 5000 characters";
+      $errors['gameDescription'] = "Game Description must be below 5000 characters";
     }
 
 

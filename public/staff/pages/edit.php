@@ -51,45 +51,54 @@ if(is_post_request()){
 
   <div class="subject edit">
     <h1>Edit Game</h1>
-    <?php echo display_errors($errors); ?>
+
     <form action="<?php echo url_for('/staff/pages/edit.php?id=' . h(u($gameID))); ?>" method="post">
       <dl>
         <dt>Cost</dt>
         <dd><input type="text" name="cost" value="<?php echo h($game['cost']); ?>" /></dd>
+          <?php if(isset($errors['cost'])) { echo $errors['cost']; } ?>
       </dl>
         <dl>
             <dt>Type</dt>
             <dd><input type="text" name="type" value="<?php echo h($game['type']); ?>" /></dd>
+            <?php if(isset($errors['type'])) { echo $errors['type']; } ?>
         </dl>
         <dl>
             <dt>Platform</dt>
             <dd><input type="text" name="platform" value="<?php echo h($game['platform']); ?>" /></dd>
+            <?php if(isset($errors['platform'])) { echo $errors['platform']; } ?>
         </dl>
         <dl>
             <dt>Age Limit</dt>
             <dd><input type="text" name="age_limit" value="<?php echo h($game['ageLimit']); ?>" /></dd>
+            <?php if(isset($errors['ageLimit'])) { echo $errors['ageLimit']; } ?>
         </dl>
         <dl>
             <dt>Name</dt>
             <dd><input type="text" name="name" value="<?php echo h($game['name']); ?>" /></dd>
+            <?php if(isset($errors['name'])) { echo $errors['name']; } ?>
         </dl>
         <dl>
             <dt>Currently Available</dt>
             <dd><input type="text" name="is_currently_available" value="<?php echo h($game['isCurrentlyAvailable']); ?>" /></dd>
+            <?php if(isset($errors['isCurrentlyAvailable'])) { echo $errors['isCurrentlyAvailable']; } ?>
         </dl>
         <dl>
             <dt>Release Year</dt>
 
             <dd><input type="text" name="releaseYear" value="<?php echo h($game['releaseYear']); ?>" /></dd>
+            <?php if(isset($errors['releaseYear'])) { echo $errors['releaseYear']; } ?>
 
         </dl>
         <dl>
             <dt>Image Link</dt>
             <dd><input type="text" name="image_link" value="<?php echo h($game['imageLink']); ?>" /></dd>
+            <?php if(isset($errors['imageLink'])) { echo $errors['imageLink']; } ?>
         </dl>
         <dl>
             <dt>Game Description</dt>
             <dd><input type="text" name="game_description" value="<?php echo h($game['gameDescription']); ?>" /></dd>
+            <?php if(isset($errors['gameDescription'])) { echo $errors['gameDescription']; } ?>
         </dl>
 
       <div id="operations">
