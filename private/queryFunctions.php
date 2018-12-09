@@ -46,6 +46,12 @@ function getGameRental($gameID){
 
 function insert_game_data($game){
     global $db;
+
+    $errors = validate_game($game);
+    if(!empty($errors)){
+        return $errors;
+    }
+
     $sql = "INSERT INTO Game ";
     $sql .= "(cost, type, platform, ageLimit, name, isCurrentlyAvailable, releaseYear, imageLink, gameDescription) ";
     $sql .= "VALUES (";
@@ -78,19 +84,25 @@ function find_game_id($gameID) {
     mysqli_free_result($result);
     return $subject; // returns an assoc. array
 }
-function update_game_data($subject){
+function update_game_data($game){
     global $db;
+
+    $errors = validate_game($game);
+        if(!empty($errors)){
+            return $errors;
+         }
+
     $sql = "UPDATE Game SET ";
-    $sql .= "cost='" . $subject['cost'] . "', ";
-    $sql .= "type='" . $subject['type'] . "', ";
-    $sql .= "platform='" . $subject['platform'] . "', ";
-    $sql .= "ageLimit='" . $subject['ageLimit'] . "', ";
-    $sql .= "name='" . $subject['name'] . "', ";
-    $sql .= "isCurrentlyAvailable='" . $subject['isCurrentlyAvailable'] . "', ";
-    $sql .= "releaseYear='" . $subject['releaseYear'] . "', ";
-    $sql .= "imageLink='" . $subject['imageLink'] . "', ";
-    $sql .= "gameDescription='" . $subject['gameDescription'] . "' ";
-    $sql .= "WHERE gameID='" . $subject['gameID'] . "' ";
+    $sql .= "cost='" . $game['cost'] . "', ";
+    $sql .= "type='" . $game['type'] . "', ";
+    $sql .= "platform='" . $game['platform'] . "', ";
+    $sql .= "ageLimit='" . $game['ageLimit'] . "', ";
+    $sql .= "name='" . $game['name'] . "', ";
+    $sql .= "isCurrentlyAvailable='" . $game['isCurrentlyAvailable'] . "', ";
+    $sql .= "releaseYear='" . $game['releaseYear'] . "', ";
+    $sql .= "imageLink='" . $game['imageLink'] . "', ";
+    $sql .= "gameDescription='" . $game['gameDescription'] . "' ";
+    $sql .= "WHERE gameID='" . $game['gameID'] . "' ";
     $sql .= "LIMIT 1;";
 
     $result = mysqli_query($db, $sql);

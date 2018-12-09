@@ -13,5 +13,6 @@ require_once('setup/db.php');
 require_once('validationFunctions.php');
 require_once('queryFunctions.php');
  $db = db_connect();
+ $errors = [];
 
 ?>
