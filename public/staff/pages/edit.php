@@ -102,7 +102,7 @@ if(is_post_request()){
         </dl>
 
       <div id="operations">
-        <input type="submit" value="Edit Game" </input>
+        <input type="submit" value="Edit Game" />
       </div>
     </form>
 
