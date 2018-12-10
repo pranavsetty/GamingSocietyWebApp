@@ -104,11 +104,12 @@ require_once('../private/initialize.php');
 
 
 <!-- Start of Cards section - Games -->
-    <div class = "row">
-        <?php
-        $gameSet = find_game_data();
-        ?>
+    <?php
+    $gameSet = find_game_data();
+    if(isset($_GET['query']) && $_GET['query'] != ""){
+    $gameSet = search_games($_GET['query']);} ?>
 
+    <div class = "row">
         <?php
         while ($game = mysqli_fetch_assoc($gameSet)) { ?>
 
