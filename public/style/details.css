@@ -1,4 +1,18 @@
+h1 {
+    color: #542799;
+}
+ul {
+    padding: 20px 30px 0;
+    margin: 0;
+}
+
+li {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
 .card {
+    color: #33424c;
     font-size: 15px;
     border: 0;
     border-radius: 0.5rem;
@@ -10,12 +24,13 @@
 }
 
 .card-body {
-    padding: 7% 10%;
+    padding: 0;
 }
 
 .card img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    border-radius: 0.5rem 0 0.5rem 0;
 }
 
 .card-footer {
@@ -33,8 +48,4 @@
 .card-footer.unavailable {
     color: #1d252b;
     background-color: #c5c4de;
-}
-
-.footer {
-    position: absolute;
 }

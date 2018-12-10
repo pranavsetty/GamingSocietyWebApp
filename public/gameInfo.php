@@ -21,61 +21,65 @@ $gameEntry = find_game_id($gameID)
         <div class="col-10">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="mb-4"><?php echo h($gameEntry['name']); ?></h1>
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-5">
+                            <img class="mb-4" src="<?php echo h($gameEntry['imageLink']); ?>" alt="Game image">
+                        </div>
+                        <div class="col-7 pl-5 pt-5">
+                            <h1 class="mb-5 text-uppercase"><?php echo h($gameEntry['name']); ?></h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <ul>
+                                <li class="row">
+                                    <div class="col-6">
+                                        <b>Age Restriction:</b>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <?php echo h($gameEntry['ageLimit']); ?>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="col-6">
+                                        <b>Value:</b>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <?php echo h($gameEntry['cost']); ?>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="col-6">
+                                        <b>Platform:</b>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <?php echo h($gameEntry['platform']); ?>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="col-6">
+                                        <b>Type:</b>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <?php echo h($gameEntry['type']); ?>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="col-6">
+                                        <b>Release year:</b>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <?php echo h($gameEntry['releaseYear']); ?>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-7 pl-5">
                             <p class="text-justify">
                                 <?php echo h($gameEntry['gameDescription']); ?>
                             </p>
                         </div>
-                        <div class="col-4">
-                            <img src="<?php echo h($gameEntry['imageLink']); ?>" alt="Game image">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="row">
-                                <div class="col-6">
-                                    <b>Age Restriction:</b>
-                                </div>
-                                <div class="col-6">
-                                    <?php echo h($gameEntry['ageLimit']); ?>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <b>Value:</b>
-                                </div>
-                                <div class="col-6">
-                                    <?php echo h($gameEntry['cost']); ?>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <b>Platform:</b>
-                                </div>
-                                <div class="col-6">
-                                    <?php echo h($gameEntry['platform']); ?>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <b>Type:</b>
-                                </div>
-                                <div class="col-6">
-                                    <?php echo h($gameEntry['type']); ?>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <b>Release year:</b>
-                                </div>
-                                <div class="col-6">
-                                    <?php echo h($gameEntry['releaseYear']); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
                 </div>
                 <?php
                 $status = 'available';
