@@ -62,7 +62,7 @@ if(is_post_request()) {
         <div class="row">
             <div class="col-6 form-group">
                 <label for="FName">Name</label>
-                <input type="text" name="FName" id = "FName"class="form-control mb-2" placeholder="First Name" required autofocus>
+                <input type="text" name="FName" id = "FName" class="form-control mb-2" placeholder="First Name" required autofocus>
             </div>
             <div class="col-6 form-group">
                 <label for="LName">Surname</label>

@@ -88,33 +88,30 @@ require_once('../private/initialize.php');
 
     <div class="row mb-5">
         <div class="col">
-            <div class="search">
-                <form class="search-bar" method="GET">
-                    <input class="search_input" type="text" name="query" placeholder="Search..."/>
+            <div class="search" id="search">
+                <form class="search-bar" method="GET" action="#search">
+                    <input class="search_input" type="text" name="search" placeholder="Search..."/>
                 <button class="search-button" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
                 </form>
             </div>
-
         </div>
     </div>
-
-
 
 
 <!-- Start of Cards section - Games -->
     <?php
     $gameSet = find_game_data();
-    if(isset($_GET['query']) && $_GET['query'] != ""){
-    $gameSet = search_games($_GET['query']);} ?>
+    if(isset($_GET['search']) && $_GET['search'] != ""){
+    $gameSet = search_games($_GET['search']);} ?>
 
-    <div class = "row">
+    <div class= "row">
         <?php
         while ($game = mysqli_fetch_assoc($gameSet)) { ?>
 
             <div class="col-lg-3 col-md-3 col-sm-4 mb-5">
-                <a class="card" href="about.php">
+                <a class="card" href="<?php echo url_for('gameInfo.php?id=' . h(u($game['gameID'])));?>">
                     <img class="card-img-top" src="<?php echo($game['imageLink']); ?>" alt="Card image">
                     <div class="card-body">
                         <h2 class="card-title"><?php echo($game['name']); ?></h2>
