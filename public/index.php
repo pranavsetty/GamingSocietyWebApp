@@ -46,37 +46,6 @@ require_once('../private/initialize.php');
 
 <!-- End of Carousel -->
 
-<!-- Start of review section -->
-
-<!--<div class="text-center"><h1> Top Selling Games</h1></div>-->
-<!---->
-<!--<div class="container">-->
-<!--    <div class="cardcontainer">-->
-<!--        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">-->
-<!--            <div class="card-header">GTA 5</div>-->
-<!--            <div class="card-body">-->
-<!--                <h5 class="card-title"> USER ABC <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h5>-->
-<!--                <p class="card-text">If you hadn’t had a chance to play it yet at all though, and your computer can handle it, the PC version does definitely feel like the definitive version.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">-->
-<!--            <div class="card-header">GTA 5</div>-->
-<!--            <div class="card-body">-->
-<!--                <h5 class="card-title"> USER DEF <i class="fas fa-star"></i></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h5>-->
-<!--                <p class="card-text">If you hadn’t had a chance to play it yet at all though, and your computer can handle it, the PC version does definitely feel like the definitive version.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">-->
-<!--            <div class="card-header">GTA 5</div>-->
-<!--            <div class="card-body">-->
-<!--                <h5 class="card-title"> USER GHI </i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h5>-->
-<!--                <p class="card-text">If you hadn’t had a chance to play it yet at all though, and your computer can handle it, the PC version does definitely feel like the definitive version.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-
-<!-- End of review section -->
 
 <div class="container">
 
@@ -111,7 +80,7 @@ require_once('../private/initialize.php');
         while ($game = mysqli_fetch_assoc($gameSet)) { ?>
 
             <div class="col-lg-3 col-md-3 col-sm-4 mb-5">
-                <a class="card" href="<?php echo url_for('gameInfo.php?id=' . h(u($game['gameID'])));?>">
+                <a class="card" href="<?php echo url_for('gameDetails.php?id=' . h(u($game['gameID'])));?>">
                     <img class="card-img-top" src="<?php echo($game['imageLink']); ?>" alt="Card image">
                     <div class="card-body">
                         <h2 class="card-title"><?php echo($game['name']); ?></h2>
