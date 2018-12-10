@@ -102,48 +102,40 @@ require_once('../private/initialize.php');
 
 
 
-<!-- End of review section -->
 
+<!-- Start of Cards section - Games -->
+    <div class = "row">
+        <?php
+        $gameSet = find_game_data();
+        ?>
 
-    <?php
-    if(isset($_GET['query']) && $_GET['query'] != ""){
-        $gameSet = search_games($_GET['query']);?>
-        <div class = "row">
+        <?php
+        while ($game = mysqli_fetch_assoc($gameSet)) { ?>
 
-            <?php
-
-            while ($result = mysqli_fetch_array($gameSet)) {?>
-                <?php $gameID = $result['gameID']?>
-                <div class="card  text-white bg-dark mb-3" style="width: 18rem;">
-                    <img class="card-img-top" src="<?php echo($result['imageLink']); ?>" alt="Card image cap">
+            <div class="col-lg-3 col-md-3 col-sm-4 mb-5">
+                <a class="card" href="about.php">
+                    <img class="card-img-top" src="<?php echo($game['imageLink']); ?>" alt="Card image">
                     <div class="card-body">
-                        <h2 class="card-title"><?php echo($result['name']); ?></h2>
-                        <p class="card-text">Released on <?php echo($result['releaseYear']); ?>.
-                        </p>
-                        <p> Current Availability : <?php echo($result['isCurrentlyAvailable']); ?></p>
-
-
-                        <a href = "<?php echo url_for('gameInfo.php?id=' . h(u($result['gameID'])));?>"
-                           class = "btn btn-primary" > More Info</a>
+                        <h2 class="card-title"><?php echo($game['name']); ?></h2>
+                        Released: <?php echo($game['releaseYear']); ?><br>
+                        Age restriction: <?php echo($game['ageLimit']); ?><br>
                     </div>
-                </div>
+                    <?php
+                        $status = 'available';
+                        if (!isCurrentlyAvailable($game['gameID'])) $status = 'unavailable';
+                        echo '<div class="card-footer ' . $status . '">' . $status . '</div>'; ?>
+                </a>
+            </div>
 
-                <?php
-            }
+        <?php } ?>
 
+        <?php
+        mysqli_free_result($gameSet);
+        ?>
 
+    </div>
 
-            ?>
-
-        </div>
-
-
-    <?php } ?>
-
-
-
-
-
+<!-- End of Cards section - Games -->
 
 </div>
 

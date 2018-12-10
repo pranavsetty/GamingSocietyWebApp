@@ -42,7 +42,7 @@ if(is_post_request()) {
 <body>
 <?php include(PRIVATE_PATH . '/navigationStaff.php'); ?>
 
-<div class="container">
+<div class="container mb-5">
 
     <form class="form" action="addMember.php" method="post">
 

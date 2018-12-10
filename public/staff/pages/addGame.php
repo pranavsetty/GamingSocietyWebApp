@@ -41,7 +41,7 @@ if(is_post_request()) {
 <body>
 <?php include(PRIVATE_PATH . '/navigationStaff.php'); ?>
 
-<div class="container">
+<div class="container mb-5">
 
     <form class="form" action="addGame.php" method="post">
 
@@ -77,6 +77,16 @@ if(is_post_request()) {
             <div class="col-6 form-group">
                 <label for="imageLink">Image Link</label>
                 <input type="text" name="imageLink" id = "imageLink" class="form-control mb-2" placeholder="Image Link" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label for="desc">Description</label>
+                <input type="text" name="desc" id="desc" class="form-control mb-2" placeholder="Game description" required>
+            </div>
+            <div class="col-6 form-group">
+                <label for="ageLimit">Age Restriction</label>
+                <input type="number" min="0" max="120" name="ageLimit" id="ageLimit" class="form-control mb-2" placeholder="Age restriction" required>
             </div>
         </div>
         <div class="row d-flex justify-content-center">

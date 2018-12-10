@@ -37,7 +37,7 @@ if (is_post_request()) {
 <body>
 <?php include(PRIVATE_PATH . '/navigationStaff.php'); ?>
 
-<div class="container">
+<div class="container mb-5">
     <!--    TODO: Add by dropdown-->
 
     <form class="form" action="addRental.php" method="post">
