@@ -9,26 +9,35 @@ if(!isset($_GET['id'])) {
     redirect_to(url_for('../gameTab.php'));
 }
 $gameID = $_GET['id'];
+
 if(is_post_request()){
-  $subject = [];
-  $subject['gameID'] = $gameID;
+  $game = [];
+  $game['gameID'] = $gameID;
 
-  $subject['cost'] = $_POST['cost'] ;
-  $subject['type'] = $_POST['type'] ;
-  $subject['platform'] = $_POST['platform'] ;
-  $subject['ageLimit'] = $_POST['age_limit'] ;
-  $subject['name'] = $_POST['name'] ;
-  $subject['isCurrentlyAvailable'] = $_POST['is_currently_available'] ;
-  $subject['releaseYear'] = $_POST['releaseYear'] ;
-  $subject['imageLink'] = $_POST['image_link'] ;
-  $result = update_game_data($subject);
+  $game['cost'] = $_POST['cost'] ;
+  $game['type'] = $_POST['type'] ;
+  $game['platform'] = $_POST['platform'] ;
+  $game['ageLimit'] = $_POST['age_limit'] ;
+  $game['name'] = $_POST['name'] ;
+  $game['isCurrentlyAvailable'] = $_POST['is_currently_available'] ;
+  $game['releaseYear'] = $_POST['releaseYear'] ;
+  $game['imageLink'] = $_POST['image_link'] ;
+  $game['gameDescription'] = $_POST['game_description'];
+  $result = update_game_data($game);
 
-  redirect_to(url_for('../public/staff/dashboard.php?tab=game'));
-
+  if($result === true) {
+      redirect_to(url_for('../public/staff/dashboard.php?tab=game'));
+  }else{
+      $errors = $result;
+     // var_dump($errors);
+  }
 
 } else{
-  $subject = find_game_id($gameID);
+  $game = find_game_id($gameID);
 }
+    $game_set = find_game_data();
+    $game_count = mysqli_num_rows($game_set);
+    mysqli_free_result($game_set);
 ?>
 
 
@@ -46,37 +55,50 @@ if(is_post_request()){
     <form action="<?php echo url_for('/staff/pages/edit.php?id=' . h(u($gameID))); ?>" method="post">
       <dl>
         <dt>Cost</dt>
-        <dd><input type="text" name="cost" value="<?php echo h($subject['cost']); ?>" /></dd>
+        <dd><input type="text" name="cost" value="<?php echo h($game['cost']); ?>" /></dd>
+          <?php if(isset($errors['cost'])) { echo $errors['cost']; } ?>
       </dl>
         <dl>
             <dt>Type</dt>
-            <dd><input type="text" name="type" value="<?php echo h($subject['type']); ?>" /></dd>
+            <dd><input type="text" name="type" value="<?php echo h($game['type']); ?>" /></dd>
+            <?php if(isset($errors['type'])) { echo $errors['type']; } ?>
         </dl>
         <dl>
             <dt>Platform</dt>
-            <dd><input type="text" name="platform" value="<?php echo h($subject['platform']); ?>" /></dd>
+            <dd><input type="text" name="platform" value="<?php echo h($game['platform']); ?>" /></dd>
+            <?php if(isset($errors['platform'])) { echo $errors['platform']; } ?>
         </dl>
         <dl>
             <dt>Age Limit</dt>
-            <dd><input type="text" name="age_limit" value="<?php echo h($subject['ageLimit']); ?>" /></dd>
+            <dd><input type="text" name="age_limit" value="<?php echo h($game['ageLimit']); ?>" /></dd>
+            <?php if(isset($errors['ageLimit'])) { echo $errors['ageLimit']; } ?>
         </dl>
         <dl>
             <dt>Name</dt>
-            <dd><input type="text" name="name" value="<?php echo h($subject['name']); ?>" /></dd>
+            <dd><input type="text" name="name" value="<?php echo h($game['name']); ?>" /></dd>
+            <?php if(isset($errors['name'])) { echo $errors['name']; } ?>
         </dl>
         <dl>
             <dt>Currently Available</dt>
-            <dd><input type="text" name="is_currently_available" value="<?php echo h($subject['isCurrentlyAvailable']); ?>" /></dd>
+            <dd><input type="text" name="is_currently_available" value="<?php echo h($game['isCurrentlyAvailable']); ?>" /></dd>
+            <?php if(isset($errors['isCurrentlyAvailable'])) { echo $errors['isCurrentlyAvailable']; } ?>
         </dl>
         <dl>
             <dt>Release Year</dt>
 
-            <dd><input type="text" name="releaseYear" value="<?php echo h($subject['releaseYear']); ?>" /></dd>
+            <dd><input type="text" name="releaseYear" value="<?php echo h($game['releaseYear']); ?>" /></dd>
+            <?php if(isset($errors['releaseYear'])) { echo $errors['releaseYear']; } ?>
 
         </dl>
         <dl>
             <dt>Image Link</dt>
-            <dd><input type="text" name="image_link" value="<?php echo h($subject['imageLink']); ?>" /></dd>
+            <dd><input type="text" name="image_link" value="<?php echo h($game['imageLink']); ?>" /></dd>
+            <?php if(isset($errors['imageLink'])) { echo $errors['imageLink']; } ?>
+        </dl>
+        <dl>
+            <dt>Game Description</dt>
+            <dd><input type="text" name="game_description" value="<?php echo h($game['gameDescription']); ?>" /></dd>
+            <?php if(isset($errors['gameDescription'])) { echo $errors['gameDescription']; } ?>
         </dl>
 
       <div id="operations">

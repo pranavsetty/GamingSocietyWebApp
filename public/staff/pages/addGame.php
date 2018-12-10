@@ -14,6 +14,7 @@ if(is_post_request()) {
     $game['isCurrentlyAvailable'] = $_POST['isCurrentlyAvailable'] ?? '';
     $game['releaseYear'] = $_POST['releaseYear'] ?? '';
     $game['imageLink'] = $_POST['imageLink'] ?? '';
+    $game['gameDescription'] = $_POST['gameDescription'] ?? '';
     $result = insert_game_data($game);
     if($result === true) {
         //$new_id = mysqli_insert_id($db); Not sure what this is for
@@ -83,7 +84,6 @@ if(is_post_request()) {
                 <button class="mt-5 btn btn-lg btn-login" type="submit" name ="Add Game">Add Game</button>
             </div>
         </div>
-
     </form>
 </div>
 
