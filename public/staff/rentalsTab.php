@@ -11,7 +11,6 @@
      $rent['memberID'] = $_POST['memberID'] ?? '';
      $rent['startDate'] = $_POST['startDate'] ?? '';
      $rent['period'] = $_POST['period'] ?? '';
-     $isDamaged;
      if (isset($_POST['isDamaged'])) $isDamaged = true;
      else $isDamaged = false;
      $result = returnRental($rent, $isDamaged);
@@ -32,9 +31,7 @@
     <div class="col">
         <div class="card card-purple card-big">
             <div class="card-title title-purple">
-                <div class="align-left label">Current rentals: </div>
-                <div class="align-right"> </div>
-                <div class="clear-float"></div>
+                <div class="label">Current rentals</div>
             </div>
             <div class="card-body">
                 <table class="table table-hover">
@@ -54,10 +51,9 @@
                           if(isCurrentRental($rental)){ ?>
                     <tr>
                         <td><?php echo $rental['name']; ?></td>
-                        <td><?php echo $rental['firstname']; ?></td>
+                        <td><?php echo $rental['firstname'] . " " . $rental['surname']; ?></td>
                         <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
                         <td><?php echo $rental['extension']; ?></td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
                         <td><a href="#"><i class="fas fa-plus-circle"></i> extend</a></td>
 
                         <form action="" method="post">
@@ -66,7 +62,9 @@
                         <input type = "hidden" name = "memberID" value = <?php echo $rental['memberID']?> >
                         <input type = "hidden" name = "startDate" value = <?php echo $rental['startDate']?> >
                         <input type = "hidden" name = "period" value = <?php echo $rental['period']?> >
-                        <td><input type="submit" value ="Return" class="btn btn-outline-primary btn-sm"></td>
+                            <td>
+                                <button type="submit"><i class="fas fa-undo-alt"></i> return
+                            </td>
                         </form>
                     </tr>
                     <?php }} ?>
@@ -81,9 +79,7 @@
     <div class="col">
         <div class="card card-blue card-big">
             <div class="card-title title-blue">
-                <div class="align-left label">Past rentals: </div>
-                <div class="align-right">6</div>
-                <div class="clear-float"></div>
+                <div class="label">Past rentals</div>
             </div>
             <div class="card-body">
                 <table class="table table-hover">
@@ -108,7 +104,6 @@
                         <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
                         <td><?php echo $rental['extension']; ?></td>
                         <td><?php echo $rental['returnDate']; ?></td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
                         <td><a href="#"><i class="fas fa-plus-circle"></i> extend</a></td>
                     </tr>
                     <?php }} ?>
@@ -125,9 +120,7 @@
     <div class="col">
         <div class="card card-blue card-big">
             <div class="card-title title-blue">
-                <div class="align-left label">Overdue rentals: </div>
-                <div class="align-right">6</div>
-                <div class="clear-float"></div>
+                <div class="label">Overdue rentals</div>
             </div>
             <div class="card-body">
                 <table class="table table-hover">
@@ -137,6 +130,7 @@
                         <th class="no-border" scope="col">Member Name</th>
                         <th class="no-border" scope="col">Until</th>
                         <th class="no-border" scope="col">Extensions</th>
+                        <th class="no-border" scope="col"></th>
                         <th class="no-border" scope="col"></th>
                     </tr>
                     </thead>
@@ -150,8 +144,6 @@
                         <td><?php echo $rental['firstname']; ?></td>
                         <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
                         <td><?php echo $rental['extension']; ?></td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                        <td><a href="#"><i class="fas fa-plus-circle"></i> extend</a></td>
                         <form action="" method="post">
                         <td><input type="checkbox" name="isDamaged" >Damaged</td>
                         <input type = "hidden" name = "rentalID" value = <?php echo $rental['rentalID']?> >

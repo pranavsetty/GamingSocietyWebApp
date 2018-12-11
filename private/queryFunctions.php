@@ -224,7 +224,7 @@ function insert_member($member) {
 
   function findRentals(){
     global $db;
-    $sql = "SELECT name, firstname, startDate,period,extension, returnDate, rentalID, Rental.memberID as memberID ";
+    $sql = "SELECT name, firstname, surname, startDate,period,extension, returnDate, rentalID, Rental.memberID as memberID ";
     $sql .= "FROM Game, Rental, Member ";
     $sql .= "WHERE Game.gameID = Rental.gameID AND Rental.memberID = Member.memberID";
     $result = mysqli_query($db, $sql);
@@ -234,7 +234,7 @@ function insert_member($member) {
 
   function get_simple_member_data(){
     global $db;
-    $sql = "SELECT memberID,firstname, phoneNo, DoB, email, homeAddress, violations ";
+    $sql = "SELECT memberID, firstname, surname, phoneNo, DoB, email, homeAddress, violations ";
     $sql .= "FROM  Member;";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
@@ -251,6 +251,15 @@ function insert_member($member) {
         mysqli_free_result($result);
         return reset($subject);
   }
+
+  function get_member_with_fees(){
+    global $db;
+    $sql = "SELECT memberID, firstname, surname, phoneNo, DoB, email, homeAddress, violations, debt ";
+    $sql .= "FROM  Member WHERE debt > 0;";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    return $result;
+}
 
 
   function isBanned($memberID){

@@ -2,158 +2,94 @@
 $numOfDebt = getDebt();
 ?>
 <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
-              <h1>Overview</h1>
-          </div>
-            <div class="row mt-3">
-                <div class="col-6">
-                    <div class="card card-purple">
-                        <div class="card-title title-purple">
-                            <div class="align-left label">Total overdue games: </div>
-                            <div class="align-right">10</div>
-                            <div class="clear-float"></div>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-hover fixed_header">
-                                <thead>
-                                <tr>
-                                    <th class="no-border" scope="col">Game Title</th>
-                                    <th class="no-border" scope="col">Member Name</th>
-                                    <th class="no-border" scope="col">Days Late</th>
-                                    <th class="no-border" scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Battlefield</td>
-                                    <td>Mark Otto</td>
-                                    <td>10</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Red Dead Redemption</td>
-                                    <td>Jacob Thornton</td>
-                                    <td>9</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Super Mario</td>
-                                    <td>Larry Birdman</td>
-                                    <td>9</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>The Witcher</td>
-                                    <td>Jane Brown</td>
-                                    <td>7</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Spiderman</td>
-                                    <td>Jake Peralta</td>
-                                    <td>6</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Fallout</td>
-                                    <td>Jake Peralta</td>
-                                    <td>5</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Assasins Creed</td>
-                                    <td>Jake Peralta</td>
-                                    <td>5</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Call of Duty</td>
-                                    <td>Jake Peralta</td>
-                                    <td>5</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>The Sims 4</td>
-                                    <td>Jake Peralta</td>
-                                    <td>1</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Skyrim</td>
-                                    <td>Rosa Diaz</td>
-                                    <td>1</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer"></div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="card card-blue">
-                        <div class="card-title title-blue">
-                            <div class="align-left label">Total outstanding fees: </div>
-                            <div class="align-right"><?php echo $numOfDebt?></div>
-                            <div class="clear-float"></div>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th class="no-border" scope="col">Member Name</th>
-                                    <th class="no-border" scope="col">Phone Number</th>
-                                    <th class="no-border" scope="col">Email</th>
-                                    <th class="no-border" scope="col">Debt</th>
-                                    <th class="no-border" scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Jake Peralta</td>
-                                    <td>07951938363</td>
-                                    <td>jakejacob@gmail.com</td>
-                                    <td>67$</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Mark Otto</td>
-                                    <td>07355283924</td>
-                                    <td>mark.otto@uni.ac.uk</td>
-                                    <td>10$</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Jacob Thornton</td>
-                                    <td>07335288283</td>
-                                    <td>thortonjac@gmail.com</td>
-                                    <td>9$</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Larry Birdman</td>
-                                    <td>07235235428</td>
-                                    <td>larrybir@outlook.com</td>
-                                    <td>6$</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Jane Brown</td>
-                                    <td>07043230911</td>
-                                    <td>jane.brown@uni.ac.uk</td>
-                                    <td>5$</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Rosa Diaz</td>
-                                    <td>07051938364</td>
-                                    <td>rd@hotmail.co.uk</td>
-                                    <td>3$</td>
-                                    <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer"></div>
-                    </div>
-                </div>
+
+    <h1>Overview</h1>
+</div>
+<div class="row mt-3">
+    <div class="col">
+        <div class="card card-purple card-big">
+            <div class="card-title title-purple">
+                <div class="label">Overdue rentals</div>
             </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="no-border" scope="col">Game Title</th>
+                        <th class="no-border" scope="col">Member Name</th>
+                        <th class="no-border" scope="col">Until</th>
+                        <th class="no-border" scope="col">Extensions</th>
+                        <th class="no-border" scope="col"></th>
+                        <th class="no-border" scope="col"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <?php $rentals = findRentals();
+                    while ($rental = mysqli_fetch_assoc($rentals)) {
+                    if (isOverdue($rental)){ ?>
+                    <tr>
+                        <td><?php echo $rental['name']; ?></td>
+                        <td><?php echo $rental['firstname'] . " " . $rental['surname']; ?></td>
+                        <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
+                        <td><?php echo $rental['extension']; ?></td>
+                        <form action="" method="post">
+                            <td><input type="checkbox" name="isDamaged">Damaged</td>
+                            <input type="hidden" name="rentalID" value= <?php echo $rental['rentalID'] ?>>
+                            <input type="hidden" name="memberID" value= <?php echo $rental['memberID'] ?>>
+                            <input type="hidden" name="startDate" value= <?php echo $rental['startDate'] ?>>
+                            <input type="hidden" name="period" value= <?php echo $rental['period'] ?>>
+                            <td>
+                                <button type="submit"><i class="fas fa-undo-alt"></i> return
+                            </td>
+                        </form>
+                        <?php }
+                        } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col">
+        <a class="card card-blue card-big" href="?tab=members#banned">
+            <div class="card-title title-blue">
+                <div class="align-left label">Total outstanding fees:</div>
+                <div class="align-right"><?php echo $numOfDebt . '£'; ?></div>
+                <div class="clear-float"></div>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="no-border" scope="col">Member Name</th>
+                        <th class="no-border" scope="col">Date of Birth</th>
+                        <th class="no-border" scope="col">Phone Number</th>
+                        <th class="no-border" scope="col">Email</th>
+                        <th class="no-border" scope="col">Home address</th>
+                        <th class="no-border" scope="col">Violations</th>
+                        <th class="no-border" scope="col">Debt</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php $members = get_member_with_fees();
+                    while ($member = mysqli_fetch_assoc($members)) { ?>
+                        <tr>
+                            <td><?php echo $member['firstname'] . " " . $member['surname']; ?></td>
+                            <td><?php echo $member['DoB']; ?></td>
+                            <td><?php echo $member['phoneNo']; ?></td>
+                            <td><?php echo $member['email']; ?></td>
+                            <td><?php echo $member['homeAddress']; ?></td>
+                            <td><?php echo $member['violations']; ?></td>
+                            <td><?php echo $member['debt'] . '£'; ?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer"></div>
+        </a>
+    </div>
+</div>

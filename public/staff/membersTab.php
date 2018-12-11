@@ -25,7 +25,6 @@ $numOfBannedMembers = getBanMembers();
                         <th class="no-border" scope="col">Email</th>
                         <th class="no-border" scope="col">Home address</th>
                         <th class="no-border" scope="col">Violations</th>
-<!--                        <th class="no-border" scope="col"></th>-->
                     </tr>
                     </thead>
                     <tbody>
@@ -39,7 +38,6 @@ $numOfBannedMembers = getBanMembers();
                         <td><?php echo $member['email']; ?></td>
                         <td><?php echo $member['homeAddress']; ?></td>
                         <td><?php echo $member['violations']; ?></td>
-<!--                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>-->
                     </tr>
                     <?php }} ?>
                     </tbody>
@@ -51,7 +49,7 @@ $numOfBannedMembers = getBanMembers();
 </div>
 <div class="row mt-5">
     <div class="col">
-        <div class="card card-purple card-big">
+        <div class="card card-purple card-big" id="banned">
             <div class="card-title title-purple">
                 <div class="align-left label">Banned members: </div>
                 <div class="align-right"><?php echo $numOfBannedMembers ?> </div>
@@ -68,7 +66,6 @@ $numOfBannedMembers = getBanMembers();
                         <th class="no-border" scope="col">Home address</th>
                         <th class="no-border" scope="col">Violations</th>
                         <th class="no-border" scope="col"></th>
-                        <th class="no-border" scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -82,29 +79,10 @@ $numOfBannedMembers = getBanMembers();
                         <td><?php echo $member['email']; ?></td>
                         <td><?php echo $member['homeAddress']; ?></td>
                         <td><?php echo $member['violations']; ?></td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
+<!--                        TODO:-->
+                        <td>pay back</td>
                     </tr>
                     <?php }} ?>
-                    <!-- <tr>
-                        <td>Adrian Pimento</td>
-                        <td>22/02/1980</td>
-                        <td>07951938363</td>
-                        <td>pima@gmail.com</td>
-                        <td>some address</td>
-                        <td>10</td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                        <td><a href="#">remove ban</i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Keith Pembroke</td>
-                        <td>10/11/1979</td>
-                        <td>07951938363</td>
-                        <td>keith.pembroke@gmail.com</td>
-                        <td>some address</td>
-                        <td>2</td>
-                        <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
-                        <td><a href="#">remove ban</i></a></td>
-                    </tr> -->
                     </tbody>
                 </table>
             </div>
