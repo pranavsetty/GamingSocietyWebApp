@@ -75,6 +75,12 @@ CREATE TABLE Admin
   FOREIGN KEY (staffID) REFERENCES Staff(staffID)
 );
 
+CREATE TABLE Rules
+(
+  description VARCHAR(60) NOT NULL UNIQUE,
+  value INT NOT NULL
+);
+
 INSERT into Member
 VALUES (DEFAULT, "Mrs", "Jane", "Doe", '1992-01-19', 92648936271, 0, 10, "jane@hotmail.co.uk", "SW1"),
        (DEFAULT, "Mr", "Bob", "Heggel", '1995-11-20', 9264592625, 0, 20, "bob@hotmail.co.uk", "EN2 7AJ"),
@@ -102,3 +108,11 @@ VALUES (DEFAULT, "12345", "Sir", "James", "Smith", '1992-01-19', 98765434567, "j
 
 INSERT into Admin
 VALUES(1, TRUE);
+
+INSERT into Rules
+VALUES("period in weeks", 2),
+      ("max number of games at once", 2),
+      ("extension period in weeks", 1),
+      ("max number of extensions", 2),
+      ("max violations per year", 3),
+      ("ban period", 3);
