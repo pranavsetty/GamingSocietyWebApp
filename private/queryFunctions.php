@@ -166,6 +166,18 @@ function insert_member($member) {
     return reset($subject);
   }
 
+  function get_default_ban_period(){ //Since they should all have the same value, getttin the first one should be the default
+    global $db;
+    $sql = "SELECT period FROM Ban ";
+    $sql .= "ORDER BY period ASC ";
+    $sql .= "LIMIT 1";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $subject = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return reset($subject);
+  }
+
   function is_game_being_rented($gameID){
     global $db;
     $sql = "SELECT gameID FROM Rental WHERE gameID = $gameID;";
@@ -177,7 +189,7 @@ function insert_member($member) {
   function insert_rental($rental){
     global $db;
     $start_date = date('Y-m-d');
-    if (is_game_being_rented($rental['GameID'])) return false;
+    if (isCurrentlyAvailable($rental['GameID'])) return false;
     $sql = "INSERT INTO Rental ";
     $sql .= "(memberID, gameID, startDate) ";
     $sql .= "VALUES (";
@@ -229,6 +241,18 @@ function insert_member($member) {
     return $result;
   }
 
+  function get_member_name_by_ID($memberID){
+        global $db;
+        $sql = "SELECT firstName FROM Member ";
+        $sql .= "WHERE memberID='" . $memberID . "'";
+        $result = mysqli_query($db, $sql);
+        confirm_result_set($result);
+        $subject = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        return reset($subject);
+  }
+
+
   function isBanned($memberID){
     global $db;
     $sql = "SELECT memberID FROM Ban WHERE Ban.memberID = $memberID;";
@@ -269,9 +293,28 @@ function insert_member($member) {
     }
 
     function addMemberToBan($memberID){
-      echo '<script language = "javascript">';
-      echo 'alert ("YIKES");';
-      echo '</script>';
+      global $db;
+      $startDate = date('Y-m-d');
+      $period = get_default_ban_period();
+      $periodInWeeks = $period * 4.345;
+      //$endDate = calculateEndDate($startDate, round($periodInWeeks));
+      $sql = "INSERT INTO Ban ";
+      $sql .= "(memberID, startDate, endDate) ";
+      $sql .= "VALUES (";
+      $sql .= "'" . $memberID . "',";
+      $sql .= "'" . $startDate . "',";
+      $sql .= "NULL";
+      $sql .= ");";
+      $result = mysqli_query($db, $sql);
+      // For INSERT statements, $result is true/false
+      if($result) {
+        return true;
+      } else {
+        // INSERT failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+      }
     }
 function search_games($search)
 {
@@ -306,13 +349,6 @@ function search_games($search)
         exit;
       }
     }
-    // function getGameRows($gameID){
-    // global $db;
-    // $sql = "SELECT COUNT(1) gameID FROM Game,Rental ";
-    // $sql .= "WHERE Rental.gameID = " . $gameID . "'";
-    // $result = mysqli_query($db, $sql);
-    // if (mysqli_num_rows($result)==0) return false;
-    // }
 
     function getNumRows(){
     global $db;
@@ -337,6 +373,7 @@ function search_games($search)
         exit;
       }
     }
+
 
 
 ?>

@@ -7,7 +7,8 @@ require_once('../../../private/initialize.php');
 if (is_post_request()) {
 
     $rental = [];
-    $rental['MemberID'] = $_POST['MemberID'] ?? '';
+    $rental['MemberID'] = $_POST['memberID'] ?? '';
+    echo $_POST['memberID'];
     $rental['GameID'] = $_POST['GameID'] ?? '';
     //$member['Period'] = $_POST['Period'] ?? '';
 
@@ -46,11 +47,28 @@ if (is_post_request()) {
             <h1 class="mb-5 mt-3 text-uppercase">Add Rental</h1>
         </div>
         <div class="row">
-            <div class="col-6 form-group">
+            <!-- <div class="col-6 form-group">
                 <label for="MemberID">Member ID</label>
                 <input type="text" name="MemberID" id="MemberID" class="form-control mb-2" placeholder="Member ID"
                        required autofocus>
+            </div> -->
+
+
+
+            <div class="col-6 form-group">
+              <label for="sel1">Members:</label>
+              <select class="form-control" id="sel1">
+                <?php $members =  not_banned_members();
+                      foreach($members as $member) {
+                      ?>
+                      <option><a><?php echo get_member_name_by_ID($member); ?></a></option>
+                <?php
+              } ?>
+
+              </select>
             </div>
+
+
             <div class="col-6 form-group">
                 <div class='form-group'>
                     <label for="GameID">Game ID</label>

@@ -1,5 +1,4 @@
 <?php
-
 function checkActive($navItem) {
     $className = "nav-link";
     global $active;
@@ -104,6 +103,15 @@ function isCurrentlyAvailable($gameID){
     return !isCurrentRental($rental) || !is_game_being_rented($gameID) ;
 }
 
+
+function not_banned_members(){
+    $members = [];
+    $member =  get_simple_member_data();
+          while($m = mysqli_fetch_assoc($member)) {
+            if (!isBanned($m['memberID'])) array_push($members, $m['memberID']);
+        }
+   return $members;
+}
 
 
 ?>

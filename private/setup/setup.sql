@@ -49,7 +49,7 @@ CREATE TABLE Ban
 (
   memberID    INT   NOT NULL,
   startDate   DATE  NOT NULL,
-  endDate     DATE  NOT NULL,
+  endDate     DATE,
   period      INT   NOT NULL DEFAULT 6,
   FOREIGN KEY (memberID) REFERENCES Member(memberID)
 );

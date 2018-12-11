@@ -13,7 +13,6 @@
      $isDamaged;
      if (isset($_POST['isDamaged'])) $isDamaged = true;
      else $isDamaged = false;
-     if ($isDamaged) echo "It's damaged";
      $result = returnRental($rent, $isDamaged);
      if($result !== true) {
        echo '<script language = "javascript">';
