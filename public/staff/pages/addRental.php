@@ -7,9 +7,8 @@ require_once('../../../private/initialize.php');
 if (is_post_request()) {
 
     $rental = [];
-    $rental['MemberID'] = $_POST['memberID'] ?? '';
-    echo $_POST['memberID'];
-    $rental['GameID'] = $_POST['GameID'] ?? '';
+    $rental['MemberID'] = $_POST['member'] ?? '';
+    $rental['GameID'] = $_POST['game'] ?? '';
     //$member['Period'] = $_POST['Period'] ?? '';
 
     $result = insert_rental($rental);
@@ -48,32 +47,39 @@ if (is_post_request()) {
         </div>
         <div class="row mt-5">
             <div class="col-6 form-group">
-              <label for="sel1">Members:</label>
-              <select class="form-control" id="sel1">
-                <?php $members =  not_banned_members();
-                      foreach($members as $member) {
-                      ?>
-                      <option><a><?php echo get_member_name_by_ID($member); ?></a></option>
-                <?php
-              } ?>
+                <label for="sel1">Members:</label>
+                <select class="form-control" id="sel1" name ="member">
+                    <?php $members =  not_banned_members();
+                    foreach($members as $member) {
+                        $names = get_member_by_ID($member);
+                        echo "<option value=". $member. ">".$names['firstName']. " " .$names['surname']. "</option>";
+                    }
+                    ?>
 
-              </select>
+                </select>
+                <input type = "submit" name = "member" value = "member" style ="display:none"/>
             </div>
 
 
             <div class="col-6 form-group">
-                <div class='form-group'>
-                    <label for="GameID">Game ID</label>
-                    <input type="text" name="GameID" id="GameID" class="form-control mb-2" placeholder="Game ID"
-                           required autofocus>
+                <label for="sel1">Available Games:</label>
+                <select class="form-control" id="sel1" name ="game">
+                    <?php $games =  find_game_data();
+                    while($game = mysqli_fetch_assoc($games)) {
+                        if (isCurrentlyAvailable($game['gameID']))echo "<option value=". $game['gameID']. ">"  . $game['name']. "</option>";
+                    }
+
+                    ?>
+
+                </select>
+                <input type = "submit" name = "game" value = "game" style ="display:none"/>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-6 d-flex justify-content-center">
+                    <button class="mt-5 btn btn-lg btn-login" type="submit" name="Add Game">Add Game</button>
                 </div>
             </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <div class="col-6 d-flex justify-content-center">
-                <button class="btn btn-lg btn-login mt-6" type="submit" name="Add Rental">Add Rental</button>
-            </div>
-        </div>
+
 
     </form>
 </div>

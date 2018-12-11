@@ -203,7 +203,8 @@ function insert_rental($rental)
 {
     global $db;
     $start_date = date('Y-m-d');
-    if (isCurrentlyAvailable($rental['GameID'])) return false;
+    if (!isCurrentlyAvailable($rental['GameID'])) return false;
+    if (!canRentMoreGames($rental['MemberID'])) return false;
     $sql = "INSERT INTO Rental ";
     $sql .= "(memberID, gameID, startDate) ";
     $sql .= "VALUES (";
@@ -222,6 +223,22 @@ function insert_rental($rental)
         exit;
     }
 }
+
+function canRentMoreGames($memberID){
+    global $db;
+    $sql = "SELECT COUNT(*) FROM Rental ";
+    $sql .= "WHERE memberID = " . $memberID ." ";
+    $sql .= "GROUP BY memberID ";
+    $sql .= "LIMIT 1";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $subject = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    $answer = reset($subject);
+    if ($answer > 3) return false;
+    else return true;
+}
+
 
 function changeDefaultPeriod($newPeriod)
 {
@@ -277,16 +294,16 @@ function get_simple_member_data()
     return $result;
 }
 
-function get_member_name_by_ID($memberID)
+function get_member_by_ID($memberID)
 {
     global $db;
-    $sql = "SELECT firstName FROM Member ";
+    $sql = "SELECT firstName, surname FROM Member ";
     $sql .= "WHERE memberID='" . $memberID . "'";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     $subject = mysqli_fetch_assoc($result);
     mysqli_free_result($result);
-    return reset($subject);
+    return $subject;
 }
 
 function get_member_with_fees()
