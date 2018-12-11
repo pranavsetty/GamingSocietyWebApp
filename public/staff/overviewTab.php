@@ -1,3 +1,6 @@
+<?php
+$numOfDebt = getDebt();
+?>
 <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
               <h1>Overview</h1>
           </div>
@@ -90,7 +93,7 @@
                     <div class="card card-blue">
                         <div class="card-title title-blue">
                             <div class="align-left label">Total outstanding fees: </div>
-                            <div class="align-right">90$</div>
+                            <div class="align-right"><?php echo $numOfDebt?></div>
                             <div class="clear-float"></div>
                         </div>
                         <div class="card-body">

@@ -358,6 +358,54 @@ function search_games($search)
     return $numRows;
     }
 
+    function getRentals(){
+    global $db;
+    $sql ="SELECT * FROM Rental";
+    $result = mysqli_query($db, $sql);
+    $numRentals = mysqli_num_rows($result);
+    return $numRentals;
+    }
+
+
+    function getBanMembers(){
+    global $db;
+    $sql = "SELECT * FROM Ban";
+    $result = mysqli_query($db, $sql);
+    $numBanMembers = mysqli_num_rows($result);
+    return $numBanMembers;
+    }
+
+function getMembers() {
+    global $db;
+    $sql = "SELECT * FROM Member";
+    $result = mysqli_query($db, $sql);
+    $numMembers = mysqli_num_rows($result);
+    $numCurrentMembers = $numMembers - getBanMembers();
+    return $numCurrentMembers;
+}
+
+
+function getStaff(){
+    global $db;
+    $sql ="SELECT * FROM Staff";
+    $result = mysqli_query($db, $sql);
+    $numStaff = mysqli_num_rows($result);
+    return $numStaff;
+    }
+
+    function getDebt(){
+    global $db;
+    $sql = "SELECT * FROM Member";
+    $result = mysqli_query($db, $sql);
+    $numDebt = 0;
+    while($num = mysqli_fetch_assoc($result)){
+    $numDebt += $num['debt'];
+        }
+        return $numDebt;
+    }
+
+
+
     function increaseViolation($rental){
       global $db;
       $sql = "UPDATE Member set violations = violations+1";

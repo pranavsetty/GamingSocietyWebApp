@@ -3,6 +3,7 @@
  require_once('../../private/initialize.php');
  $rentals =  findRentals();
  $rental = mysqli_fetch_assoc($rentals);
+    $numOfRentals = getRentals();
 
  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      $rent = [];
@@ -32,7 +33,7 @@
         <div class="card card-purple card-big">
             <div class="card-title title-purple">
                 <div class="align-left label">Current rentals: </div>
-                <div class="align-right">4</div>
+                <div class="align-right"> </div>
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
