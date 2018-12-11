@@ -33,10 +33,10 @@ if (is_post_request()) {
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include(PRIVATE_PATH . '/head.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/head.php'); ?>
 
 <body>
-<?php include(PRIVATE_PATH . '/navigationStaff.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/navigationStaff.php'); ?>
 
 <div class="container mb-5">
     <!--    TODO: Add by dropdown-->
@@ -46,15 +46,7 @@ if (is_post_request()) {
         <div class="row d-flex justify-content-center">
             <h1 class="mb-5 mt-3 text-uppercase">Add Rental</h1>
         </div>
-        <div class="row">
-            <!-- <div class="col-6 form-group">
-                <label for="MemberID">Member ID</label>
-                <input type="text" name="MemberID" id="MemberID" class="form-control mb-2" placeholder="Member ID"
-                       required autofocus>
-            </div> -->
-
-
-
+        <div class="row mt-5">
             <div class="col-6 form-group">
               <label for="sel1">Members:</label>
               <select class="form-control" id="sel1">
@@ -79,14 +71,14 @@ if (is_post_request()) {
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-6 d-flex justify-content-center">
-                <button class="mt-5 btn btn-lg btn-login" type="submit" name="Add Game">Add Game</button>
+                <button class="btn btn-lg btn-login mt-6" type="submit" name="Add Rental">Add Rental</button>
             </div>
         </div>
 
     </form>
 </div>
 
-<?php include(PRIVATE_PATH . '/footer.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/footer.php'); ?>
 
 </body>
 </html>

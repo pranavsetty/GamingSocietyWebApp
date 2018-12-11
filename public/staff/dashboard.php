@@ -25,14 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo '</script>';
     }
 }
-$staffName = getStaffData($_SESSION['username']);
+$staffName = getStaffDataByEmail($_SESSION['username']);
 $isAdmin = isAdmin($_SESSION['username']);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include(PRIVATE_PATH . '/head.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/head.php'); ?>
 
 
 <body>
@@ -76,14 +76,14 @@ $isAdmin = isAdmin($_SESSION['username']);
                 $tab = $_GET['tab'];
             }
 
-            include($tab . 'Tab.php'); ?>
+            include('tabs/' . $tab . 'Tab.php'); ?>
 
         </div>
       </div>
     </div>
 
 
-    <?php include(PRIVATE_PATH . '/footer.php'); ?>
+    <?php include(PRIVATE_PATH . '/shared/footer.php'); ?>
 
 </body>
 </html>

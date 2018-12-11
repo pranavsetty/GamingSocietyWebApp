@@ -36,10 +36,10 @@ if(is_post_request()) {
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include(PRIVATE_PATH . '/head.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/head.php'); ?>
 
 <body>
-<?php include(PRIVATE_PATH . '/navigationStaff.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/navigationStaff.php'); ?>
 
 <div class="container mb-5">
 
@@ -97,7 +97,7 @@ if(is_post_request()) {
     </form>
 </div>
 
-<?php include(PRIVATE_PATH . '/footer.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/footer.php'); ?>
 
 </body>
 </html>

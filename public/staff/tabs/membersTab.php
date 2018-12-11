@@ -1,7 +1,3 @@
-<?php
-$numOfMembers = getMembers();
-$numOfBannedMembers = getBanMembers();
-?>
 <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
     <h1 class="align-left">Members</h1>
     <a class="btn btn-add align-right" href="pages/addMember.php" title="Add member"><i class="fas fa-plus"></i></a>
@@ -12,7 +8,7 @@ $numOfBannedMembers = getBanMembers();
         <div class="card card-blue card-big">
             <div class="card-title title-blue">
                 <div class="align-left label">Active members: </div>
-                <div class="align-right"><?php echo $numOfMembers ?></div>
+                <div class="align-right"><?php echo countMembers(); ?></div>
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
@@ -52,7 +48,7 @@ $numOfBannedMembers = getBanMembers();
         <div class="card card-purple card-big" id="banned">
             <div class="card-title title-purple">
                 <div class="align-left label">Banned members: </div>
-                <div class="align-right"><?php echo $numOfBannedMembers ?> </div>
+                <div class="align-right"><?php echo countBanMembers(); ?> </div>
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
@@ -79,7 +75,7 @@ $numOfBannedMembers = getBanMembers();
                         <td><?php echo $member['email']; ?></td>
                         <td><?php echo $member['homeAddress']; ?></td>
                         <td><?php echo $member['violations']; ?></td>
-<!--                        TODO:-->
+<!--                        TODO: -->
                         <td>pay back</td>
                     </tr>
                     <?php }} ?>

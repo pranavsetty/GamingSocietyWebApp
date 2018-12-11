@@ -1,14 +1,3 @@
-<?php require_once('../../private/initialize.php');
-
-$subjectSets = find_game_data();
-
-$numberOfGames = getNumRows();
-?>
-
-
-
-
-<!DOCTYPE html>
 <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
     <h1 class="align-left">Games</h1>
     <a class="btn btn-add align-right" href="pages/addGame.php" title="Add Game"><i class="fas fa-plus"></i></a>
@@ -22,7 +11,7 @@ $numberOfGames = getNumRows();
                 <div class="align-left label">Current Games: </div>
 
 
-                <div class="align-right"><?php echo $numberOfGames ?></div>
+                <div class="align-right"><?php echo countGames(); ?></div>
 
                 <div class="clear-float"></div>
             </div>
@@ -49,7 +38,7 @@ $numberOfGames = getNumRows();
                                 <td><?php echo($game['ageLimit']); ?></td>
                                 <td><?php echo($game['releaseYear']); ?></td>
                                 <td><?php echo($game['cost'] . "£"); ?></td>
-                                <td><a href="<?php echo ('pages/edit.php?id=' . ($game['gameID'])); ?>"><i class="fas fa-edit"></i></a></td>
+                                <td><a href="<?php echo ('pages/editGame.php?id=' . ($game['gameID'])); ?>"><i class="fas fa-edit"></i></a></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -61,5 +50,3 @@ $numberOfGames = getNumRows();
     mysqli_free_result($gameSet);
     ?>
 </div>
-
-</html>

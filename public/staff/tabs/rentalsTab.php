@@ -1,11 +1,6 @@
 
 <?php
- require_once('../../private/initialize.php');
- $rentals =  findRentals();
- $rental = mysqli_fetch_assoc($rentals);
-    $numOfRentals = getRentals();
-
- if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      $rent = [];
      $rent['rentalID'] = $_POST['rentalID'] ?? '';
      $rent['memberID'] = $_POST['memberID'] ?? '';
@@ -41,6 +36,7 @@
                         <th class="no-border" scope="col">Member Name</th>
                         <th class="no-border" scope="col">Until</th>
                         <th class="no-border" scope="col">Extensions</th>
+                        <th class="no-border" scope="col"></th>
                         <th class="no-border" scope="col"></th>
                         <th class="no-border" scope="col"></th>
                     </tr>
@@ -90,7 +86,6 @@
                         <th class="no-border" scope="col">Until</th>
                         <th class="no-border" scope="col">Extensions</th>
                         <th class="no-border" scope="col">Return Date</th>
-                        <th class="no-border" scope="col"></th>
                     </tr>
                     </thead>
 
@@ -104,7 +99,6 @@
                         <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
                         <td><?php echo $rental['extension']; ?></td>
                         <td><?php echo $rental['returnDate']; ?></td>
-                        <td><a href="#"><i class="fas fa-plus-circle"></i> extend</a></td>
                     </tr>
                     <?php }} ?>
                     </tbody>
@@ -150,7 +144,9 @@
                         <input type = "hidden" name = "memberID" value = <?php echo $rental['memberID']?> >
                         <input type = "hidden" name = "startDate" value = <?php echo $rental['startDate']?> >
                         <input type = "hidden" name = "period" value = <?php echo $rental['period']?> >
-                        <td><input type="submit" value ="Return" class="btn btn-outline-primary btn-sm"></td>
+                            <td>
+                                <button type="submit"><i class="fas fa-undo-alt"></i> return
+                            </td>
                         </form>
                     </tr>
                     <?php }} ?>

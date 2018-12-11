@@ -8,10 +8,10 @@ require_once('../private/initialize.php');
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include(PRIVATE_PATH . '/head.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/head.php'); ?>
 
 <body>
-<?php include(PRIVATE_PATH . '/navigation.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/navigation.php'); ?>
 
 
   <div class="container text-center">
@@ -28,7 +28,7 @@ require_once('../private/initialize.php');
       </form>
     </div>
 
-    <?php include(PRIVATE_PATH . '/footer.php'); ?>
+    <?php include(PRIVATE_PATH . '/shared/footer.php'); ?>
 
 </body>
 </html>

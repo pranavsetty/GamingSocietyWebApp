@@ -11,10 +11,10 @@ $gameEntry = find_game_id($gameID)
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include(PRIVATE_PATH . '/head.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/head.php'); ?>
 
 <body>
-<?php include(PRIVATE_PATH . '/navigation.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/navigation.php'); ?>
 
 <div class="container">
     <div class="row d-flex justify-content-center mt-5 mb-5">
@@ -90,7 +90,7 @@ $gameEntry = find_game_id($gameID)
     </div>
 </div>
 
-<?php include(PRIVATE_PATH . '/footer.php'); ?>
+<?php include(PRIVATE_PATH . '/shared/footer.php'); ?>
 
 </body>
 </html>
