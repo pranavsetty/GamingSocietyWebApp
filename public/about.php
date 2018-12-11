@@ -44,41 +44,16 @@ require_once('../private/initialize.php');
             </p>
             <h2 class="mt-7 mb-5">Our Team</h2>
             <div class="row mt-5">
-                <div class="col-4 mb-5">
-                    <div class="card mx-auto text-center">
-                        <img src="images/maleavatar.png" alt="Male Avatar" class="d-block">
-                        Pranav Bheemsetty
-                        pranav@gmail.com
+                <?php $staff =  get_staff_data();
+                while($staffMember = mysqli_fetch_assoc($staff)) { ?>
+                    <div class="col-4 mb-5">
+                        <div class="card mx-auto text-center">
+                            <img src="images/maleavatar.png" alt="Male Avatar" class="d-block">
+                            <?php echo $staffMember['firstname'] . " " . $staffMember['surname']; ?><br>
+                            <?php echo $staffMember['email']; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="col-4 mb-5">
-                    <div class="card text-center">
-                        <img src="images/maleavatar.png" alt="Male Avatar" class="d-block">
-                        Marc Murphy
-                        marc@gmail.com
-                    </div>
-                </div>
-                <div class="col-4 mb-5">
-                    <div class="card text-center">
-                        <img src="images/maleavatar.png" alt="Male Avatar" class="d-block">
-                        Nihadur (Nihad) Rahman
-                        nihad@gmail.com
-                    </div>
-                </div>
-                <div class="col-4 mb-5">
-                    <div class="card text-center">
-                        <img src="images/maleavatar.png" alt="Male Avatar" class="d-block">
-                        Mananchaya (Mai) Khumtai
-                        mai@gmail.com
-                    </div>
-                </div>
-                <div class="col-4 mb-5">
-                    <div class="card text-center">
-                        <img src="images/maleavatar.png" alt="Male Avatar" class="d-block">
-                        Karolina Szafranek
-                        karolina@gmail.com
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
