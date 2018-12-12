@@ -56,10 +56,10 @@ function calculateEndDate($startDate,$weeks){
 }
 
 function isCurrentRental($rental){
-    $currentDate = date('Y-m-d');
-    $returnDate = $rental['returnDate'];
-    if ($returnDate !== NULL) return false;
-    else return true;
+    $isNull = false;
+    foreach ($rental as $r){
+        if ($r == NULL) $isNull = true;
+    }return $isNull;
 }
 
 function isOverdue($rental){

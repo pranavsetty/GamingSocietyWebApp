@@ -41,9 +41,12 @@ function getGameRental($gameID)
     $sql .= "WHERE gameID= '" . $gameID . "'";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
-    $subject = mysqli_fetch_assoc($result);
+    $rentals = array();
+    while($subject = mysqli_fetch_assoc($result)){
+        $rentals[] = $subject['returnDate'];
+    }
     mysqli_free_result($result);
-    return $subject; // returns an assoc. array
+    return $rentals; // returns an assoc. array
 }
 
 
@@ -204,7 +207,7 @@ function insert_rental($rental)
     global $db;
     $start_date = date('Y-m-d');
     if (!isCurrentlyAvailable($rental['GameID'])) return false;
-    if (!canRentMoreGames($rental['MemberID'])) return false;
+    if (!canRentMoreGames($rental['MemberID'], $rental['GameID'])) return false;
     $sql = "INSERT INTO Rental ";
     $sql .= "(memberID, gameID, startDate) ";
     $sql .= "VALUES (";
@@ -224,19 +227,29 @@ function insert_rental($rental)
     }
 }
 
-function canRentMoreGames($memberID){
+function canRentMoreGames($memberID, $gameID){
     global $db;
-    $sql = "SELECT COUNT(*) FROM Rental ";
-    $sql .= "WHERE memberID = " . $memberID ." ";
+    $sql = "SELECT COUNT(*) as count FROM Rental ";
+    $sql .= "WHERE memberID = " . $memberID ." AND returnDate IS NULL ";
     $sql .= "GROUP BY memberID ";
     $sql .= "LIMIT 1";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
+    $rental = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return ($rental['count'] < getRentGames());
+}
+
+function getRentGames(){
+    global $db;
+    $sql = "SELECT value FROM Rules ";
+    $sql .= "WHERE description = ";
+    $sql .= "'max number of games at once';";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
     $subject = mysqli_fetch_assoc($result);
     mysqli_free_result($result);
-    $answer = reset($subject);
-    if ($answer > 3) return false;
-    else return true;
+    return reset($subject);
 }
 
 
