@@ -525,5 +525,31 @@ function increaseViolation($rental)
     }
 }
 
+function insert_staff($staff){
+    global $db;
+    $sql = "INSERT INTO Staff ";
+    $sql .= "(title, firstname, surname, DoB, phoneNo, email, homeAddress, password) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $staff['Title'] . "',";
+    $sql .= "'" . $staff['FName'] . "',";
+    $sql .= "'" . $staff['LName'] . "',";
+    $sql .= "'" . $staff['DoB'] . "',";
+    $sql .= "'" . $staff['PhoneNo'] . "',";
+    $sql .= "'" . $staff['Email'] . "',";
+    $sql .= "'" . $staff['Address'] . "',";
+    $sql .= "'" . $staff['Password'] . "'";
+    $sql .= ");";
+    $result = mysqli_query($db, $sql);
+    // For INSERT statements, $result is true/false
+    if ($result) {
+        return true;
+    } else {
+        // INSERT failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+    }
+
+}
 
 ?>

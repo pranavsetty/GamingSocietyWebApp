@@ -114,4 +114,8 @@ function not_banned_members(){
 }
 
 
+function checkIfCorrectTitle($title){
+    return $title == "Sir" || "Mr" || "Mrs"|| "Ms" || "Miss"||"Mx"||"Sir"|| "Lord"||"Lady";
+}
+
 ?>
