@@ -167,25 +167,24 @@ function insert_member($member)
     }
 }
 
-function get_default_period()
-{ //Since they should all have the same value, getttin the first one should be the default
-    global $db;
-    $sql = "SELECT period FROM Rental ";
-    $sql .= "ORDER BY period ASC ";
-    $sql .= "LIMIT 1";
-    $result = mysqli_query($db, $sql);
-    confirm_result_set($result);
-    $subject = mysqli_fetch_assoc($result);
-    mysqli_free_result($result);
-    return reset($subject);
-}
+//function get_default_period()
+//{   global $db;
+//    $sql = "SELECT period FROM Rental ";
+//    $sql .= "ORDER BY period ASC ";
+//    $sql .= "LIMIT 1";
+//    $result = mysqli_query($db, $sql);
+//    confirm_result_set($result);
+//    $subject = mysqli_fetch_assoc($result);
+//    mysqli_free_result($result);
+//    return reset($subject);
+//}
 
-function get_default_ban_period()
-{ //Since they should all have the same value, getttin the first one should be the default
+function get_ban_period()
+{
     global $db;
-    $sql = "SELECT period FROM Ban ";
-    $sql .= "ORDER BY period ASC ";
-    $sql .= "LIMIT 1";
+    $sql = "SELECT value FROM Rules ";
+    $sql .= "WHERE description = ";
+    $sql .= "'ban period';";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     $subject = mysqli_fetch_assoc($result);
@@ -252,20 +251,6 @@ function getRentGames(){
     return reset($subject);
 }
 
-
-function changeDefaultPeriod($newPeriod)
-{
-    global $db;
-    $sql = "ALTER TABLE Rental ALTER period SET DEFAULT $newPeriod";
-    $result = mysqli_query($db, $sql);
-    if ($result) {
-        return true;
-    } else {
-        echo mysqli_error($db);
-        db_disconnect($db);
-        exit;
-    }
-}
 
 function findRentals()
 {
@@ -377,15 +362,14 @@ function addMemberToBan($memberID)
 {
     global $db;
     $startDate = date('Y-m-d');
-    $period = get_default_ban_period();
-    $periodInWeeks = $period * 4.345;
-    //$endDate = calculateEndDate($startDate, round($periodInWeeks));
+    $period = get_ban_period();
     $sql = "INSERT INTO Ban ";
-    $sql .= "(memberID, startDate, endDate) ";
+    $sql .= "(memberID, startDate, endDate, period) ";
     $sql .= "VALUES (";
     $sql .= "'" . $memberID . "',";
     $sql .= "'" . $startDate . "',";
-    $sql .= "NULL";
+    $sql .= "NULL, ";
+    $sql .= "'".$period."'";
     $sql .= ");";
     $result = mysqli_query($db, $sql);
     // For INSERT statements, $result is true/false
