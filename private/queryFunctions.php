@@ -145,7 +145,7 @@ function insert_member($member)
 {
     global $db;
     $sql = "INSERT INTO Member ";
-    $sql .= "(title, firstname, surname, DoB, phoneNo, email, homeAdress) ";
+    $sql .= "(title, firstname, surname, DoB, phoneNo, email, homeAddress) ";
     $sql .= "VALUES (";
     $sql .= "'" . $member['Title'] . "',";
     $sql .= "'" . $member['FName'] . "',";

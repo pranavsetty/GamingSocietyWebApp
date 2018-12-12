@@ -51,8 +51,18 @@ if(is_post_request()) {
         </div>
         <div class="row">
             <div class="col-6 form-group">
-                <label for="Title">Title</label>
-                <input type="text" name="Title" id = "Title" class="form-control mb-2" placeholder="Title" required autofocus>
+                <label for="sel1">Members:</label>
+                <select class="form-control" id="sel1" name ="Title">
+                    <option value= "Mr">Mr</option>
+                    <option value= "Mrs">Mrs</option>
+                    <option value= "Mss">Mss</option>
+                    <option value= "Lord">Lord</option>
+                    <option value= "Lord">Sir</option>
+                    <option value= "Lord">Dr</option>
+                    <option value= "Lord">Lady</option>
+                    <option value= "Lord">Mx</option>
+                </select>
+                <input type = "submit" style ="display:none"/>
             </div>
             <div class="col-6 form-group">
                 <label for="DoB">Date of Birth</label>
