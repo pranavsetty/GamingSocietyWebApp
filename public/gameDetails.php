@@ -76,7 +76,14 @@ $gameEntry = find_game_id($gameID)
                         </div>
                         <div class="col-7 pl-5">
                             <p class="text-justify">
-                                <?php echo h($gameEntry['gameDescription']); ?>
+                                <?php
+                                echo h($gameEntry['gameDescription']);
+                                echo "<br>";
+                                echo "<br>";
+                                echo "To read more:";
+                                echo "<br>";
+                                echo make_links_clickable(h($gameEntry['link']));
+                                ?>
                             </p>
                         </div>
                 </div>
