@@ -3,6 +3,28 @@ $loggingIn = true;
 $active = "staff login";
 $styleFileName = "login.css";
 require_once('../private/initialize.php');
+
+$inputUsername = '';
+$inputPassword = '';
+$errors = '';
+
+if (is_post_request()) {
+    $inputUsername = $_POST['inputUsername'] ?? '';
+    $inputPassword = $_POST['inputPassword'] ?? '';
+
+    $staff = find_staff_by_email($inputUsername);
+    if ($staff) {
+        if ($staff['password'] == $inputPassword) {
+            log_in($staff);
+            redirect_to(url_for('/staff/dashboard.php'));
+        } else {
+            $errors = "Incorrect password.";
+        }
+    } else {
+        $errors = "Incorrect email.";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +38,13 @@ require_once('../private/initialize.php');
 
   <div class="container text-center">
 
-      <form class="form-signin" action="staff/dashboard.php" method="post">
+      <form class="form-signin" action="staffLogin.php" method="post">
         <h1 class="mb-4 mt-3 text-uppercase">Staff Login</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" name="inputUsername" class="form-control mb-2" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
+          <?php display_login_errors($errors);?>
 
         <button class="mt-3 btn btn-lg btn-login btn-block" type="submit" name ="btn">Sign in</button>
 

@@ -1,30 +1,10 @@
 <?php
-session_start();
 $active = "staff login";
 $stylePath = "../style/";
 $styleFileName = "dashboard.css";
 require_once('../../private/initialize.php');
 
-// Handle form values sent by new.php
-
-$inputUsername = $_POST['inputUsername'] ?? '';
-$inputPassword = $_POST['inputPassword'] ?? '';
-//echo $inputusername;
-//echo $inputPassword;
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (find_staff_by_email($inputUsername)["email"] == $inputUsername
-        && get_staff_password_by_email($inputUsername)["password"] == $inputPassword) {
-        $_SESSION['username'] = $inputUsername;
-        $_SESSION['password'] = $inputPassword;
-        session_write_close();
-    } else {
-        echo '<script language = "javascript">';
-        echo 'window.location.href = "../staff-login.php";';
-        echo 'alert ("Incorrect email or password");';
-        echo '</script>';
-    }
-}
+require_login();
 $staffName = getStaffDataByEmail($_SESSION['username']);
 $isAdmin = isAdmin($_SESSION['username']);
 ?>
@@ -43,7 +23,7 @@ $isAdmin = isAdmin($_SESSION['username']);
               <div class="headline border-bottom">
                   <?php echo $staffName['firstname']?><br><?php echo $staffName['surname']?>
                   <h7><br><?php if ($isAdmin) echo 'admin'; else echo 'staff'; ?></h7>
-                  <br><a href="../index.php" class="btn btn-sidebar mb-3"><i class="fas fa-unlock-alt"></i> Logout</a>
+                  <br><a href="<?php echo url_for('/staff/logout.php'); ?>"" class="btn btn-sidebar mb-3"><i class="fas fa-unlock-alt"></i> Logout</a>
               </div>
             <ul class="nav flex-column">
               <li class="nav-item nav-item-sidebar">

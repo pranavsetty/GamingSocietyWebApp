@@ -5,7 +5,7 @@ require_once('functions.php');
 function find_staff_by_email($email)
 {
     global $db;
-    $sql = "SELECT email FROM Staff ";
+    $sql = "SELECT staffID, email, password FROM Staff ";
     $sql .= "WHERE email='" . $email . "'";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
@@ -23,15 +23,6 @@ function find_game_data()
     return $result;
 
 }
-
-// TODO
-// function find_simple_game_data(){
-//   global $db;
-//   $sql = "SELECT * FROM Game ";
-//   $sql .= "ORDER BY gameID ASC";
-//   $result = mysqli_query($db, $sql);
-//   return $result;
-// }
 
 
 function getGameRental($gameID)

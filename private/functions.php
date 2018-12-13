@@ -8,19 +8,13 @@ function checkActive($navItem) {
   echo $className;
 }
 
-function prompt(){
-    echo '<script language = "javascript">';
-    echo 'alert ("Incorrect email or password");';
-    echo '</script>';
-}
-
 
 function checkLoggingIn() {
     global $loggingIn;
     if ($loggingIn) {
-        echo '<a href="index.php" class="btn btn-navbar"><i class="fas fa-angle-double-left"></i> Main Page</a>';
+        echo '<a href="' . url_for('/index.php') . '" class="btn btn-navbar"><i class="fas fa-angle-double-left"></i> Main Page</a>';
     } else {
-        echo '<a href="staff-login.php" class="btn btn-navbar"><i class="fas fa-unlock-alt"></i> Staff Login</a>';
+        echo '<a href="' . url_for('/staffLogin.php') . '" class="btn btn-navbar"><i class="fas fa-unlock-alt"></i> Staff Login</a>';
     }
 }
 
@@ -34,19 +28,12 @@ function is_post_request() {
   return $_SERVER['REQUEST_METHOD'] == 'POST';
 }
 
-function display_errors($errors=array()) {
-  $output = '';
-  if(!empty($errors)) {
-    $output .= "<div class=\"errors\">";
-    $output .= "Please fix the following errors:";
-    $output .= "<ul>";
-    foreach($errors as $error) {
-      $output .= "<li>" . h($error) . "</li>";
-    }
-    $output .= "</ul>";
-    $output .= "</div>";
+function display_login_errors($errors) {
+  if ($errors != '') {
+      echo '<p class="text-center">';
+      echo 'Login failed. ' . $errors;
+      echo '</p>';
   }
-  return $output;
 }
 
 //Might need this function but not yet
@@ -111,11 +98,6 @@ function not_banned_members(){
             if (!isBanned($m['memberID'])) array_push($members, $m['memberID']);
         }
    return $members;
-}
-
-
-function checkIfCorrectTitle($title){
-    return $title == "Sir" || "Mr" || "Mrs"|| "Ms" || "Miss"||"Mx"||"Sir"|| "Lord"||"Lady";
 }
 
 ?>
