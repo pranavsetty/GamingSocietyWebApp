@@ -393,7 +393,7 @@ function search_games($search)
 }
 
 function make_links_clickable($text){
-    return preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1">$1</a>', $text);
+    return preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '$1', $text);
 }
 
 function returnRental($rental, $isDamaged)
