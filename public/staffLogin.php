@@ -14,7 +14,7 @@ if (is_post_request()) {
 
     $staff = find_staff_by_email($inputUsername);
     if ($staff) {
-        if ($staff['password'] == $inputPassword) {
+        if (password_verify($inputPassword, $staff['password'])) {
             log_in($staff);
             redirect_to(url_for('/staff/dashboard.php'));
         } else {

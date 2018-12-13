@@ -502,6 +502,8 @@ function increaseViolation($rental)
 
 function insert_staff($staff){
     global $db;
+    $hashed_password = password_hash($staff['Password'], PASSWORD_BCRYPT);
+
     $sql = "INSERT INTO Staff ";
     $sql .= "(title, firstname, surname, DoB, phoneNo, email, homeAddress, password) ";
     $sql .= "VALUES (";
@@ -512,7 +514,7 @@ function insert_staff($staff){
     $sql .= "'" . $staff['PhoneNo'] . "',";
     $sql .= "'" . $staff['Email'] . "',";
     $sql .= "'" . $staff['Address'] . "',";
-    $sql .= "'" . $staff['Password'] . "'";
+    $sql .= "'" . $hashed_password . "'";
     $sql .= ");";
     $result = mysqli_query($db, $sql);
     // For INSERT statements, $result is true/false
