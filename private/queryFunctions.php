@@ -592,4 +592,21 @@ function find_platforms() {
     return $result;
 }
 
+
+function editRule($description,$value){
+  global $db;
+  $sql = "UPDATE Rules set value = ".$value."";
+  $sql .= " WHERE " . $description. "= description;";
+  $result = mysqli_query($db, $sql);
+  // For UPDATE statements, $result is true/false
+  if ($result) {
+      return true;
+  } else {
+      // UPDATE failed
+      echo mysqli_error($db);
+      db_disconnect($db);
+      return false;
+      exit;
+  }
+}
 ?>
