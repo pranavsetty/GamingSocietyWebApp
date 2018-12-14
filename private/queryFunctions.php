@@ -697,7 +697,7 @@ function getMaxExtensions(){
   global $db;
   $sql = "SELECT value FROM Rules ";
   $sql .= " WHERE description = ";
-  $sql .= " 'max number of extensions'; ";
+  $sql .= " 'max_number_of_extensions'; ";
     $result = mysqli_query($db, $sql);
     return resultToInt($result);
 }
