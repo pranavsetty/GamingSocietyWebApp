@@ -177,10 +177,7 @@ function validate_game($game)
     if (!has_length($game['gameDescription'], ['max' => 5000])) {
         $errors['gameDescription'] = "Game Description must be below 5000 characters";
     }
-
-
     return $errors;
-
 }
 
 function checkIfCorrectTitle($title)

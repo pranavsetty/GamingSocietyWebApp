@@ -1,6 +1,12 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] != "None") {
+if ($_POST['newValue'] === "admin") {
+    $result = makeAdmin($_POST['staffID'], getAdmin());
+    if ($result == true){
+      redirect_to(url_for('/staff/dashboard.php?tab=overview'));
+    }
+}
+else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] != "None") {
     $result = editRule($_POST['description'], $_POST['newValue']);
     if ($result === true) {
         //$new_id = mysqli_insert_id($db); Not sure what this is for
@@ -46,7 +52,8 @@ if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] != "N
                     </thead>
                     <tbody>
                     <?php $staff =  get_staff_data();
-                    while($staffMember = mysqli_fetch_assoc($staff)) { ?>
+                    while($staffMember = mysqli_fetch_assoc($staff)) {
+                        if ($staffMember['staffID'] !== getAdmin()){?>
                             <tr>
                                 <td><?php echo $staffMember['firstname'] . " " . $staffMember['surname']; ?></td>
                                 <td><?php echo $staffMember['DoB']; ?></td>
@@ -54,11 +61,16 @@ if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] != "N
                                 <td><?php echo $staffMember['email']; ?></td>
                                 <td><?php echo $staffMember['homeAddress']; ?></td>
                                 <td><?php if (isAdmin($staffMember['email'])) echo 'admin'; else echo 'staff' ?></td>
-<!--                                TODO:-->
                                 <td>delete</td>
-                                <td>make admin</td>
+                                <form action="" method="post">
+                                    <td>
+                                        <input type = "hidden" name = "newValue" value = "admin">
+                                        <input type = "hidden" name = "staffID" value = <?php echo $staffMember['staffID']; ?>>
+                                        <button type="submit" name = "hbjni" class = "btn btn-outline-primary"> Make admin </button>
+                                    </td>
+                                </form>
                             </tr>
-                        <?php } ?>
+                        <?php }} ?>
                     </tbody>
                 </table>
             </div>

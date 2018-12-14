@@ -342,6 +342,8 @@ function get_rules_data()
     return $result;
 }
 
+
+
 function get_staff_data()
 {
     global $db;
@@ -402,6 +404,32 @@ function findGame()
     confirm_result_set($result);
     return $result;
 
+}
+
+function getAdmin(){
+  global $db;
+  $sql = "SELECT staffID FROM Admin ";
+  $sql .= "WHERE isCurrent = true;";
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  $subject = mysqli_fetch_assoc($result);
+  mysqli_free_result($result);
+  return reset($subject);
+}
+
+function makeAdmin($staffID, $adminID){
+  global $db;
+  $sql = "UPDATE Admin SET staffID = ". $staffID ." WHERE staffID = ". $adminID ." ";
+  $result = mysqli_query($db, $sql);
+  // For UPDATE statements, $result is true/false
+  if ($result) {
+      return true;
+  } else {
+      // UPDATE failed
+      echo mysqli_error($db);
+      db_disconnect($db);
+      exit;
+  }
 }
 
 function isAdmin($username)
