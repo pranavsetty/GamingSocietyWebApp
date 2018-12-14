@@ -46,7 +46,7 @@ else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] 
         <div class="card card-blue card-big">
             <div class="card-title title-blue">
                 <div class="align-left label">Staff</div>
-                <div class="align-right"><?php echo countStaff();?></div>
+                <div class="align-right"><?php echo countStaff()-1;?></div>
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
