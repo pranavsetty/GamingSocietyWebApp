@@ -1,3 +1,22 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] != "None") {
+    $result = editRule($_POST['description'], $_POST['newValue']);
+    if ($result === true) {
+        //$new_id = mysqli_insert_id($db); Not sure what this is for
+
+        echo '<script language = "javascript">';
+        echo 'alert ("You have successfully edited a rule");';
+        echo '</script>';
+      } else{
+        echo '<script language = "javascript">';
+        echo 'alert ("Error: The rule could not be edited.");';
+        echo '</script>';
+      }
+    }
+}
+?>
+
 <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
     <h1 class="align-left">Staff</h1>
     <a class="btn btn-add align-right" href="pages/addStaff.php" title="Add Staff"><i class="fas fa-plus"></i></a>
@@ -71,9 +90,32 @@
                         <tr>
                             <td><?php echo $rule['description']; ?></td>
                             <td><?php echo $rule['value']; ?></td>
-                            <td>edit</td>
+                            <form action="" method="post">
+                                <td>
+                                    <input type = "hidden" name = "newValue" value = "None">
+                                    <input type = "hidden" name = "description" value = <?php echo $rule['description']; ?>>
+                                    <button type="submit" name = "submit" class = "btn btn-outline-secondary"> edit </button>
+                                </td>
+                            </form>
+                            <?php } ?>
                         </tr>
-                    <?php } ?>
+
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                         if (isset($_POST['submit'], $_POST['newValue'])) {
+                           if ($_POST['newValue'] == "None") { ?>
+                           <form action="" method="post">
+                             <td>
+                           <input type = "hidden" name = "description" value = <?php echo $_POST['description']; ?>>
+                           <input type="text" name="newValue" class="form-control mb-2" placeholder="New Value" required autofocus >
+                           <button type="submit" class="btn btn-outline-primary"> Update </button>
+
+                           </td>
+                         </form>
+                       <?php }}}?>
+
+
+
                     </tbody>
                 </table>
             </div>

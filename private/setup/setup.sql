@@ -129,9 +129,9 @@ INSERT into Admin
 VALUES(1, TRUE);
 
 INSERT into Rules
-VALUES("period in weeks", 2),
-      ("max number of games at once", 2),
-      ("extension period in weeks", 1),
-      ("max number of extensions", 2),
-      ("max violations per year", 3),
-      ("ban period", 3);
+VALUES("period_in_weeks", 2),
+      ("max_number_of_games_at_once", 2),
+      ("extension_period_in_weeks", 1),
+      ("max_number_of_extensions", 2),
+      ("max_violations_per_year", 3),
+      ("ban_period", 3);
