@@ -83,7 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><?php echo $rental['firstname'] . " " . $rental['surname']; ?></td>
                         <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
                         <td><?php echo $rental['extension']; ?></td>
-                        <td><form method = "post" action = ''><button type="submit" name = "extend" class = "fas fa-plus-circle"> extend
+                        <td><form method= "post" action = ''>
+                                <button type="submit" name = "extend"><i class="fas fa-plus-circle"></i> extend</button>
                                     <input type = "hidden" name = "rentalID" value = <?php echo $rental['rentalID']?> >
                                     <input type = "hidden" name = "memberID" value = <?php echo $rental['memberID']?> >
                                     <input type = "hidden" name = "extension" value = <?php echo $rental['extension']?> >
@@ -98,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type = "hidden" name = "startDate" value = <?php echo $rental['startDate']?> >
                         <input type = "hidden" name = "period" value = <?php echo $rental['period']?> >
                             <td>
-                                <button type="submit"><i class="fas fa-undo-alt"></i> return
+                                <button type="submit"><i class="fas fa-undo-alt"></i> return</button>
                             </td>
                         </form>
                     </tr>

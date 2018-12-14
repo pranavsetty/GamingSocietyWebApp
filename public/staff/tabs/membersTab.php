@@ -61,7 +61,6 @@
                         <th class="no-border" scope="col">Email</th>
                         <th class="no-border" scope="col">Home address</th>
                         <th class="no-border" scope="col">Violations</th>
-                        <th class="no-border" scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -75,8 +74,6 @@
                         <td><?php echo $member['email']; ?></td>
                         <td><?php echo $member['homeAddress']; ?></td>
                         <td><?php echo $member['violations']; ?></td>
-<!--                        TODO: -->
-                        <td>pay back</td>
                     </tr>
                     <?php }} ?>
                     </tbody>

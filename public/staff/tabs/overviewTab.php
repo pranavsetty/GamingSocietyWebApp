@@ -51,7 +51,7 @@
 </div>
 <div class="row mt-5">
     <div class="col">
-        <a class="card card-blue card-big" href="?tab=members#banned">
+        <div class="card card-blue card-big">
             <div class="card-title title-blue">
                 <div class="align-left label">Total outstanding fees:</div>
                 <div class="align-right"><?php echo countTotalDebt() . '£'; ?></div>
@@ -68,6 +68,7 @@
                         <th class="no-border" scope="col">Home address</th>
                         <th class="no-border" scope="col">Violations</th>
                         <th class="no-border" scope="col">Debt</th>
+                        <th class="no-border" scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -88,7 +89,7 @@
                 </table>
             </div>
             <div class="card-footer"></div>
-        </a>
+        </div>
     </div>
 </div>
 
