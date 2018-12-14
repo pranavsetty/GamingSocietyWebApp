@@ -126,6 +126,18 @@ function validate_member($member)
     return $errors;
 }
 
+
+function validate_rules($rule){
+  $errorsRules = [];
+  $newRule = (int)$rule;
+  if (is_blank($newRule)) {
+      $errorsRules['value'] = "Rule cannot be blank.";
+  } elseif ($newRule <= 0) {
+      $errorsRules['value'] = "Rule must be a number and greater than zero.";
+  }
+  return $errorsRules;
+}
+
 function validate_game($game)
 {
     $errors = [];

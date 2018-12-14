@@ -661,8 +661,11 @@ function find_platforms() {
 
 function editRule($description,$value){
   global $db;
-  $sql = "UPDATE Rules set value = ".$value."";
-  $sql .= " WHERE " . $description. "= description;";
+  $errorsRules = validate_rules($value);
+  if (!empty($errorsRules)) {
+      return $errorsRules;
+  }
+  $sql = "UPDATE Rules set value = '$value' WHERE  '$description' = description;";
   $result = mysqli_query($db, $sql);
   // For UPDATE statements, $result is true/false
   if ($result) {
