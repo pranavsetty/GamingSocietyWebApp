@@ -297,7 +297,7 @@ function get_ban_period()
     global $db;
     $sql = "SELECT value FROM Rules ";
     $sql .= "WHERE description = ";
-    $sql .= "'ban period';";
+    $sql .= "'ban_period';";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     $subject = mysqli_fetch_assoc($result);
@@ -321,11 +321,12 @@ function insert_rental($rental)
     if (!isCurrentlyAvailable($rental['GameID'])) return false;
     if (!canRentMoreGames($rental['MemberID'], $rental['GameID'])) return false;
     $sql = "INSERT INTO Rental ";
-    $sql .= "(memberID, gameID, startDate) ";
+    $sql .= "(memberID, gameID, startDate, period) ";
     $sql .= "VALUES (";
     $sql .= "'" . $rental['MemberID'] . "',";
     $sql .= "'" . $rental['GameID'] . "',";
-    $sql .= "'" . $start_date . "'";
+    $sql .= "'" . $start_date . "',";
+    $sql .= "'" . getPeriod() . "'";
     $sql .= ");";
     $result = mysqli_query($db, $sql);
     // For INSERT statements, $result is true/false
@@ -356,7 +357,7 @@ function getRentGames(){
     global $db;
     $sql = "SELECT value FROM Rules ";
     $sql .= "WHERE description = ";
-    $sql .= "'max number of games at once';";
+    $sql .= "'max_number_of_games_at_once';";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     $subject = mysqli_fetch_assoc($result);
@@ -364,11 +365,19 @@ function getRentGames(){
     return reset($subject);
 }
 
+function getPeriod(){
+  global $db;
+  $sql = "SELECT value FROM Rules ";
+  $sql .= " WHERE description = ";
+  $sql .= " 'period_in_weeks'; ";
+    $result = mysqli_query($db, $sql);
+    return resultToInt($result);
+}
 
 function findRentals()
 {
     global $db;
-    $sql = "SELECT name, firstname, surname, startDate,period,extension, returnDate, rentalID, Rental.memberID as memberID ";
+    $sql = "SELECT name, firstname, surname, startDate,extension, returnDate, rentalID, Rental.memberID as memberID ";
     $sql .= "FROM Game, Rental, Member ";
     $sql .= "WHERE Game.gameID = Rental.gameID AND Rental.memberID = Member.memberID";
     $result = mysqli_query($db, $sql);

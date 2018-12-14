@@ -51,7 +51,7 @@ function isCurrentRental($rental){
 
 function isOverdue($rental){
     $currentDate = date('Y-m-d');
-    $endDate = calculateEndDate($rental['startDate'], $rental['period']);
+    $endDate = calculateEndDate($rental['startDate'], getPeriod());
     if ($currentDate > $endDate && ($rental['returnDate'] === NULL)){
       return true;
     }
@@ -60,7 +60,7 @@ function isOverdue($rental){
 
 function isOverdueReturned($rental){
     $currentDate = date('Y-m-d');
-    $endDate = calculateEndDate($rental['startDate'], $rental['period']);
+    $endDate = calculateEndDate($rental['startDate'], getPeriod());
     if ($currentDate > $endDate && ($rental['returnDate'] > $endDate)){
       return true;
     }

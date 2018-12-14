@@ -14,12 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      $rent['memberID'] = $_POST['memberID'] ?? '';
      $rent['startDate'] = $_POST['startDate'] ?? '';
      $rent['period'] = $_POST['period'] ?? '';
-
     if(isset($_POST['extend'])){
         $rent['extension'] = $_POST['extension'];
-
-
-
         $numOfExtension = getMaxExtensions();
         $extensionValue = getExtension($rent);
         if($extensionValue >= $numOfExtension){
@@ -33,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         }
-        // TODO: remove post
 
     }
     else if (!isset($_POST['extend'])){
@@ -77,17 +72,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <tbody>
                     <?php $rentals =  findRentals();
                           while($rental = mysqli_fetch_assoc($rentals)) {
-                          if(isCurrentRental($rental)){ ?>
+                          if(isCurrentRental($rental)){
+                          ?>
+
                     <tr>
                         <td><?php echo $rental['name']; ?></td>
                         <td><?php echo $rental['firstname'] . " " . $rental['surname']; ?></td>
-                        <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
+                        <td><?php echo calculateEndDate($rental['startDate'], getPeriod()); ?></td>
                         <td><?php echo $rental['extension']; ?></td>
                         <td><form method = "post" action = ''><button type="submit" name = "extend" class = "fas fa-plus-circle"> extend
                                     <input type = "hidden" name = "rentalID" value = <?php echo $rental['rentalID']?> >
                                     <input type = "hidden" name = "memberID" value = <?php echo $rental['memberID']?> >
                                     <input type = "hidden" name = "extension" value = <?php echo $rental['extension']?> >
-                                    <input type = "hidden" name = "period" value = <?php echo $rental['period']?> >
+                                    <input type = "hidden" name = "period" value = <?php echo getPeriod();?> >
 
                         </form></td>
 
@@ -96,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type = "hidden" name = "rentalID" value = <?php echo $rental['rentalID']?> >
                         <input type = "hidden" name = "memberID" value = <?php echo $rental['memberID']?> >
                         <input type = "hidden" name = "startDate" value = <?php echo $rental['startDate']?> >
-                        <input type = "hidden" name = "period" value = <?php echo $rental['period']?> >
+                        <input type = "hidden" name = "period" value = <?php echo getPeriod();?> >
                             <td>
                                 <button type="submit"><i class="fas fa-undo-alt"></i> return
                             </td>
@@ -136,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <tr>
                         <td><?php echo $rental['name']; ?></td>
                         <td><?php echo $rental['firstname']; ?></td>
-                        <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
+                        <td><?php echo calculateEndDate($rental['startDate'], getPeriod()) ?></td>
                         <td><?php echo $rental['extension']; ?></td>
                         <td><?php echo $rental['returnDate']; ?></td>
                     </tr>
@@ -176,14 +173,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <tr>
                         <td><?php echo $rental['name']; ?></td>
                         <td><?php echo $rental['firstname']; ?></td>
-                        <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
+                        <td><?php echo calculateEndDate($rental['startDate'], getPeriod()) ?></td>
                         <td><?php echo $rental['extension']; ?></td>
                         <form action="" method="post">
                         <td><input type="checkbox" name="isDamaged" >Damaged</td>
                         <input type = "hidden" name = "rentalID" value = <?php echo $rental['rentalID']?> >
                         <input type = "hidden" name = "memberID" value = <?php echo $rental['memberID']?> >
                         <input type = "hidden" name = "startDate" value = <?php echo $rental['startDate']?> >
-                        <input type = "hidden" name = "period" value = <?php echo $rental['period']?> >
+                        <input type = "hidden" name = "period" value = <?php getPeriod();?> >
                             <td>
                                 <button type="submit"><i class="fas fa-undo-alt"></i> return
                             </td>

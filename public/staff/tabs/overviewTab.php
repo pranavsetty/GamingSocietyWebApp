@@ -28,14 +28,14 @@
                     <tr>
                         <td><?php echo $rental['name']; ?></td>
                         <td><?php echo $rental['firstname'] . " " . $rental['surname']; ?></td>
-                        <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
+                        <td><?php echo calculateEndDate($rental['startDate'], getPeriod()); ?></td>
                         <td><?php echo $rental['extension']; ?></td>
                         <form action="" method="post">
                             <td><input type="checkbox" name="isDamaged">Damaged</td>
                             <input type="hidden" name="rentalID" value= <?php echo $rental['rentalID'] ?>>
                             <input type="hidden" name="memberID" value= <?php echo $rental['memberID'] ?>>
                             <input type="hidden" name="startDate" value= <?php echo $rental['startDate'] ?>>
-                            <input type="hidden" name="period" value= <?php echo $rental['period'] ?>>
+                            <input type="hidden" name="period" value= <?php echo getPeriod(); ?>>
                             <td>
                                 <button type="submit"><i class="fas fa-undo-alt"></i> return
                             </td>
@@ -91,4 +91,3 @@
         </a>
     </div>
 </div>
-
