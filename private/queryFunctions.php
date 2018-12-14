@@ -729,6 +729,21 @@ function find_platforms() {
 
 }
 
+function deleteStaff($staffID){
+  global $db;
+  $sql = "Delete FROM Staff WHERE staffID = " .$staffID." ";
+  $result = mysqli_query($db, $sql);
+  // For UPDATE statements, $result is true/false
+  if ($result) {
+      return true;
+  } else {
+      // UPDATE failed
+      echo mysqli_error($db);
+      db_disconnect($db);
+      return false;
+      exit;
+  }
+}
 
 function editRule($description,$value){
   global $db;
