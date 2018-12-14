@@ -168,6 +168,36 @@ function update_game_data($game)
     }
 }
 
+function updateRentalExtension($rental){
+  global $db;
+  $sql = "UPDATE Rental set extension = extension +1 " ;
+  $sql .= " WHERE " . $rental['rentalID'] . " = rentalID;";
+  $result = mysqli_query($db, $sql);
+    if ($result) {
+        return true;
+    } else {
+        // UPDATE failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+    }
+}
+
+
+function updateRentalPeriod($rental){
+    global $db;
+    $sql = "UPDATE Rental set period = period +1 " ;
+    $sql .= " WHERE " . $rental['rentalID'] . " = rentalID;";
+    $result = mysqli_query($db, $sql);
+    if ($result) {
+        return true;
+    } else {
+        // UPDATE failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+    }
+}
 function get_staff_password_by_email($email)
 {
     global $db;
@@ -578,6 +608,41 @@ function insert_staff($staff){
 
 }
 
+
+function getRules(){
+  global $db;
+  $sql = "SELECT * FROM Rules";
+  $result = mysqli_query($db, $sql);
+  return $result;
+}
+function resultToInt($result){
+    confirm_result_set($result);
+    $subject = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return intval(reset($subject));
+}
+
+function getMaxExtensions(){
+  global $db;
+  $sql = "SELECT value FROM Rules ";
+  $sql .= " WHERE description = ";
+  $sql .= " 'max number of extensions'; ";
+    $result = mysqli_query($db, $sql);
+    return resultToInt($result);
+}
+
+
+
+
+function getExtension($rental)
+{
+    global $db;
+    $sql = "SELECT extension FROM Rental ";
+    $sql .= " WHERE " . $rental['rentalID'] . " = rentalID;";
+    $result = mysqli_query($db, $sql);
+    return resultToInt($result);
+}
+
 function find_types() {
     global $db;
     $sql = "SELECT DISTINCT(type) FROM Game";
@@ -590,6 +655,7 @@ function find_platforms() {
     $sql = "SELECT DISTINCT(platform) FROM Game";
     $result = mysqli_query($db, $sql);
     return $result;
+
 }
 
 
