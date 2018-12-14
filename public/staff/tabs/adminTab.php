@@ -6,6 +6,19 @@ if ($_POST['newValue'] === "admin") {
       redirect_to(url_for('/staff/dashboard.php?tab=overview'));
     }
 }
+else if ($_POST['newValue'] === "delete") {
+  $result = deleteStaff($_POST['staffID']);
+  if ($result === true) {
+      echo '<script language = "javascript">';
+      echo 'alert ("You have successfully removed this staff ");';
+      echo '</script>';
+    } else{
+      echo '<script language = "javascript">';
+      echo 'alert ("Error: The staff member could not be removed.");';
+      echo '</script>';
+    }
+
+}
 else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] != "None") {
     $result = editRule($_POST['description'], $_POST['newValue']);
     if ($result === true) {
@@ -33,7 +46,7 @@ else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] 
         <div class="card card-blue card-big">
             <div class="card-title title-blue">
                 <div class="align-left label">Staff</div>
-                <div class="align-right"><?php echo countStaff();?></div>
+                <div class="align-right"><?php echo countStaff()-1;?></div>
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
@@ -61,12 +74,18 @@ else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] 
                                 <td><?php echo $staffMember['email']; ?></td>
                                 <td><?php echo $staffMember['homeAddress']; ?></td>
                                 <td><?php if (isAdmin($staffMember['email'])) echo 'admin'; else echo 'staff' ?></td>
-                                <td>delete</td>
+                                <form action="" method="post">
+                                    <td>
+                                        <input type = "hidden" name = "newValue" value = "delete">
+                                        <input type = "hidden" name = "staffID" value = <?php echo $staffMember['staffID']; ?>>
+                                        <button type="submit" name = "delete" class = "btn btn-outline-danger"> Delete staff </button>
+                                    </td>
+                                </form>
                                 <form action="" method="post">
                                     <td>
                                         <input type = "hidden" name = "newValue" value = "admin">
                                         <input type = "hidden" name = "staffID" value = <?php echo $staffMember['staffID']; ?>>
-                                        <button type="submit" name = "hbjni" class = "btn btn-outline-primary"> Make admin </button>
+                                        <button type="submit" name = "makeAdmin" class = "btn btn-outline-primary"> Make admin </button>
                                     </td>
                                 </form>
                             </tr>
