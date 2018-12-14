@@ -21,17 +21,17 @@ $gameEntry = find_game_id($gameID)
         <div class="col-10">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row pr-4">
                         <div class="col-5">
                             <img class="mb-4" src="<?php echo h($gameEntry['imageLink']); ?>" alt="Game image">
                         </div>
-                        <div class="col-7 pl-5 pt-5">
-                            <h1 class="mb-5 text-uppercase"><?php echo h($gameEntry['name']); ?></h1>
+                        <div class="col-7 pl-5 d-flex align-items-end">
+                            <h1 class="mb-4 text-uppercase"><?php echo h($gameEntry['name']); ?></h1>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pl-3 pr-5 pt-3 pb-5">
                         <div class="col-5">
-                            <ul>
+                            <ul class="pl-2 pr-2">
                                 <li class="row">
                                     <div class="col-6">
                                         <b>Age Restriction:</b>
@@ -76,14 +76,10 @@ $gameEntry = find_game_id($gameID)
                         </div>
                         <div class="col-7 pl-5">
                             <p class="text-justify">
-                                <?php
-                                echo h($gameEntry['gameDescription']);
-                                echo "<br>";
-                                echo "<br>";
-                                echo "To read more:";
-                                echo "<br>";
-                                echo make_links_clickable(h($gameEntry['link']));
-                                ?>
+                                <?php echo h($gameEntry['gameDescription']); ?>
+                            </p>
+                            <p class="float-right">
+                                <a href="<?php echo make_links_clickable(h($gameEntry['link']));?>">Read a review</a>
                             </p>
                         </div>
                 </div>

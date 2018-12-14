@@ -54,14 +54,11 @@ a.card {
 }
 
 .search {
-    width: 40%;
+    width: 90%;
     background-color: #ffffff;
     padding: 5px 0 5px 20px;
     border-radius: 30px;
     border: 1px solid #823ded;
-    /*-webkit-box-shadow: 0 0 5px 3px rgba(81,75,97,0.1);*/
-    /*-moz-box-shadow: 0 0 5px 3px rgba(81,75,97,0.1);*/
-    /*box-shadow: 0 0 5px 3px rgba(81,75,97,0.1);*/
 }
 
 .search-button {
@@ -74,4 +71,39 @@ a.card {
     width: 87%;
     border: 0;
     background: transparent;
+}
+
+
+.filter {
+    text-align: center;
+    padding: 7px;
+    width: 140px;
+    background-color: #ffffff;
+    border: 1px solid #823ded;
+    border-radius: 30px;
+}
+
+.filter select {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    /*-webkit-appearance: none;*/
+    background-color: #ffffff;
+}
+
+.filter select:focus {
+    outline: none;
+}
+
+.btn-filter {
+    background-color: #823ded !important;
+    color: #ffffff !important;
+    border-radius: 30px;
+    -webkit-box-shadow: 0 0 10px 3px rgba(130, 61, 237, 0.4);
+    -moz-box-shadow: 0 0 10px 3px rgba(130, 61, 237, 0.4);
+    box-shadow: 0 0 10px 3px rgba(130, 61, 237, 0.4);
+}
+
+.btn-filter:hover {
+    background-color: #542799 !important;
 }

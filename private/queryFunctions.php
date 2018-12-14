@@ -5,7 +5,7 @@ require_once('functions.php');
 function find_staff_by_email($email)
 {
     global $db;
-    $sql = "SELECT email FROM Staff ";
+    $sql = "SELECT staffID, email, password FROM Staff ";
     $sql .= "WHERE email='" . $email . "'";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
@@ -24,15 +24,55 @@ function find_game_data()
 
 }
 
-// TODO
-// function find_simple_game_data(){
-//   global $db;
-//   $sql = "SELECT * FROM Game ";
-//   $sql .= "ORDER BY gameID ASC";
-//   $result = mysqli_query($db, $sql);
-//   return $result;
-// }
+function find_game_data_filter($order, $type, $platform, $search)
+{
+    global $db;
+    $sql = "SELECT * FROM Game";
+    if ($search != '') {
+        $sql .= " WHERE name LIKE '%" . $search . "%'";
+        if ($type != '') {
+            $sql .= " AND type='" . $type . "'";
+        }
+        if ($platform != '') {
+            $sql .= " AND platform='" . $platform . "'";
+        }
+    } else {
+        if ($type != '') {
+            $sql .= " WHERE type='" . $type . "'";
+            if ($platform != '') {
+                $sql .= " AND platform='" . $platform . "'";
+            }
 
+        } else {
+            if ($platform != '') {
+                $sql .= " WHERE platform='" . $platform . "'";
+            }
+        }
+
+    }
+
+    if ($order == 'yearDesc') {
+        $sql .= " ORDER BY releaseYear DESC";
+    } else if ($order == 'yearAsc') {
+        $sql .= " ORDER BY releaseYear ASC";
+    } else {
+        $sql .= " ORDER BY name ASC";
+    }
+
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    return $result;
+
+}
+
+//function search_games($search)
+//{
+//    global $db;
+//    $sql = "SELECT * FROM Game WHERE name LIKE '%" . $search . "%'";
+//    $result = mysqli_query($db, $sql);
+//    confirm_result_set($result);
+//    return $result;
+//}
 
 function getGameRental($gameID)
 {
@@ -423,7 +463,7 @@ function search_games($search)
 }
 
 function make_links_clickable($text){
-    return preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1">$1</a>', $text);
+    return preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '$1', $text);
 }
 
 function returnRental($rental, $isDamaged)
@@ -541,6 +581,8 @@ function increaseViolation($rental)
 
 function insert_staff($staff){
     global $db;
+    $hashed_password = password_hash($staff['Password'], PASSWORD_BCRYPT);
+
     $sql = "INSERT INTO Staff ";
     $sql .= "(title, firstname, surname, DoB, phoneNo, email, homeAddress, password) ";
     $sql .= "VALUES (";
@@ -551,7 +593,7 @@ function insert_staff($staff){
     $sql .= "'" . $staff['PhoneNo'] . "',";
     $sql .= "'" . $staff['Email'] . "',";
     $sql .= "'" . $staff['Address'] . "',";
-    $sql .= "'" . $staff['Password'] . "'";
+    $sql .= "'" . $hashed_password . "'";
     $sql .= ");";
     $result = mysqli_query($db, $sql);
     // For INSERT statements, $result is true/false
@@ -565,6 +607,7 @@ function insert_staff($staff){
     }
 
 }
+
 
 function getRules(){
   global $db;
@@ -591,12 +634,28 @@ function getMaxExtensions(){
 
 
 
-function getExtension($rental){
+function getExtension($rental)
+{
     global $db;
     $sql = "SELECT extension FROM Rental ";
     $sql .= " WHERE " . $rental['rentalID'] . " = rentalID;";
     $result = mysqli_query($db, $sql);
     return resultToInt($result);
+}
+
+function find_types() {
+    global $db;
+    $sql = "SELECT DISTINCT(type) FROM Game";
+    $result = mysqli_query($db, $sql);
+    return $result;
+}
+
+function find_platforms() {
+    global $db;
+    $sql = "SELECT DISTINCT(platform) FROM Game";
+    $result = mysqli_query($db, $sql);
+    return $result;
+
 }
 
 ?>

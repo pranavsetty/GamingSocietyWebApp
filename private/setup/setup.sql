@@ -58,8 +58,8 @@ CREATE TABLE Ban
 CREATE TABLE Staff
 (
   staffID     INT AUTO_INCREMENT NOT NULL,
-  password    VARCHAR(20)   NOT NULL,
-  title       VARCHAR(3)    NOT NULL,
+  password    VARCHAR(255)   NOT NULL,
+  title       VARCHAR(5)    NOT NULL,
   firstname   VARCHAR(20)   NOT NULL,
   surname     VARCHAR(30)   NOT NULL,
   DoB         DATE,
@@ -119,8 +119,8 @@ INSERT into Ban
 VALUES(1, '2012-02-12','2012-02-20',DEFAULT);
 
 INSERT into Staff
-VALUES (DEFAULT, "12345", "Sir", "James", "Smith", '1992-01-19', 98765434567, "james@gmail.com", "someRandomAddress"),
-       (DEFAULT, "123456", "Mr", "Adam", "Able", '1998-01-19', 98764342467, "adam@gmail.com", "someOtherRandomAddress"),
+VALUES (DEFAULT, "$2y$10$u/6ksKIqs/kw1fZ14K19AeDuCQx/iswbKdI5lMKS3vi2byUrvh12O", "Sir", "James", "Smith", '1992-01-19', 98765434567, "james@gmail.com", "someRandomAddress"),
+       (DEFAULT, "$2y$10$4n9m0Q442a8FyNzPC2muQOXwP7Ck5fS7MIgln/r7tanj5oOpOn2kG", "Mr", "Adam", "Able", '1998-01-19', 98764342467, "adam@gmail.com", "someOtherRandomAddress"),
        (DEFAULT, "1234567", "Mrs", "Julia", "Vila", '1999-07-09', 94535434567, "julia@gmail.com", "someRandomAddress");
 
 INSERT into Admin

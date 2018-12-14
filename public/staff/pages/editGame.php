@@ -2,6 +2,7 @@
 $stylePath = "../../style/";
 $styleFileName = "add.css";
 require_once('../../../private/initialize.php');
+require_login();
 
 
 

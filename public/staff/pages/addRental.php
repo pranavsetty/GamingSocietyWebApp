@@ -2,7 +2,7 @@
 $stylePath = "../../style/";
 $styleFileName = "add.css";
 require_once('../../../private/initialize.php');
-
+require_login();
 
 if (is_post_request()) {
 
@@ -38,8 +38,6 @@ if (is_post_request()) {
 <?php include(PRIVATE_PATH . '/shared/navigationStaff.php'); ?>
 
 <div class="container mb-5">
-    <!--    TODO: Add by dropdown-->
-
     <form class="form" action="addRental.php" method="post">
 
         <div class="row d-flex justify-content-center">
