@@ -171,6 +171,21 @@ function validate_game($game)
 
 }
 
+function validate_debt($member){
+    $errorsMembers = [];
+    $debt_int = (int)$member['debt'];
+    if(is_blank($member['debt'])){
+        $errorsMembers['debt'] = "Debt cannot be blank";
+
+    }elseif ($debt_int < 0){
+        $errorsMembers['debt'] = "Debt must be a positive number";
+    }elseif ($debt_int > $member['debt']){
+        $errorsMembers['debt'] ="Debt cannot be greater than the original value";
+    }
+    return $errorsMembers;
+
+}
+
 function checkIfCorrectTitle($title)
 {
     return $title == "Sir" || "Mr" || "Mrs" || "Ms" || "Miss" || "Mx" || "Sir" || "Lord" || "Lady";

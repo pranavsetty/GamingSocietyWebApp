@@ -81,6 +81,7 @@
                             <td><?php echo $member['homeAddress']; ?></td>
                             <td><?php echo $member['violations']; ?></td>
                             <td><?php echo $member['debt'] . '£'; ?></td>
+                            <td><a href="<?php echo ('pages/editDebt.php?id=' . ($member['memberID'])); ?>"><i class="fas fa-edit"></i></a></td>
                         </tr>
                     <?php } ?>
                     </tbody>
@@ -90,3 +91,4 @@
         </a>
     </div>
 </div>
+
