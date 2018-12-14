@@ -24,6 +24,55 @@ function find_game_data()
 
 }
 
+function find_game_data_filter($order, $type, $platform, $search)
+{
+    global $db;
+    $sql = "SELECT * FROM Game";
+    if ($search != '') {
+        $sql .= " WHERE name LIKE '%" . $search . "%'";
+        if ($type != '') {
+            $sql .= " AND type='" . $type . "'";
+        }
+        if ($platform != '') {
+            $sql .= " AND platform='" . $platform . "'";
+        }
+    } else {
+        if ($type != '') {
+            $sql .= " WHERE type='" . $type . "'";
+            if ($platform != '') {
+                $sql .= " AND platform='" . $platform . "'";
+            }
+
+        } else {
+            if ($platform != '') {
+                $sql .= " WHERE platform='" . $platform . "'";
+            }
+        }
+
+    }
+
+    if ($order == 'yearDesc') {
+        $sql .= " ORDER BY releaseYear DESC";
+    } else if ($order == 'yearAsc') {
+        $sql .= " ORDER BY releaseYear ASC";
+    } else {
+        $sql .= " ORDER BY name ASC";
+    }
+
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    return $result;
+
+}
+
+//function search_games($search)
+//{
+//    global $db;
+//    $sql = "SELECT * FROM Game WHERE name LIKE '%" . $search . "%'";
+//    $result = mysqli_query($db, $sql);
+//    confirm_result_set($result);
+//    return $result;
+//}
 
 function getGameRental($gameID)
 {
@@ -527,6 +576,20 @@ function insert_staff($staff){
         exit;
     }
 
+}
+
+function find_types() {
+    global $db;
+    $sql = "SELECT DISTINCT(type) FROM Game";
+    $result = mysqli_query($db, $sql);
+    return $result;
+}
+
+function find_platforms() {
+    global $db;
+    $sql = "SELECT DISTINCT(platform) FROM Game";
+    $result = mysqli_query($db, $sql);
+    return $result;
 }
 
 ?>
