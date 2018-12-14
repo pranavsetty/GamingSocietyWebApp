@@ -50,16 +50,16 @@ CREATE TABLE Ban
 (
   memberID    INT   NOT NULL,
   startDate   DATE  NOT NULL,
-  endDate     DATE  NOT NULL,
-  period      INT   NOT NULL DEFAULT 6,
+  endDate     DATE,
+  period      INT   NOT NULL DEFAULT 3,
   FOREIGN KEY (memberID) REFERENCES Member(memberID)
 );
 
 CREATE TABLE Staff
 (
   staffID     INT AUTO_INCREMENT NOT NULL,
-  password    VARCHAR(20)   NOT NULL,
-  title       VARCHAR(3)    NOT NULL,
+  password    VARCHAR(255)   NOT NULL,
+  title       VARCHAR(5)    NOT NULL,
   firstname   VARCHAR(20)   NOT NULL,
   surname     VARCHAR(30)   NOT NULL,
   DoB         DATE,
@@ -74,6 +74,12 @@ CREATE TABLE Admin
   staffID INT NOT NULL,
   isCurrent BOOLEAN NOT NULL,
   FOREIGN KEY (staffID) REFERENCES Staff(staffID)
+);
+
+CREATE TABLE Rules
+(
+  description VARCHAR(60) NOT NULL UNIQUE,
+  value INT NOT NULL
 );
 
 INSERT into Member
@@ -115,9 +121,17 @@ INSERT into Ban
 VALUES(1, '2012-02-12','2012-02-20',DEFAULT);
 
 INSERT into Staff
-VALUES (DEFAULT, "12345", "Sir", "James", "Smith", '1992-01-19', 98765434567, "james@gmail.com", "someRandomAddress"),
-       (DEFAULT, "123456", "Mr", "Adam", "Able", '1998-01-19', 98764342467, "adam@gmail.com", "someOtherRandomAddress"),
+VALUES (DEFAULT, "$2y$10$u/6ksKIqs/kw1fZ14K19AeDuCQx/iswbKdI5lMKS3vi2byUrvh12O", "Sir", "James", "Smith", '1992-01-19', 98765434567, "james@gmail.com", "someRandomAddress"),
+       (DEFAULT, "$2y$10$4n9m0Q442a8FyNzPC2muQOXwP7Ck5fS7MIgln/r7tanj5oOpOn2kG", "Mr", "Adam", "Able", '1998-01-19', 98764342467, "adam@gmail.com", "someOtherRandomAddress"),
        (DEFAULT, "1234567", "Mrs", "Julia", "Vila", '1999-07-09', 94535434567, "julia@gmail.com", "someRandomAddress");
 
 INSERT into Admin
 VALUES(1, TRUE);
+
+INSERT into Rules
+VALUES("period in weeks", 2),
+      ("max number of games at once", 2),
+      ("extension period in weeks", 1),
+      ("max number of extensions", 2),
+      ("max violations per year", 3),
+      ("ban period", 3);
