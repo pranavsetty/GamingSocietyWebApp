@@ -1,20 +1,47 @@
 
 <?php
+$rules = getRules();
+//$ext = getMaxExtensions();
+//echo gettype($ext);
+//foreach (getMaxExtensions() as $max) {
+//    echo $max[0];
+//}
+//echo getMaxExtensions()[0];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      $rent = [];
      $rent['rentalID'] = $_POST['rentalID'] ?? '';
      $rent['memberID'] = $_POST['memberID'] ?? '';
      $rent['startDate'] = $_POST['startDate'] ?? '';
      $rent['period'] = $_POST['period'] ?? '';
-     if (isset($_POST['isDamaged'])) $isDamaged = true;
-     else $isDamaged = false;
-     $result = returnRental($rent, $isDamaged);
-     if($result !== true) {
-       echo '<script language = "javascript">';
-       echo 'window.location.href = "addRental.php";';
-       echo 'alert ("Error: Could not return game");';
-       echo '</script>';
-     }
+
+    if(isset($_POST['extend'])){
+        $rent['extension'] = $_POST['extension'];
+
+        $numOfExtension = getMaxExtensions();
+        $extensionValue = getExtension($rent);
+        if($extensionValue >= $numOfExtension){
+            echo '<script language = "javascript">';
+            echo 'alert ("Error: Could not extend game");';
+            echo '</script>';
+        }else{
+            $result = updateRentalExtension($rent);
+            $result = updateRentalPeriod($rent);
+
+        }
+    }
+    else if (!isset($_POST['extend'])){
+        if (isset($_POST['isDamaged'])) $isDamaged = true;
+        else $isDamaged = false;
+        $result = returnRental($rent, $isDamaged);
+        if($result !== true) {
+            echo '<script language = "javascript">';
+            echo 'window.location.href = "addRental.php";';
+            echo 'alert ("Error: Could not return game");';
+            echo '</script>';
+        }
+    }
+
   }
 ?>
 <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
@@ -50,7 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><?php echo $rental['firstname'] . " " . $rental['surname']; ?></td>
                         <td><?php echo calculateEndDate($rental['startDate'], $rental['period']); ?></td>
                         <td><?php echo $rental['extension']; ?></td>
-                        <td><a href="#"><i class="fas fa-plus-circle"></i> extend</a></td>
+                        <td><form method = "post" action = ''><button type="submit" name = "extend" class = "fas fa-plus-circle"> extend
+                                    <input type = "hidden" name = "rentalID" value = <?php echo $rental['rentalID']?> >
+                                    <input type = "hidden" name = "memberID" value = <?php echo $rental['memberID']?> >
+                                    <input type = "hidden" name = "extension" value = <?php echo $rental['extension']?> >
+                                    <input type = "hidden" name = "period" value = <?php echo $rental['period']?> >
+
+                        </form></td>
 
                         <form action="" method="post">
                         <td><input type="checkbox" name="isDamaged" >Damaged</td>
@@ -63,7 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </td>
                         </form>
                     </tr>
-                    <?php }} ?>
+                    <?php }}
+                    ?>
                     </tbody>
                 </table>
             </div>
