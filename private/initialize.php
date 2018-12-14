@@ -17,6 +17,10 @@ require_once('queryFunctions.php');
 require_once('loginFunctions.php');
  $db = db_connect();
  $errors = [];
+
+ $errorsMembers =[];
+
  $errorsRules = [];
+
 
 ?>

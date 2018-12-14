@@ -23,6 +23,15 @@ function find_game_data()
     return $result;
 
 }
+function find_member_data()
+{
+    global $db;
+    $sql = "SELECT * FROM Member ";
+    $sql .= "ORDER BY memberID ASC";
+    $result = mysqli_query($db, $sql);
+    return $result;
+
+}
 
 function find_game_data_filter($order, $type, $platform, $search)
 {
@@ -134,6 +143,18 @@ function find_game_id($gameID)
     return $subject; // returns an assoc. array
 }
 
+function find_member_id($memberID)
+{
+    global $db;
+    $sql = "SELECT * FROM Member ";
+    $sql .= "WHERE memberID='" . $memberID . "'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $subject = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $subject; // returns an assoc. array
+}
+
 function update_game_data($game)
 {
     global $db;
@@ -189,6 +210,28 @@ function updateRentalPeriod($rental){
     $sql = "UPDATE Rental set period = period +1 " ;
     $sql .= " WHERE " . $rental['rentalID'] . " = rentalID;";
     $result = mysqli_query($db, $sql);
+    if ($result) {
+        return true;
+    } else {
+        // UPDATE failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+    }
+}
+
+function updateDebt($member){
+    global $db;
+    $errorsMembers = validate_debt($member);
+    if (!empty($errorsMembers)) {
+        return $errorsMembers;
+    }
+    $sql = "UPDATE Member SET ";
+    $sql .= "debt='" . $member['debt'] . "' ";
+    $sql .= "WHERE memberID='" . $member['memberID'] . "' ";
+    $sql .= "LIMIT 1;";
+    $result = mysqli_query($db, $sql);
+
     if ($result) {
         return true;
     } else {
