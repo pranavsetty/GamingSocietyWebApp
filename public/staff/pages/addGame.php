@@ -11,7 +11,6 @@ if(is_post_request()) {
     $game['platform'] = $_POST['platform'] ?? '';
     $game['ageLimit'] = $_POST['ageLimit'] ?? '';
     $game['name'] = $_POST['name'] ?? '';
-    $game['isCurrentlyAvailable'] = $_POST['isCurrentlyAvailable'] ?? '';
     $game['releaseYear'] = $_POST['releaseYear'] ?? '';
     $game['imageLink'] = $_POST['imageLink'] ?? '';
     $game['gameDescription'] = $_POST['gameDescription'] ?? '';

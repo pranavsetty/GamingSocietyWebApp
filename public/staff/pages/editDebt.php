@@ -45,7 +45,7 @@ else{
         <div class="row d-flex justify-content-center">
             <h1 class="mb-5 mt-3 text-uppercase">Edit Debt</h1>
         </div>
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             <div class="col-6 form-group">
                 <label for="name">Debt</label>
                 <input type="text" id="debt" name="debt" class="form-control mb-2" value="<?php echo h($member['debt']); ?>">

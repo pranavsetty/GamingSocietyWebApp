@@ -5,7 +5,7 @@ ul {
     margin: 0;
 }
 
-li {
+.col-5 li {
     font-size: 15px;
     margin-bottom: 15px;
 }

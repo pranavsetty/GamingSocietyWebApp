@@ -116,7 +116,6 @@ function insert_game_data($game)
     $sql .= "'" . $game['platform'] . "',";
     $sql .= "'" . $game['ageLimit'] . "',";
     $sql .= "'" . $game['name'] . "',";
-    $sql .= "'" . $game['isCurrentlyAvailable'] . "',";
     $sql .= "'" . $game['releaseYear'] . "',";
     $sql .= "'" . $game['imageLink'] . "',";
     $sql .= "'" . $game['gameDescription'] . "' ";

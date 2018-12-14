@@ -16,7 +16,7 @@ a.card {
 }
 
 .card {
-    height: 300px;
+    min-height: 300px;
     border: 0;
     border-radius: 0.5rem;
     -webkit-box-shadow: 0 0 5px 3px rgba(130,61,237,0.1);

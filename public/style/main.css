@@ -4,37 +4,37 @@ body {
 }
 
 body {
-    font-size: 13px;
+    font-size: 11px;
     font-family: 'Lato', sans-serif;
     background-color: #f7fafb;
     color: #1d252b;
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 26px;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
     font-weight: bold !important;
 }
 
 h2 {
-    font-size: 18px;
+    font-size: 15px;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
     font-weight: bold !important;
 }
 
 h3 {
-    font-size: 15px;
+    font-size: 12px;
     font-family: 'Roboto', sans-serif;
 }
 
 h5 {
-    font-size: 11px;
+    font-size: 9px;
     font-family: 'Lato', sans-serif;
 }
 
-li{
+li {
     font-size: 1.4em;
 }
 
