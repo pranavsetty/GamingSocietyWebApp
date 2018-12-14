@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['extend'])){
         $rent['extension'] = $_POST['extension'];
 
+
+
         $numOfExtension = getMaxExtensions();
         $extensionValue = getExtension($rent);
         if($extensionValue >= $numOfExtension){
@@ -27,8 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }else{
             $result = updateRentalExtension($rent);
             $result = updateRentalPeriod($rent);
+            redirect_to(url_for('staff/dashboard.php?tab=rentals'));
+
 
         }
+        // TODO: remove post
+
     }
     else if (!isset($_POST['extend'])){
         if (isset($_POST['isDamaged'])) $isDamaged = true;
