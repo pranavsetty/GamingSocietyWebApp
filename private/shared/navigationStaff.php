@@ -1,8 +1,4 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
-
-    <a class="navbar-brand" href="#">
-        <img src="<?php echo url_for('/images/game.png');?>" width="110" height="55" alt="">
-    </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item">

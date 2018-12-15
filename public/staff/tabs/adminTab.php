@@ -125,7 +125,7 @@ else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] 
                                 <td>
                                     <input type = "hidden" name = "newValue" value = "None">
                                     <input type = "hidden" name = "description" value = <?php echo $rule['description']; ?>>
-                                    <button type="submit" name = "submit" class = "btn btn-outline-secondary"> edit </button>
+                                    <button type="submit" name = "submit" class = "btn btn-outline-primary">edit</button>
                                 </td>
                             </form>
                             <?php } ?>

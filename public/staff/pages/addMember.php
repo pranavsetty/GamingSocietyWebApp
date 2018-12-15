@@ -97,7 +97,7 @@ if(is_post_request()) {
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-6 d-flex justify-content-center">
-                <button class="mt-5 btn btn-lg btn-login" type="submit" name ="Add Game">Add Member</button>
+                <button class="mt-5 btn btn-lg btn-login" type="submit" name ="Add Member">Add Member</button>
             </div>
         </div>
 

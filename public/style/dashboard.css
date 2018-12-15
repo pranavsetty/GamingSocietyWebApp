@@ -137,11 +137,11 @@ h7 {
     border-radius: 0.5rem 0.5rem 0 0;
 }
 
-.card-title.title-purple {
+.title-purple {
     background-color: #823ded;
 }
 
-.card-title.title-blue {
+.title-blue {
     background-color: #1fc4fa;
 }
 
@@ -173,9 +173,42 @@ thead tr {
 }
 
 button[type=submit] {
-    border: none;
-    padding: 0;
+    font-size: 11px;
     text-decoration: none;
+    padding: 0;
     margin: 0;
+    border: none;
     cursor: pointer;
+}
+
+.btn-outline-danger:hover {
+    color: #dc3545;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    text-decoration: underline;
+
+}
+
+.btn-outline-primary:hover {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    text-decoration: underline;
+}
+
+.card-blue .btn-outline-primary {
+    color: #1fc4fa;
+}
+
+.card-blue .btn-outline-primary:hover {
+    color: #1fc4fa;
+}
+
+.card-purple .btn-outline-primary {
+    color: #823ded;
+}
+
+.card-purple .btn-outline-primary:hover {
+    color: #823ded;
 }

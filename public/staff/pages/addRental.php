@@ -46,39 +46,38 @@ if (is_post_request()) {
         <div class="row mt-5">
             <div class="col-6 form-group">
                 <label for="sel1">Members:</label>
-                <select class="form-control" id="sel1" name ="member">
-                    <?php $members =  not_banned_members();
-                    foreach($members as $member) {
+                <select class="form-control" id="sel1" name="member">
+                    <?php $members = not_banned_members();
+                    foreach ($members as $member) {
                         $names = get_member_by_ID($member);
-                        echo "<option value=". $member. ">".$names['firstName']. " " .$names['surname']. "</option>";
+                        echo "<option value=" . $member . ">" . $names['firstName'] . " " . $names['surname'] . "</option>";
                     }
                     ?>
 
                 </select>
-                <input type = "submit" name = "member" value = "member" style ="display:none"/>
+                <input type="submit" name="member" value="member" style="display:none"/>
             </div>
 
 
             <div class="col-6 form-group">
                 <label for="sel1">Available Games:</label>
-                <select class="form-control" id="sel1" name ="game">
-                    <?php $games =  find_game_data();
-                    while($game = mysqli_fetch_assoc($games)) {
-                        if (isCurrentlyAvailable($game['gameID']))echo "<option value=". $game['gameID']. ">"  . $game['name']. "</option>";
+                <select class="form-control" id="sel1" name="game">
+                    <?php $games = find_game_data();
+                    while ($game = mysqli_fetch_assoc($games)) {
+                        if (isCurrentlyAvailable($game['gameID'])) echo "<option value=" . $game['gameID'] . ">" . $game['name'] . "</option>";
                     }
 
                     ?>
 
                 </select>
-                <input type = "submit" name = "game" value = "game" style ="display:none"/>
+                <input type="submit" name="game" value="game" style="display:none"/>
             </div>
-            <div class="row d-flex justify-content-center">
-                <div class="col-6 d-flex justify-content-center">
-                    <button class="mt-5 btn btn-lg btn-login" type="submit" name="Add Rental">Add Rental</button>
-                </div>
+        </div>
+        <div class="row mt-5 d-flex justify-content-center">
+            <div class="col-6 d-flex justify-content-center">
+                <button class="mt-5 btn btn-lg btn-login" type="submit" name="Add Rental">Add Rental</button>
             </div>
-
-
+        </div>
     </form>
 </div>
 
