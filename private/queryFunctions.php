@@ -403,7 +403,7 @@ function getPeriod(){
   $sql = "SELECT value FROM Rules ";
   $sql .= " WHERE description = ";
   $sql .= " 'period_in_weeks'; ";
-    $result = mysqli_query($db, $sql);
+  $result = mysqli_query($db, $sql);
     return resultToInt($result);
 }
 
@@ -413,6 +413,17 @@ function findRentals()
     $sql = "SELECT name, firstname, surname, startDate,extension, returnDate, rentalID, Rental.memberID as memberID ";
     $sql .= "FROM Game, Rental, Member ";
     $sql .= "WHERE Game.gameID = Rental.gameID AND Rental.memberID = Member.memberID";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    return $result;
+}
+
+function findMemberRentals($memberID)
+{
+    global $db;
+    $sql = "SELECT startDate,returnDate ";
+    $sql .= "FROM Rental ";
+    $sql .= "WHERE memberID = ".$memberID."";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     return $result;
@@ -541,17 +552,29 @@ function getStaffDataByEmail($staffUsername)
 }
 
 
-function addMemberToBan($memberID)
+function addMemberToBan($memberID, $checker)
 {
     global $db;
     $startDate = date('Y-m-d');
     $period = get_ban_period();
+    $endDate = calculateEndDate($startDate, $period);
     if (isBanned($memberID)) {
         $sql = "UPDATE Ban SET ";
         $sql .= "startDate='" . $startDate . "' ";
         $sql .= "WHERE memberID='" . $memberID . "' ";
         $sql .= "LIMIT 1;";
-    } else {
+    }
+        else if ($checker == 1){
+          $sql = "INSERT INTO Ban ";
+          $sql .= "(memberID, startDate, endDate, period) ";
+          $sql .= "VALUES (";
+          $sql .= "'" . $memberID . "',";
+          $sql .= "'" . $startDate . "',";
+          $sql .= "'" .$endDate. " ', ";
+          $sql .= "'".$period."'";
+          $sql .= ");";
+        }
+        else {
         $sql = "INSERT INTO Ban ";
         $sql .= "(memberID, startDate, endDate, period) ";
         $sql .= "VALUES (";
@@ -573,6 +596,36 @@ function addMemberToBan($memberID)
         exit;
     }
 }
+
+function removeFromBan($memberID){
+  global $db;
+  $sql = "Delete FROM Ban WHERE memberID = " .$memberID." ";
+  $result = mysqli_query($db, $sql);
+  // For UPDATE statements, $result is true/false
+  if ($result) {
+      return true;
+  } else {
+      // UPDATE failed
+      echo mysqli_error($db);
+      db_disconnect($db);
+      return false;
+      exit;
+  }
+}
+
+
+function getDebt($memberID){
+  global $db;
+  $sql = "SELECT debt FROM Member ";
+  $sql .= "WHERE memberID = ".$memberID." ";
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  $subject = mysqli_fetch_assoc($result);
+  mysqli_free_result($result);
+  return reset($subject);
+}
+
+
 
 function search_games($search)
 {
@@ -687,10 +740,56 @@ function countTotalDebt()
     return $numDebt;
 }
 
+function getViolations($memberID){
+  global $db;
+  $sql = "SELECT violations FROM Member ";
+  $sql .= "WHERE memberID = ".$memberID. " ";
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  $subject = mysqli_fetch_assoc($result);
+  mysqli_free_result($result);
+  return reset($subject);
+}
+
+function getMaxViolationsPerYear(){
+  global $db;
+  $sql = "SELECT value FROM Rules ";
+  $sql .= " WHERE description = ";
+  $sql .= " 'max_violations_per_year'; ";
+    $result = mysqli_query($db, $sql);
+    return resultToInt($result);
+}
+
 
 function increaseViolation($rental)
 {
     global $db;
+    if (getViolations($rental['memberID']) == getMaxViolationsPerYear()){
+      $pastOverdue =[];
+      $counter = 0;
+      $dates = findMemberRentals($rental['memberID']);
+      while ($memberRental = mysqli_fetch_assoc($dates)) {
+          if (wasOverdueWhenReturned($memberRental)) {
+          array_push($pastOverdue, $memberRental['returnDate']);
+          $counter++;
+    }
+  }
+  $firstOverdue = date((min($pastOverdue)));
+  $lastOverdue = date((max($pastOverdue)));
+  //$diff = abs(strtotime($lastOverdue) - strtotime($firstOverdue));
+  echo gettype($firstOverdue);
+  echo gettype($lastOverdue);
+  //echo "DIFF IS     " . $diff . "    ";
+  echo "The first overdue rental date is = " . $firstOverdue. "   ";
+  echo "The last overdue rental date is = " . $lastOverdue. "   ";
+  echo "The count is = " . $counter. "";
+  if ($counter >= getMaxViolationsPerYear() && date_diff($firstOverdue,$lastOverdue) <= 365){
+    addMemberToBan($rental['memberID'], 1);
+    echo '<script language = "javascript">';
+    echo 'alert ("Member is added to ban");';
+    echo '</script>';
+  }
+}else{
     $sql = "UPDATE Member set violations = violations+1";
     $sql .= " WHERE " . $rental['memberID'] . "= memberID;";
     $result = mysqli_query($db, $sql);
@@ -703,6 +802,7 @@ function increaseViolation($rental)
         db_disconnect($db);
         exit;
     }
+  }
 }
 
 function insert_staff($staff){

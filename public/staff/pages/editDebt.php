@@ -15,7 +15,8 @@ if(is_post_request()) {
     $member['debt'] = $_POST['debt'];
     $result = updateDebt($member);
     if ($result === true) {
-        redirect_to(url_for('../public/staff/dashboard.php?tab=overview'));
+      if (getDebt($member['memberID']) == 0) removeFromBan($member['memberID']);
+      redirect_to(url_for('../public/staff/dashboard.php?tab=overview'));
     } else {
         $errorsMembers = $result;
         // var_dump($errors);
@@ -63,4 +64,3 @@ else{
 
 </body>
 </html>
-

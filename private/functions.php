@@ -65,9 +65,18 @@ function isOverdueReturned($rental){
       return true;
     }
     return false;
-
 }
 
+function wasOverdueWhenReturned($rental){
+    $currentDate = date('Y-m-d');
+    $endDate = calculateEndDate($rental['startDate'], getPeriod());
+    if ($rental['returnDate'] !== NULL){
+      if ($rental['returnDate'] > $endDate){
+        return true;
+      }
+      return false;
+    }
+}
 
 function h($string="") {
     return htmlspecialchars($string);

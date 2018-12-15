@@ -84,7 +84,7 @@ CREATE TABLE Rules
 INSERT into Member
 VALUES (DEFAULT, "Mrs", "Jane", "Doe", '1992-01-19', 92648936271, 0, 10, "jane@hotmail.co.uk", "SW1"),
        (DEFAULT, "Mr", "Bob", "Heggel", '1995-11-20', 9264592625, 0, 20, "bob@hotmail.co.uk", "EN2 7AJ"),
-       (DEFAULT, "Mrs", "Maria", "Labarias", '1999-05-12', 9257385734, 1, 0, "maria@hotmail.co.uk", "EN2 8AJ"),
+       (DEFAULT, "Mrs", "Maria", "Labarias", '1999-05-12', 9257385734, 3, 0, "maria@hotmail.co.uk", "EN2 8AJ"),
        (DEFAULT, "Lord", "Dave", "Mohr", '1990-03-22', 7257385724, 2, 0, "dave@hotmail.co.uk", "SE2"),
        (DEFAULT, "Mr", "Jeff", "Kaminski", '2000-10-01', 76573985767, 0, 0, "jeff@hotmail.co.uk", "SE2");
 
@@ -106,6 +106,11 @@ INSERT into Rental
 VALUES(DEFAULT, 1,1,DEFAULT, DEFAULT, '2018-12-01',DEFAULT),
       (DEFAULT, 2,2,DEFAULT, DEFAULT, '2018-11-29',DEFAULT),
       (DEFAULT, 3,3,DEFAULT, DEFAULT,'2018-05-22',DEFAULT),
+
+      (DEFAULT, 3,1,DEFAULT, DEFAULT,'2011-05-22','2017-1-15'),
+      (DEFAULT, 3,2,DEFAULT, DEFAULT,'2012-05-22','2017-2-15'),
+      (DEFAULT, 3,4,DEFAULT, DEFAULT,'2014-05-22','2017-3-15'),
+
       (DEFAULT, 1,7,DEFAULT, DEFAULT,'2018-10-22','2018-10-30');
 
 INSERT into Ban
