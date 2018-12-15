@@ -593,7 +593,7 @@ function countRentals()
 function countBanMembers()
 {
     global $db;
-    $sql = "SELECT * FROM Ban";
+    $sql = "SELECT DISTINCT(memberID) FROM Ban";
     $result = mysqli_query($db, $sql);
     $numBanMembers = mysqli_num_rows($result);
     return $numBanMembers;

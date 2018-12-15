@@ -16,10 +16,9 @@ require_once('validationFunctions.php');
 require_once('queryFunctions.php');
 require_once('loginFunctions.php');
  $db = db_connect();
+ $rules = getRules();
  $errors = [];
-
  $errorsMembers =[];
-
  $errorsRules = [];
 
 

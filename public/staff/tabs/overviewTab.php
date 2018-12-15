@@ -1,3 +1,23 @@
+<?php
+
+if (is_post_request()) {
+    $rent = [];
+    $rent['rentalID'] = $_POST['rentalID'] ?? '';
+    $rent['memberID'] = $_POST['memberID'] ?? '';
+    $rent['startDate'] = $_POST['startDate'] ?? '';
+    $rent['period'] = $_POST['period'] ?? '';
+
+    if (isset($_POST['isDamaged'])) $isDamaged = true;
+    else $isDamaged = false;
+    $result = returnRental($rent, $isDamaged);
+    if ($result !== true) {
+        echo '<script language = "javascript">';
+        echo 'window.location.href = "addRental.php";';
+        echo 'alert ("Error: Could not return game");';
+        echo '</script>';
+    }
+}
+?>
 <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center text-center mb-5 mt-5">
 
     <h1>Overview</h1>

@@ -84,7 +84,9 @@ CREATE TABLE Rules
 INSERT into Member
 VALUES (DEFAULT, "Mrs", "Jane", "Doe", '1992-01-19', 92648936271, 0, 10, "jane@hotmail.co.uk", "SW1"),
        (DEFAULT, "Mr", "Bob", "Heggel", '1995-11-20', 9264592625, 0, 20, "bob@hotmail.co.uk", "EN2 7AJ"),
-       (DEFAULT, "Mrs", "Maria", "Labarias", '1999-05-12', 9257385734, 1, 20, "maria@hotmail.co.uk", "EN2 8AJ");
+       (DEFAULT, "Mrs", "Maria", "Labarias", '1999-05-12', 9257385734, 1, 0, "maria@hotmail.co.uk", "EN2 8AJ"),
+       (DEFAULT, "Lord", "Dave", "Mohr", '1990-03-22', 7257385724, 2, 0, "dave@hotmail.co.uk", "SE2"),
+       (DEFAULT, "Mr", "Jeff", "Kaminski", '2000-10-01', 76573985767, 0, 0, "jeff@hotmail.co.uk", "SE2");
 
 INSERT into Game
 VALUES (DEFAULT, 13, "Action", "PS4", 18, "Grand Theft Auto 5", 2014,"https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1410520494.jpg", "Experience the world of Grand Theft Auto V like never before with the power of the PlayStation 4.Explore the City of Los Santos, the countryside and even the ocean. Play through an epic single player experience using three very different characters. Join your friends in GTA Online and see what trouble you can cause. Play golf, tennis, see a film or call someone and just hang out", "https://www.gamesradar.com/gta-5-review/"),
@@ -103,10 +105,12 @@ VALUES (DEFAULT, 13, "Action", "PS4", 18, "Grand Theft Auto 5", 2014,"https://me
 INSERT into Rental
 VALUES(DEFAULT, 1,1,DEFAULT, DEFAULT, '2018-12-01',DEFAULT),
       (DEFAULT, 2,2,DEFAULT, DEFAULT, '2018-11-29',DEFAULT),
-      (DEFAULT, 3,3,DEFAULT, DEFAULT,'2018-05-22',DEFAULT);
+      (DEFAULT, 3,3,DEFAULT, DEFAULT,'2018-05-22',DEFAULT),
+      (DEFAULT, 1,7,DEFAULT, DEFAULT,'2018-10-22','2018-10-30');
 
 INSERT into Ban
-VALUES(1, '2012-02-12','2012-02-20',DEFAULT);
+VALUES(1, '2018-10-12',NULL,DEFAULT),
+      (2, '2018-11-30',NULL,DEFAULT);
 
 INSERT into Staff
 VALUES (DEFAULT, "$2y$10$u/6ksKIqs/kw1fZ14K19AeDuCQx/iswbKdI5lMKS3vi2byUrvh12O", "Sir", "James", "Smith", '1992-01-19', 98765434567, "james@gmail.com", "SW1"),
