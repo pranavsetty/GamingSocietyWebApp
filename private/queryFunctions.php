@@ -2,16 +2,30 @@
 require_once('setup/db.php');
 require_once('validationFunctions.php');
 require_once('functions.php');
-function find_staff_by_email($email)
+
+
+function getGameByID($game)
+{
+    global $db;
+    $sql = "SELECT * FROM Game ";
+    $sql .= "WHERE gameID='" . $game['gameID'] . "'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $game = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $game;
+}
+
+function get_staff_by_email($email)
 {
     global $db;
     $sql = "SELECT staffID, email, password FROM Staff ";
     $sql .= "WHERE email='" . $email . "'";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
-    $subject = mysqli_fetch_assoc($result);
+    $staff = mysqli_fetch_assoc($result);
     mysqli_free_result($result);
-    return $subject;
+    return $staff;
 }
 
 function find_game_data()
@@ -21,8 +35,8 @@ function find_game_data()
     $sql .= "ORDER BY gameID ASC";
     $result = mysqli_query($db, $sql);
     return $result;
-
 }
+
 function find_member_data()
 {
     global $db;
@@ -74,14 +88,16 @@ function find_game_data_filter($order, $type, $platform, $search)
 
 }
 
-//function search_games($search)
-//{
-//    global $db;
-//    $sql = "SELECT * FROM Game WHERE name LIKE '%" . $search . "%'";
-//    $result = mysqli_query($db, $sql);
-//    confirm_result_set($result);
-//    return $result;
-//}
+function getGameByRental($rentalID) {
+    global $db;
+    $sql = "SELECT gameID FROM Rental ";
+    $sql .= "WHERE rentalID= '" . $rentalID . "'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $game = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $game;
+}
 
 function getGameRental($gameID)
 {
@@ -240,6 +256,25 @@ function updateDebt($member){
         exit;
     }
 }
+
+function add_debt($memberID, $cost){
+    global $db;
+    $sql = "UPDATE Member SET ";
+    $sql .= "debt= debt + '" . $cost . "' ";
+    $sql .= "WHERE memberID='" . $memberID . "' ";
+    $sql .= "LIMIT 1;";
+    $result = mysqli_query($db, $sql);
+
+    if ($result) {
+        return true;
+    } else {
+        // UPDATE failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+    }
+}
+
 function get_staff_password_by_email($email)
 {
     global $db;
@@ -422,9 +457,9 @@ function get_member_by_ID($memberID)
     $sql .= "WHERE memberID='" . $memberID . "'";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
-    $subject = mysqli_fetch_assoc($result);
+    $member = mysqli_fetch_assoc($result);
     mysqli_free_result($result);
-    return $subject;
+    return $member;
 }
 
 function get_member_with_fees()
@@ -512,14 +547,22 @@ function addMemberToBan($memberID)
     global $db;
     $startDate = date('Y-m-d');
     $period = get_ban_period();
-    $sql = "INSERT INTO Ban ";
-    $sql .= "(memberID, startDate, endDate, period) ";
-    $sql .= "VALUES (";
-    $sql .= "'" . $memberID . "',";
-    $sql .= "'" . $startDate . "',";
-    $sql .= "NULL, ";
-    $sql .= "'".$period."'";
-    $sql .= ");";
+    if (isBanned($memberID)) {
+        $sql = "UPDATE Ban SET ";
+        $sql .= "startDate='" . $startDate . "' ";
+        $sql .= "WHERE memberID='" . $memberID . "' ";
+        $sql .= "LIMIT 1;";
+    } else {
+        $sql = "INSERT INTO Ban ";
+        $sql .= "(memberID, startDate, endDate, period) ";
+        $sql .= "VALUES (";
+        $sql .= "'" . $memberID . "',";
+        $sql .= "'" . $startDate . "',";
+        $sql .= "NULL, ";
+        $sql .= "'".$period."'";
+        $sql .= ");";
+    }
+
     $result = mysqli_query($db, $sql);
     // For INSERT statements, $result is true/false
     if ($result) {
@@ -555,7 +598,12 @@ function returnRental($rental, $isDamaged)
     $overdue['period'] = $rental['period'];
     $overdue['returnDate'] = $currentDate;
     if (isOverdueReturned($overdue) && !$isDamaged) increaseViolation($rental);
-    if ($isDamaged) addMemberToBan($rental['memberID']);
+    if ($isDamaged) {
+        addMemberToBan($rental['memberID']);
+        $gameID = getGameByRental($rental['rentalID']);
+        $game = getGameByID($gameID);
+        add_debt($rental['memberID'], $game['cost']);
+    }
     $sql = "UPDATE Rental set returnDate = ";
     $sql .= "'" . $currentDate . "'";
     $sql .= " WHERE " . $rental['rentalID'] . "= rentalID;";

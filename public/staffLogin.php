@@ -12,7 +12,7 @@ if (is_post_request()) {
     $inputUsername = $_POST['inputUsername'] ?? '';
     $inputPassword = $_POST['inputPassword'] ?? '';
 
-    $staff = find_staff_by_email($inputUsername);
+    $staff = get_staff_by_email($inputUsername);
     if ($staff) {
         if (password_verify($inputPassword, $staff['password'])) {
             log_in($staff);
