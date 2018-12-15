@@ -125,7 +125,7 @@ function insert_game_data($game)
     }
 
     $sql = "INSERT INTO Game ";
-    $sql .= "(cost, type, platform, ageLimit, name, isCurrentlyAvailable, releaseYear, imageLink, gameDescription) ";
+    $sql .= "(cost, type, platform, ageLimit, name, releaseYear, imageLink, gameDescription) ";
     $sql .= "VALUES (";
     $sql .= "'" . $game['cost'] . "',";
     $sql .= "'" . $game['type'] . "',";
@@ -185,7 +185,6 @@ function update_game_data($game)
     $sql .= "platform='" . $game['platform'] . "', ";
     $sql .= "ageLimit='" . $game['ageLimit'] . "', ";
     $sql .= "name='" . $game['name'] . "', ";
-    $sql .= "isCurrentlyAvailable='" . $game['isCurrentlyAvailable'] . "', ";
     $sql .= "releaseYear='" . $game['releaseYear'] . "', ";
     $sql .= "imageLink='" . $game['imageLink'] . "', ";
     $sql .= "gameDescription='" . $game['gameDescription'] . "' ";
