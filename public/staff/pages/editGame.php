@@ -18,12 +18,11 @@ if(is_post_request()){
   $game['cost'] = $_POST['cost'] ;
   $game['type'] = $_POST['type'] ;
   $game['platform'] = $_POST['platform'] ;
-  $game['ageLimit'] = $_POST['age_limit'] ;
+  $game['ageLimit'] = $_POST['ageLimit'] ;
   $game['name'] = $_POST['name'] ;
-  $game['isCurrentlyAvailable'] = $_POST['is_currently_available'] ;
   $game['releaseYear'] = $_POST['releaseYear'] ;
-  $game['imageLink'] = $_POST['image_link'] ;
-  $game['gameDescription'] = $_POST['game_description'];
+  $game['imageLink'] = $_POST['imageLink'] ;
+  $game['gameDescription'] = $_POST['desc'];
   $result = update_game_data($game);
 
   if($result === true) {

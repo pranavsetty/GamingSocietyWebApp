@@ -13,7 +13,7 @@ if(is_post_request()) {
     $game['name'] = $_POST['name'] ?? '';
     $game['releaseYear'] = $_POST['releaseYear'] ?? '';
     $game['imageLink'] = $_POST['imageLink'] ?? '';
-    $game['gameDescription'] = $_POST['gameDescription'] ?? '';
+    $game['gameDescription'] = $_POST['desc'] ?? '';
     $result = insert_game_data($game);
     if($result === true) {
         //$new_id = mysqli_insert_id($db); Not sure what this is for
@@ -50,7 +50,7 @@ if(is_post_request()) {
         <div class="row">
             <div class="col-6 form-group">
                 <label for="name">Game title</label>
-                <input type="text" name="name" id = "DoB" class="form-control mb-2" placeholder="Title" required>
+                <input type="text" name="name" id = "name" class="form-control mb-2" placeholder="Title" required>
             </div>
             <div class="col-6 form-group">
                 <label for="releaseYear">Release Year</label>

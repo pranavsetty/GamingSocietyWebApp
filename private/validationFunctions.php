@@ -161,10 +161,6 @@ function validate_game($game)
     } elseif ($age_limit <= 0) {
         $errors['ageLimit'] = "Age must be a positive number";
     }
-    $currently_available = (string)$game['isCurrentlyAvailable'];
-    if (!has_inclusion_of($currently_available, ["0", "1"])) {
-        $errors['isCurrentlyAvailable'] = "Currently Available either be 0 or 1";
-    }
     $release_year = (int)$game['releaseYear'];
     if ($release_year <= 1950) {
         $errors['releaseYear'] = "Must be a valid year";
