@@ -16,8 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (isset($_POST['extend'])) {
         $rent['extension'] = $_POST['extension'];
-
-
         $numOfExtension = getMaxExtensions();
         $extensionValue = getExtension($rent);
         if ($extensionValue >= $numOfExtension) {
@@ -31,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         }
-        // TODO: remove post
 
     } else if (!isset($_POST['extend'])) {
         if (isset($_POST['isDamaged'])) $isDamaged = true;
@@ -72,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </tr>
                     </thead>
                     <tbody>
+                    <<<<<<< HEAD
                     <?php $rentals = findRentals();
                     while ($rental = mysqli_fetch_assoc($rentals)) {
                         if (isCurrentRental($rental)) { ?>
@@ -106,9 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </td>
                                 </form>
                             </tr>
-                        <?php }
-                    }
-                    ?>
+                        <?php }} ?>
                     </tbody>
                 </table>
             </div>
@@ -135,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </thead>
 
                     <tbody>
+                    <<<<<<< HEAD
                     <?php $rentals = findRentals();
                     while ($rental = mysqli_fetch_assoc($rentals)) {
                         if (!isCurrentRental($rental)) { ?>
@@ -147,6 +144,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </tr>
                         <?php }
                     } ?>
+                    =======
+                    <?php $rentals = findRentals();
+                    while ($rental = mysqli_fetch_assoc($rentals)) {
+                        if (!isCurrentRental($rental)) { ?>
+                            <tr>
+                                <td><?php echo $rental['name']; ?></td>
+                                <td><?php echo $rental['firstname']; ?></td>
+                                <td><?php echo calculateEndDate($rental['startDate'], getPeriod()) ?></td>
+                                <td><?php echo $rental['extension']; ?></td>
+                                <td><?php echo $rental['returnDate']; ?></td>
+                            </tr>
+                        <?php }
+                    } ?>
+                    >>>>>>> 78ba7992fe32ac3c851033f8a9338345305031df
                     </tbody>
                 </table>
             </div>
@@ -176,6 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </thead>
 
                     <tbody>
+                    <<<<<<< HEAD
                     <?php $rentals = findRentals();
                     while ($rental = mysqli_fetch_assoc($rentals)) {
                         if (isOverdue($rental)) { ?>
@@ -199,6 +211,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </tr>
                         <?php }
                     } ?>
+                    =======
+                    <?php $rentals = findRentals();
+                    while ($rental = mysqli_fetch_assoc($rentals)) {
+                        if (isOverdue($rental)) { ?>
+                            <tr>
+                                <td><?php echo $rental['name']; ?></td>
+                                <td><?php echo $rental['firstname']; ?></td>
+                                <td><?php echo calculateEndDate($rental['startDate'], getPeriod()) ?></td>
+                                <td><?php echo $rental['extension']; ?></td>
+                                <form action="" method="post">
+                                    <td><input type="checkbox" name="isDamaged">Damaged</td>
+                                    <input type="hidden" name="rentalID" value= <?php echo $rental['rentalID'] ?>>
+                                    <input type="hidden" name="memberID" value= <?php echo $rental['memberID'] ?>>
+                                    <input type="hidden" name="startDate" value= <?php echo $rental['startDate'] ?>>
+                                    <input type="hidden" name="period" value= <?php getPeriod(); ?>>
+                                    <td>
+                                        <button type="submit"><i class="fas fa-undo-alt"></i> return
+                                    </td>
+                                </form>
+                            </tr>
+                        <?php }
+                    } ?>
+                    >>>>>>> 78ba7992fe32ac3c851033f8a9338345305031df
                     </tbody>
                 </table>
             </div>
