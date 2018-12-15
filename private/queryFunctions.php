@@ -3,6 +3,30 @@ require_once('setup/db.php');
 require_once('validationFunctions.php');
 require_once('functions.php');
 
+function hasEndDate($memberID) {
+    global $db;
+    $sql = "SELECT IF (EXISTS (SELECT * FROM Ban WHERE memberID='" . $memberID . "'";
+    $sql .= " AND endDate IS NOT NULL), 'yes', 'no') AS 'hasEndDate'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $answer = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    if ($answer['hasEndDate'] == 'yes') {
+        return true;
+    } else {
+        return false;
+    }
+}
+function getBanByMember($memberID) {
+    global $db;
+    $sql = "SELECT * FROM Ban ";
+    $sql .= "WHERE memberID='" . $memberID . "'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $ban = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $ban;
+}
 
 function getGameByID($game)
 {
@@ -442,7 +466,7 @@ function get_staff_data()
 function get_simple_member_data()
 {
     global $db;
-    $sql = "SELECT memberID, firstname, surname, phoneNo, DoB, email, homeAddress, violations ";
+    $sql = "SELECT memberID, firstname, surname, phoneNo, DoB, email, homeAddress, violations, debt ";
     $sql .= "FROM  Member;";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);

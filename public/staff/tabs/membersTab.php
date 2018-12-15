@@ -61,6 +61,9 @@
                         <th class="no-border" scope="col">Email</th>
                         <th class="no-border" scope="col">Home address</th>
                         <th class="no-border" scope="col">Violations</th>
+                        <th class="no-border" scope="col">Until</th>
+                        <th class="no-border" scope="col"></th>
+                        <th class="no-border" scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -74,6 +77,20 @@
                         <td><?php echo $member['email']; ?></td>
                         <td><?php echo $member['homeAddress']; ?></td>
                         <td><?php echo $member['violations']; ?></td>
+                        <?php $ban = getBanByMember($member['memberID']);
+                        if(hasEndDate($ban['memberID'])) {
+                            echo '<td>' . $ban['endDate'] . '</td>';
+                        } else {
+                            echo '<td>paid back</td>';
+                        }
+                        if ($member['debt'] != '0') {
+                            echo '<td>' . $member['debt'] . '£</td>
+                            <td>
+                                <a href="pages/editDebt.php?id=' . ($member['memberID']) . '" class="btn-outline-primary">
+                                    <i class="far fa-money-bill-alt"></i> pay back
+                                </a>
+                            </td>';
+                        } ?>
                     </tr>
                     <?php }} ?>
                     </tbody>
