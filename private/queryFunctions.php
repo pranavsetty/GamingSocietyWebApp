@@ -798,16 +798,24 @@ function increaseViolation($rental)
           $counter++;
     }
   }
-  $firstOverdue = date((min($pastOverdue)));
-  $lastOverdue = date((max($pastOverdue)));
-  //$diff = abs(strtotime($lastOverdue) - strtotime($firstOverdue));
-  echo gettype($firstOverdue);
-  echo gettype($lastOverdue);
+  $first = date((min($pastOverdue)));
+  $last = date((max($pastOverdue)));
+  $firstOver = date_create_from_format('Y/m/d',$first);
+  $lastOver = date_create_from_format('Y/m/d',$last);
+
+       $firstOverdue = strtotime($firstOver);
+       $lastOverdue = strtotime($lastOver);
+
+
+  $diff = abs(strtotime($lastOverdue) - strtotime($firstOverdue));
+  //echo gettype($firstOverdue);
+        //date_diff($firstOverdue,$lastOverdue)
+  //echo gettype($lastOverdue);
   //echo "DIFF IS     " . $diff . "    ";
-  echo "The first overdue rental date is = " . $firstOverdue. "   ";
+/*  echo "The first overdue rental date is = " . $firstOverdue. "   ";
   echo "The last overdue rental date is = " . $lastOverdue. "   ";
-  echo "The count is = " . $counter. "";
-  if ($counter >= getMaxViolationsPerYear() && date_diff($firstOverdue,$lastOverdue) <= 365){
+  echo "The count is = " . $counter. "";*/
+  if ($counter >= getMaxViolationsPerYear() && $diff <= 365){
     addMemberToBan($rental['memberID'], 1);
     echo '<script language = "javascript">';
     echo 'alert ("Member is added to ban");';
