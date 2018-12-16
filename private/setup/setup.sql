@@ -103,15 +103,15 @@ VALUES (DEFAULT, 13, "Action", "PS4", 18, "Grand Theft Auto 5", 2014,"https://me
        (DEFAULT, 12, "Action", "Nintendo", 18, "Spiderman Animated", 2016,"https://i.redd.it/g280bphh6qb11.jpg", "Spider-Man is a side-scrolling action game developed by Western Technologies and published by Acclaim and LJN in 1995, incorporating elements from the critically acclaimed 1990s Spider-Man cartoon series. The game was released for the Genesis and the Super NES. ", "https://uk.ign.com/articles/2018/09/04/marvels-spider-man-ps4-review");
 
 INSERT into Rental
-VALUES(DEFAULT, 1,1,DEFAULT, DEFAULT, '2018-12-01',DEFAULT),
-      (DEFAULT, 2,2,DEFAULT, DEFAULT, '2018-11-29',DEFAULT),
+VALUES(DEFAULT, 1,1,DEFAULT, DEFAULT, '2018-12-16',DEFAULT),
+      (DEFAULT, 2,2,DEFAULT, DEFAULT, '2018-12-25',DEFAULT),
       (DEFAULT, 3,3,DEFAULT, DEFAULT,'2018-05-22',DEFAULT),
 
-      (DEFAULT, 3,1,DEFAULT, DEFAULT,'2011-05-22','2017-1-15'),
-      (DEFAULT, 3,2,DEFAULT, DEFAULT,'2012-05-22','2017-2-15'),
-      (DEFAULT, 3,4,DEFAULT, DEFAULT,'2014-05-22','2017-3-15'),
+      (DEFAULT, 3,1,DEFAULT, DEFAULT,'2018-06-22','2018-06-30'),
+      (DEFAULT, 3,2,DEFAULT, DEFAULT,'2018-08-30','2018-09-05'),
+      (DEFAULT, 3,4,DEFAULT, DEFAULT,'2018-09-20','2018-09-25'),
 
-      (DEFAULT, 1,7,DEFAULT, DEFAULT,'2018-10-22','2018-10-30');
+      (DEFAULT, 1,7,DEFAULT, DEFAULT,'2018-10-21','2018-10-30');
 
 INSERT into Ban
 VALUES(1, '2018-10-12',NULL,DEFAULT),

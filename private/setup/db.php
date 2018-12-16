@@ -1,5 +1,5 @@
 <?php
-require_once('credentials.php');
+require_once('credentials_prod.php');
   // ---
   // The code in this file is taken (with only minor changes) from
   // PHP with MySQL Essential Training: 1 The Basics
@@ -17,14 +17,6 @@ require_once('credentials.php');
   ini_set('display_errors', TRUE);
   ini_set('display_startup_errors', TRUE);
 
-  // Credentials
-  $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $dbname = 'omega_db';
-
-  // 1. Create a database connection
-  //$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
   function db_connect() {
     $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -46,10 +38,6 @@ require_once('credentials.php');
       exit($msg);
     }
   }
-
-  // 2. Perform database query
-  //$query = "SELECT * FROM Member";
-  //$result_set = mysqli_query($connection, $query);
   
   function confirm_result_set($result_set) {
     if (!$result_set) {
