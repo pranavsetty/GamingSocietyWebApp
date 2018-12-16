@@ -92,7 +92,7 @@ a.card {
     width: 100%;
     border: none;
     box-shadow: none;
-    /*-webkit-appearance: none;*/
+    -webkit-appearance: none;
     background-color: #ffffff;
 }
 
