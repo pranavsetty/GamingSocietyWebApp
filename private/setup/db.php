@@ -1,5 +1,5 @@
 <?php
-
+require_once('credentials_prod.php');
   // ---
   // The code in this file is taken (with only minor changes) from
   // PHP with MySQL Essential Training: 1 The Basics
@@ -17,47 +17,31 @@
   ini_set('display_errors', TRUE);
   ini_set('display_startup_errors', TRUE);
 
-  // Credentials
-  $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $dbname = 'demo_db';
 
-  // 1. Create a database connection
-  $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-  // 2. Perform database query
-  $query = "SELECT * FROM things";
-  $result_set = mysqli_query($connection, $query);
-?>
-
-<html>
-  <head>
-    <title>Database connection</title>
-  </head>
-  <body>
-    <h1>
-      Database connection
-    </h1>
-    <table border="1">
-      <tr><td>Name</td><td>Price</td></tr>
-      <?php
-        // 3. Use returned data (if any)
-        while($thing = mysqli_fetch_assoc($result_set)) {
-          echo "<tr><td>" . $thing["name"] . "</td><td>" . $thing["price"] . "</td></tr>";
-        }
-      ?>
-    </table>
-
-
-
-  </body>
-</html>
-
-<?php
-  // 4. Release returned data
-  mysqli_free_result($result_set);
-
-  // 5. Close database connection
-  mysqli_close($connection);
+  function db_connect() {
+    $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+    confirm_db_connect();
+    return $connection;
+  }
+  
+  function db_disconnect($connection) {
+    if(isset($connection)) {
+      mysqli_close($connection);
+    }
+  }
+  
+  function confirm_db_connect() {
+    if(mysqli_connect_errno()) {
+      $msg = "Database connection failed: ";
+      $msg .= mysqli_connect_error();
+      $msg .= " (" . mysqli_connect_errno() . ")";
+      exit($msg);
+    }
+  }
+  
+  function confirm_result_set($result_set) {
+    if (!$result_set) {
+    	exit("Database query failed.");
+    }
+  }
 ?>

@@ -1,0 +1,33 @@
+body {
+    background: url("../images/team.jpg") no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.card {
+    font-size: 12px;
+    border: 0;
+    border-radius: 0.5rem;
+    height: 170px;
+    padding: 20px;
+    background-color: #f7fafb;
+}
+
+.card img {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    border-radius: 50%;
+}
+
+.content {
+    line-height: 2em;
+    border-radius: 1rem;
+    padding: 10% 15%;
+    margin-top: 500px;
+    margin-bottom: 0;
+    background-color: #ffffff;
+}

@@ -1,0 +1,16 @@
+# Git Ignore file Team Omega
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IDEA files
+*.idea
+*.iml
+
+out/
