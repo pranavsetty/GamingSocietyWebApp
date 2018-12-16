@@ -8,15 +8,15 @@ $inputUsername = '';
 $inputPassword = '';
 $errors = '';
 
-if (is_post_request()) {
+if (isPostRequest()) {
     $inputUsername = $_POST['inputUsername'] ?? '';
     $inputPassword = $_POST['inputPassword'] ?? '';
 
-    $staff = get_staff_by_email($inputUsername);
+    $staff = getStaffByEmail($inputUsername);
     if ($staff) {
         if (password_verify($inputPassword, $staff['password'])) {
-            log_in($staff);
-            redirect_to(url_for('/staff/dashboard.php'));
+            logIn($staff);
+            redirectTo(urlFor('/staff/dashboard.php'));
         } else {
             $errors = "Incorrect password.";
         }
@@ -44,7 +44,7 @@ if (is_post_request()) {
         <input type="text" name="inputUsername" class="form-control mb-2" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
-          <?php display_login_errors($errors);?>
+          <?php displayLoginErrors($errors);?>
 
         <button class="mt-3 btn btn-lg btn-login btn-block" type="submit" name ="btn">Sign in</button>
 

@@ -21,7 +21,7 @@ if (isset($_GET['search'])) {
     $search = $_GET['search'];
 }
 
-$gameSet = find_game_data_filter($sort, $type, $platform, $search);
+$gameSet = findGameDataFilter($sort, $type, $platform, $search);
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +94,7 @@ $gameSet = find_game_data_filter($sort, $type, $platform, $search);
                     <div class="filter">
                         <select id="type" name="type">
                             <option value="">Type</option>
-                            <?php $types = find_types();
+                            <?php $types = getTypes();
                             while ($type = mysqli_fetch_assoc($types)) {
                                 echo "<option value=" . $type['type'] . ">" . $type['type'] . "</option>";
                             }
@@ -108,7 +108,7 @@ $gameSet = find_game_data_filter($sort, $type, $platform, $search);
                     <div class="filter">
                         <select id="platform" name="platform">
                             <option value="">Platform</option>
-                            <?php $platforms = find_platforms();
+                            <?php $platforms = getPlatforms();
                             while ($platform = mysqli_fetch_assoc($platforms)) {
                                 echo "<option value=" . $platform['platform'] . ">" . $platform['platform'] . "</option>";
                             }
@@ -146,7 +146,7 @@ $gameSet = find_game_data_filter($sort, $type, $platform, $search);
         while ($game = mysqli_fetch_assoc($gameSet)) { ?>
 
             <div class="col-lg-3 col-md-3 col-sm-4 mb-5">
-                <a class="card" href="<?php echo url_for('gameDetails.php?id=' . h(u($game['gameID']))); ?>">
+                <a class="card" href="<?php echo urlFor('gameDetails.php?id=' . h(u($game['gameID']))); ?>">
                     <img class="card-img-top" src="<?php echo($game['imageLink']); ?>" alt="Card image">
                     <div class="card-body">
                         <h2 class="card-title"><?php echo($game['name']); ?></h2>

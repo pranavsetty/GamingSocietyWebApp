@@ -1,37 +1,34 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-if ($_POST['newValue'] === "admin") {
-    $result = makeAdmin($_POST['staffID'], getAdmin());
-    if ($result == true){
-      redirect_to(url_for('/staff/dashboard.php?tab=overview'));
-    }
-}
-else if ($_POST['newValue'] === "delete") {
-  $result = deleteStaff($_POST['staffID']);
-  if ($result === true) {
-      echo '<script language = "javascript">';
-      echo 'alert ("You have successfully removed this staff ");';
-      echo '</script>';
-    } else{
-      echo '<script language = "javascript">';
-      echo 'alert ("Error: The staff member could not be removed.");';
-      echo '</script>';
-    }
+if (isPostRequest()) {
+    if ($_POST['newValue'] === "admin") {
+        $result = makeAdmin($_POST['staffID'], getAdmin());
+        if ($result == true) {
+            redirectTo(urlFor('/staff/dashboard.php?tab=overview'));
+        }
+    } else if ($_POST['newValue'] === "delete") {
+        $result = deleteStaff($_POST['staffID']);
+        if ($result === true) {
+            echo '<script language = "javascript">';
+            echo 'alert ("You have successfully removed this staff ");';
+            echo '</script>';
+        } else {
+            echo '<script language = "javascript">';
+            echo 'alert ("Error: The staff member could not be removed.");';
+            echo '</script>';
+        }
 
-}
-else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] != "None") {
-    $result = editRule($_POST['description'], $_POST['newValue']);
-    if ($result === true) {
-        //$new_id = mysqli_insert_id($db); Not sure what this is for
-
-        echo '<script language = "javascript">';
-        echo 'alert ("You have successfully edited a rule");';
-        echo '</script>';
-      } else{
-        echo '<script language = "javascript">';
-        echo 'alert ("Error: The rule could not be edited.");';
-        echo '</script>';
-      }
+    } else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] != "None") {
+        $result = editRule($_POST['description'], $_POST['newValue']);
+        if ($result === true) {
+            echo '<script language = "javascript">';
+            echo 'alert ("You have successfully edited a rule");';
+            echo '</script>';
+            redirectTo(urlFor('/staff/dashboard.php?tab=admin#rules'));
+        } else {
+            echo '<script language = "javascript">';
+            echo 'alert ("Error: The rule could not be edited.");';
+            echo '</script>';
+        }
     }
 }
 ?>
@@ -46,7 +43,7 @@ else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] 
         <div class="card card-blue card-big">
             <div class="card-title title-blue">
                 <div class="align-left label">Staff</div>
-                <div class="align-right"><?php echo countStaff()-1;?></div>
+                <div class="align-right"><?php echo countStaff() - 1; ?></div>
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
@@ -64,9 +61,10 @@ else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] 
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $staff =  get_staff_data();
-                    while($staffMember = mysqli_fetch_assoc($staff)) {
-                        if ($staffMember['staffID'] !== getAdmin()){?>
+                    <?php $staff = getStaffData();
+                    while ($staffMember = mysqli_fetch_assoc($staff)) {
+                        if ($staffMember['staffID'] !== getAdmin()) {
+                            ?>
                             <tr>
                                 <td><?php echo $staffMember['firstname'] . " " . $staffMember['surname']; ?></td>
                                 <td><?php echo $staffMember['DoB']; ?></td>
@@ -76,20 +74,27 @@ else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] 
                                 <td><?php if (isAdmin($staffMember['email'])) echo 'admin'; else echo 'staff' ?></td>
                                 <form action="" method="post">
                                     <td>
-                                        <input type = "hidden" name = "newValue" value = "delete">
-                                        <input type = "hidden" name = "staffID" value = <?php echo $staffMember['staffID']; ?>>
-                                        <button type="submit" name = "delete" class = "btn btn-outline-danger"> Delete staff </button>
+                                        <input type="hidden" name="newValue" value="delete">
+                                        <input type="hidden" name="staffID"
+                                               value= <?php echo $staffMember['staffID']; ?>>
+                                        <button type="submit" name="delete" class="btn btn-outline-danger"> Delete
+                                            staff
+                                        </button>
                                     </td>
                                 </form>
                                 <form action="" method="post">
                                     <td>
-                                        <input type = "hidden" name = "newValue" value = "admin">
-                                        <input type = "hidden" name = "staffID" value = <?php echo $staffMember['staffID']; ?>>
-                                        <button type="submit" name = "makeAdmin" class = "btn btn-outline-primary"> Make admin </button>
+                                        <input type="hidden" name="newValue" value="admin">
+                                        <input type="hidden" name="staffID"
+                                               value= <?php echo $staffMember['staffID']; ?>>
+                                        <button type="submit" name="makeAdmin" class="btn btn-outline-primary"> Make
+                                            admin
+                                        </button>
                                     </td>
                                 </form>
                             </tr>
-                        <?php }} ?>
+                        <?php }
+                    } ?>
                     </tbody>
                 </table>
             </div>
@@ -98,12 +103,12 @@ else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] 
     </div>
 </div>
 
-<div class="row mt-5">
+<div id="rules" class="row mt-5">
     <div class="col">
         <div class="card card-purple card-big">
             <div class="card-title title-purple">
                 <div class="align-left label">Rules</div>
-                <div class="align-right"><?php echo countRules();?></div>
+                <div class="align-right"><?php echo countRules(); ?></div>
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
@@ -116,37 +121,51 @@ else if (isset($_POST['description'], $_POST['newValue']) && $_POST['newValue'] 
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $rules = get_rules_data();
-                    while($rule = mysqli_fetch_assoc($rules)) { ?>
-                        <tr>
-                            <td><?php echo $rule['description']; ?></td>
-                            <td><?php echo $rule['value']; ?></td>
-                            <form action="" method="post">
-                                <td>
-                                    <input type = "hidden" name = "newValue" value = "None">
-                                    <input type = "hidden" name = "description" value = <?php echo $rule['description']; ?>>
-                                    <button type="submit" name = "submit" class = "btn btn-outline-primary">edit</button>
-                                </td>
-                            </form>
-                            <?php } ?>
-                        </tr>
-
                     <?php
-                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                         if (isset($_POST['submit'], $_POST['newValue'])) {
-                           if ($_POST['newValue'] == "None") { ?>
-                           <form action="" method="post">
-                             <td>
-                           <input type = "hidden" name = "description" value = <?php echo $_POST['description']; ?>>
-                           <input type="text" name="newValue" class="form-control mb-2" placeholder="New Value" required autofocus >
-                           <button type="submit" class="btn btn-outline-primary"> Update </button>
+                    while ($rule = mysqli_fetch_assoc($rules)) { ?>
+                    <tr>
+                        <td><?php
+                            if (isset($_POST['description'])) {
+                                if ($rule['description'] == $_POST['description']) {
+                                    echo '<div class="btn-outline-primary">' . $rule['description'] . '</div>';
+                                } else {
+                                    echo $rule['description'];
+                                }
+                            } else {
+                                echo $rule['description'];
+                            } ?></td>
+                        <td><?php echo $rule['value']; ?></td>
+                        <td>
+                            <form action="" method="post">
+                                <input type="hidden" name="newValue" value="None">
+                                <input type="hidden" name="description" value= <?php echo $rule['description']; ?>>
+                                <button type="submit" name="submit" class="btn btn-outline-primary">edit</button>
+                            </form>
+                        </td>
+                        <?php } ?>
+                    </tr>
+                    <tr>
+                    <?php
+                    if (isPostRequest()) {
+                        if (isset($_POST['submit'], $_POST['newValue'])) {
+                            if ($_POST['newValue'] == "None") { ?>
 
-                           </td>
-                         </form>
-                       <?php }}}?>
-
-
-
+                                    <form action="" method="post">
+                                        <td>
+                                        <input type="hidden" name="description"
+                                               value= <?php echo $_POST['description']; ?>>
+                                        <input type="text" name="newValue" class="form-control mb-2"
+                                               placeholder="New Value" required autofocus>
+                                        </td>
+                                        <td class="d-flex align-items-center pt-4">
+                                        <button type="submit" class="btn btn-outline-primary"> Update</button>
+                                        </td>
+                                        <td></td>
+                                    </form>
+                            <?php }
+                        }
+                    } ?>
+                    </tr>
                     </tbody>
                 </table>
             </div>

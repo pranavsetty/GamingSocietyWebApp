@@ -4,7 +4,7 @@ $styleFileName = "add.css";
 require_once('../../../private/initialize.php');
 require_login();
 
-if(is_post_request()) {
+if(isPostRequest()) {
     $game = [];
     $game['cost'] = $_POST['cost'] ?? '';
     $game['type'] = $_POST['type'] ?? '';
@@ -14,7 +14,7 @@ if(is_post_request()) {
     $game['releaseYear'] = $_POST['releaseYear'] ?? '';
     $game['imageLink'] = $_POST['imageLink'] ?? '';
     $game['gameDescription'] = $_POST['desc'] ?? '';
-    $result = insert_game_data($game);
+    $result = insertGameData($game);
     if($result === true) {
         //$new_id = mysqli_insert_id($db); Not sure what this is for
         echo '<script language = "javascript">';

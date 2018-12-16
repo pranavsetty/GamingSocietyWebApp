@@ -4,11 +4,11 @@ $styleFileName = "add.css";
 require_once('../../../private/initialize.php');
 require_login();
 if(!isset($_GET['id'])) {
-    redirect_to(url_for('../overviewTab.php'));
+    redirectTo(urlFor('../overviewTab.php'));
 }
 $memberID = $_GET['id'];
 
-if(is_post_request()) {
+if(isPostRequest()) {
     $member = [];
     $member['memberID'] = $memberID;
 
@@ -16,16 +16,16 @@ if(is_post_request()) {
     $result = updateDebt($member);
     if ($result === true) {
       if (getDebt($member['memberID']) == 0) removeFromBan($member['memberID']);
-      redirect_to(url_for('../public/staff/dashboard.php?tab=overview'));
+      redirectTo(urlFor('../public/staff/dashboard.php?tab=overview'));
     } else {
         $errorsMembers = $result;
         // var_dump($errors);
     }
 }
 else{
-  $member = find_member_id($memberID);
+  $member = getMemberByID($memberID);
 }
-    $member_set = find_member_data();
+    $member_set = getMemberData();
     $member_count = mysqli_num_rows($member_set);
     mysqli_free_result($member_set);
 ?>
@@ -42,7 +42,7 @@ else{
 
 <div class="container mb-5">
 
-    <form class="form" action="<?php echo url_for('/staff/pages/editDebt.php?id=' . h(u($memberID))); ?>" method="post">
+    <form class="form" action="<?php echo urlFor('/staff/pages/editDebt.php?id=' . h(u($memberID))); ?>" method="post">
         <div class="row d-flex justify-content-center">
             <h1 class="mb-5 mt-3 text-uppercase">Edit Debt</h1>
         </div>

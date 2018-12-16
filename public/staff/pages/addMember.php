@@ -4,7 +4,7 @@ $styleFileName = "add.css";
 require_once('../../../private/initialize.php');
 require_login();
 
-if(is_post_request()) {
+if(isPostRequest()) {
 
     $member = [];
     $member['Title'] = $_POST['Title'] ?? '';
@@ -16,7 +16,7 @@ if(is_post_request()) {
     $member['Address'] = $_POST['Address'] ?? '';
 
 
-    $result = insert_member($member);
+    $result = insertMember($member);
     if($result === true) {
         //$new_id = mysqli_insert_id($db); Not sure what this is for
         echo '<script language = "javascript">';

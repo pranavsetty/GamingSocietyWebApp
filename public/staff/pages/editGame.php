@@ -7,11 +7,11 @@ require_login();
 
 
 if(!isset($_GET['id'])) {
-    redirect_to(url_for('../gameTab.php'));
+    redirectTo(urlFor('../gameTab.php'));
 }
 $gameID = $_GET['id'];
 
-if(is_post_request()){
+if(isPostRequest()){
   $game = [];
   $game['gameID'] = $gameID;
 
@@ -23,19 +23,19 @@ if(is_post_request()){
   $game['releaseYear'] = $_POST['releaseYear'] ;
   $game['imageLink'] = $_POST['imageLink'] ;
   $game['gameDescription'] = $_POST['desc'];
-  $result = update_game_data($game);
+  $result = updateGameData($game);
 
   if($result === true) {
-      redirect_to(url_for('../public/staff/dashboard.php?tab=game'));
+      redirectTo(urlFor('../public/staff/dashboard.php?tab=game'));
   }else{
       $errors = $result;
      // var_dump($errors);
   }
 
 } else{
-  $game = find_game_id($gameID);
+  $game = getGameByID($gameID);
 }
-    $game_set = find_game_data();
+    $game_set = findGameData();
     $game_count = mysqli_num_rows($game_set);
     mysqli_free_result($game_set);
 ?>
@@ -50,7 +50,7 @@ if(is_post_request()){
 
 <div class="container mb-5">
 
-    <form class="form" action="<?php echo url_for('/staff/pages/editGame.php?id=' . h(u($gameID))); ?>" method="post">
+    <form class="form" action="<?php echo urlFor('/staff/pages/editGame.php?id=' . h(u($gameID))); ?>" method="post">
         <div class="row d-flex justify-content-center">
             <h1 class="mb-5 mt-3 text-uppercase">Edit Game</h1>
         </div>

@@ -8,7 +8,7 @@
         <div class="card card-blue card-big">
             <div class="card-title title-blue">
                 <div class="align-left label">Active members: </div>
-                <div class="align-right"><?php echo countMembers(); ?></div>
+                <div class="align-right"><?php echo countActiveMembers(); ?></div>
                 <div class="clear-float"></div>
             </div>
             <div class="card-body">
@@ -24,18 +24,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                      <?php $members =  get_simple_member_data();
-                            while($member = mysqli_fetch_assoc($members)) {
-                            if(!isBanned($member['memberID'])){ ?>
+                      <?php $members = getActiveMembers();
+                            while($member = mysqli_fetch_assoc($members)) {?>
                     <tr>
-                        <td><?php echo $member['firstname']; ?></td>
+                        <td><?php echo $member['firstname'] . " " . $member['surname']; ?></td>
                         <td><?php echo $member['DoB']; ?></td>
                         <td><?php echo $member['phoneNo']; ?></td>
                         <td><?php echo $member['email']; ?></td>
                         <td><?php echo $member['homeAddress']; ?></td>
                         <td><?php echo $member['violations']; ?></td>
                     </tr>
-                    <?php }} ?>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -67,11 +66,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                      <?php $members =  get_simple_member_data();
-                            while($member = mysqli_fetch_assoc($members)) {
-                            if(isBanned($member['memberID'])){ ?>
+                      <?php $members =  getBannedMembers();
+                            while($member = mysqli_fetch_assoc($members)) {?>
                     <tr>
-                        <td><?php echo $member['firstname']; ?></td>
+                        <td><?php echo $member['firstname'] . " " . $member['surname'];  ?></td>
                         <td><?php echo $member['DoB']; ?></td>
                         <td><?php echo $member['phoneNo']; ?></td>
                         <td><?php echo $member['email']; ?></td>
@@ -92,7 +90,7 @@
                             </td>';
                         } ?>
                     </tr>
-                    <?php }} ?>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
