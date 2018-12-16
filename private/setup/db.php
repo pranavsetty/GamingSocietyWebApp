@@ -1,5 +1,5 @@
 <?php
-require_once('credentials_prod.php');
+require_once('credentials_dev.php');
   // ---
   // The code in this file is taken (with only minor changes) from
   // PHP with MySQL Essential Training: 1 The Basics
