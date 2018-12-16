@@ -23,7 +23,7 @@ $isAdmin = isAdmin($_SESSION['username']);
               <div class="headline border-bottom">
                   <?php echo $staffName['firstname']?><br><?php echo $staffName['surname']?>
                   <h7><br><?php if ($isAdmin) echo 'admin'; else echo 'staff'; ?></h7>
-                  <br><a href="<?php echo url_for('/staff/logout.php'); ?>"" class="btn btn-sidebar mb-3"><i class="fas fa-unlock-alt"></i> Logout</a>
+                  <br><a href="<?php echo urlFor('/staff/logout.php'); ?>"" class="btn btn-sidebar mb-3"><i class="fas fa-unlock-alt"></i> Logout</a>
               </div>
             <ul class="nav flex-column">
               <li class="nav-item nav-item-sidebar">

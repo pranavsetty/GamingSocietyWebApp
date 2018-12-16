@@ -6,7 +6,7 @@
 //}
 //echo getMaxExtensions()[0];
 
-if (is_post_request()) {
+if (isPostRequest()) {
     $rent = [];
     $rent['rentalID'] = $_POST['rentalID'] ?? '';
     $rent['memberID'] = $_POST['memberID'] ?? '';
@@ -22,9 +22,9 @@ if (is_post_request()) {
             echo 'alert ("Error: Could not extend game");';
             echo '</script>';
         } else {
-            $result = updateRentalExtension($rent);
-            $result = updateRentalPeriod($rent);
-            redirect_to(url_for('staff/dashboard.php?tab=rentals'));
+            $result = increaseRentalExtension($rent);
+            $result = increaseRentalPeriod($rent);
+            redirectTo(urlFor('staff/dashboard.php?tab=rentals'));
 
 
         }
@@ -137,7 +137,7 @@ if (is_post_request()) {
                         if (!isCurrentRental($rental)) { ?>
                             <tr>
                                 <td><?php echo $rental['name']; ?></td>
-                                <td><?php echo $rental['firstname']; ?></td>
+                                <td><?php echo $rental['firstname'] . " " . $rental['surname']; ?></td>
                                 <td><?php echo calculateEndDate($rental['startDate'], getPeriod()) ?></td>
                                 <td><?php echo $rental['extension']; ?></td>
                                 <td><?php echo $rental['returnDate']; ?></td>

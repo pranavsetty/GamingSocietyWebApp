@@ -4,7 +4,7 @@ $styleFileName = "add.css";
 require_once('../../../private/initialize.php');
 require_login();
 
-if(is_post_request()) {
+if(isPostRequest()) {
     if ($_POST['Password']==$_POST['confirmPassword']) {
         $staff = [];
         $staff['Title'] = $_POST['Title'] ?? '';
@@ -18,7 +18,7 @@ if(is_post_request()) {
         $staff['confirmPassword'] = $_POST['confirmPassword'] ?? '';
 
 
-        $result = insert_staff($staff);
+        $result = insertStaff($staff);
         if ($result === true) {
             echo '<script language = "javascript">';
             echo 'window.location.href = "../dashboard.php";';

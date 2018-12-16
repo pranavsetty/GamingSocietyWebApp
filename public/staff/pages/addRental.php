@@ -4,14 +4,14 @@ $styleFileName = "add.css";
 require_once('../../../private/initialize.php');
 require_login();
 
-if (is_post_request()) {
+if (isPostRequest()) {
 
     $rental = [];
     $rental['MemberID'] = $_POST['member'] ?? '';
     $rental['GameID'] = $_POST['game'] ?? '';
     //$member['Period'] = $_POST['Period'] ?? '';
 
-    $result = insert_rental($rental);
+    $result = insertRental($rental);
     if ($result === true) {
         //$new_id = mysqli_insert_id($db); Not sure what this is for
         echo '<script language = "javascript">';
@@ -47,10 +47,10 @@ if (is_post_request()) {
             <div class="col-6 form-group">
                 <label for="sel1">Members:</label>
                 <select class="form-control" id="sel1" name="member">
-                    <?php $members = not_banned_members();
+                    <?php $members = notBannedMembers();
                     foreach ($members as $member) {
-                        $names = get_member_by_ID($member);
-                        echo "<option value=" . $member . ">" . $names['firstName'] . " " . $names['surname'] . "</option>";
+                        $names = getMemberByID($member);
+                        echo "<option value=" . $member . ">" . $names['firstname'] . " " . $names['surname'] . "</option>";
                     }
                     ?>
 
@@ -62,7 +62,7 @@ if (is_post_request()) {
             <div class="col-6 form-group">
                 <label for="sel1">Available Games:</label>
                 <select class="form-control" id="sel1" name="game">
-                    <?php $games = find_game_data();
+                    <?php $games = findGameData();
                     while ($game = mysqli_fetch_assoc($games)) {
                         if (isCurrentlyAvailable($game['gameID'])) echo "<option value=" . $game['gameID'] . ">" . $game['name'] . "</option>";
                     }

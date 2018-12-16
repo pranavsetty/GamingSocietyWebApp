@@ -4,7 +4,7 @@ $styleFileName = "details.css";
 require_once('../private/initialize.php');
 
 $gameID = $_GET['id'];
-$gameEntry = find_game_id($gameID)
+$gameEntry = getGameByID($gameID)
 
 
 ?>
@@ -79,7 +79,7 @@ $gameEntry = find_game_id($gameID)
                                 <?php echo h($gameEntry['gameDescription']); ?>
                             </p>
                             <p class="float-right">
-                                <a href="<?php echo make_links_clickable(h($gameEntry['link']));?>">Read a review</a>
+                                <a href="<?php echo makeLinksClickable(h($gameEntry['link']));?>">Read a review</a>
                             </p>
                         </div>
                 </div>

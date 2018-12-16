@@ -1,6 +1,6 @@
 <?php
 
-if (is_post_request()) {
+if (isPostRequest()) {
     $rent = [];
     $rent['rentalID'] = $_POST['rentalID'] ?? '';
     $rent['memberID'] = $_POST['memberID'] ?? '';
@@ -94,7 +94,7 @@ if (is_post_request()) {
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $members = get_member_with_fees();
+                    <?php $members = getMembersWithFees();
                     while ($member = mysqli_fetch_assoc($members)) { ?>
                         <tr>
                             <td><?php echo $member['firstname'] . " " . $member['surname']; ?></td>

@@ -8,27 +8,25 @@ function checkActive($navItem) {
   echo $className;
 }
 
-
 function checkLoggingIn() {
     global $loggingIn;
     if ($loggingIn) {
-        echo '<a href="' . url_for('/index.php') . '" class="btn btn-navbar"><i class="fas fa-angle-double-left"></i> Main Page</a>';
+        echo '<a href="' . urlFor('/index.php') . '" class="btn btn-navbar"><i class="fas fa-angle-double-left"></i> Main Page</a>';
     } else {
-        echo '<a href="' . url_for('/staffLogin.php') . '" class="btn btn-navbar"><i class="fas fa-unlock-alt"></i> Staff Login</a>';
+        echo '<a href="' . urlFor('/staffLogin.php') . '" class="btn btn-navbar"><i class="fas fa-unlock-alt"></i> Staff Login</a>';
     }
 }
 
-
-function redirect_to($location) {
+function redirectTo($location) {
   header("Location: " . $location);
   exit;
 }
 
-function is_post_request() {
+function isPostRequest() {
   return $_SERVER['REQUEST_METHOD'] == 'POST';
 }
 
-function display_login_errors($errors) {
+function displayLoginErrors($errors) {
   if ($errors != '') {
       echo '<p class="text-center">';
       echo 'Login failed. ' . $errors;
@@ -36,8 +34,7 @@ function display_login_errors($errors) {
   }
 }
 
-//Might need this function but not yet
-function calculateEndDate($startDate,$weeks){
+function calculateEndDate($startDate, $weeks){
   $period = (int) $weeks;
   return date("Y-m-d", strtotime('+' . $period . " week", strtotime($startDate)));
 }
@@ -68,7 +65,6 @@ function isOverdueReturned($rental){
 }
 
 function wasOverdueWhenReturned($rental){
-    $currentDate = date('Y-m-d');
     $endDate = calculateEndDate($rental['startDate'], getPeriod());
     if ($rental['returnDate'] !== NULL){
       if ($rental['returnDate'] > $endDate){
@@ -85,7 +81,7 @@ function h($string="") {
 function u($string="") {
     return urlencode($string);
 }
-function url_for($script_path) {
+function urlFor($script_path) {
     // add the leading '/' if not present
     if($script_path[0] != '/') {
         $script_path = "/" . $script_path;
@@ -93,20 +89,23 @@ function url_for($script_path) {
     return WWW_ROOT . $script_path;
 }
 
-
 function isCurrentlyAvailable($gameID){
-    $rental = getGameRental($gameID);
-    return !isCurrentRental($rental) || !is_game_being_rented($gameID) ;
+    $rental = getRentalByGame($gameID);
+    return !isCurrentRental($rental) || !isInRental($gameID) ;
+}
+
+function makeLinksClickable($text){
+    return preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '$1', $text);
 }
 
 
-function not_banned_members(){
+function notBannedMembers(){
     $members = [];
-    $member =  get_simple_member_data();
-          while($m = mysqli_fetch_assoc($member)) {
-            if (!isBanned($m['memberID'])) array_push($members, $m['memberID']);
-        }
-   return $members;
+    $member =  getMemberData();
+    while($m = mysqli_fetch_assoc($member)) {
+        if (!isBanned($m['memberID'])) array_push($members, $m['memberID']);
+    }
+    return $members;
 }
 
 ?>

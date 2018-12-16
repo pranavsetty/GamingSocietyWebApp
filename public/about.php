@@ -44,7 +44,7 @@ require_once('../private/initialize.php');
             </p>
             <h2 class="mt-7 mb-5">Our Team</h2>
             <div class="row mt-5">
-                <?php $staff =  get_staff_data();
+                <?php $staff =  getStaffData();
                 while($staffMember = mysqli_fetch_assoc($staff)) { ?>
                     <div class="col-4 mb-5">
                         <div class="card mx-auto text-center">

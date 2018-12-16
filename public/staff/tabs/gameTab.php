@@ -29,7 +29,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $gameSet = find_game_data();
+                    <?php $gameSet = findGameData();
                     while ($game = mysqli_fetch_assoc($gameSet)) { ?>
                             <tr>
                                 <td><?php echo($game['name']); ?></td>
