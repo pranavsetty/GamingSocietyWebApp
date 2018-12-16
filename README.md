@@ -2,6 +2,10 @@
 
 Software Engineering Lab Group Project. 
 
+[Click to access our application](http://seg-lab2018-omega.dx.am/public) 
+
+*(Best viewed on Google Chrome)*
+
 Members:
 * Pranav Bheemsetty
 * Mananchaya (Mai) Khumtai
@@ -33,6 +37,8 @@ Staff can also view banned members and record their payments of fees.
 Staff Admin has access to the dashboard's Admin Page which allows to add and delete staff members account, as well as change
 website's admin account. Admin can also change the rules the data in the application is subject to, such as
 the length of ban period, allowed number of extensions per rental or the allowed number of games member can rent at once.
+
+*All passwords are hashed for security*
 
 ## About the code
 We based the backend of our project on the PHP training videos on Lynda.com 
